@@ -43,12 +43,7 @@ export default {
 </script>
 
 <style>
-.router-link-exact-active,
-.router-link-exact-active:hover {
-  text-decoration: underline;
-}
-
 .img-logo{
-  flex-basis: 3.5%;
+  flex-basis: 3%;
 }
 </style>
