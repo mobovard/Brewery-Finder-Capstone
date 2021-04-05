@@ -1,4 +1,18 @@
+#app {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: url("../img/brewerybg.jpg") no-repeat;
+    height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 /* Color Classes*/
+
+.frosty-primary {
+    background-color: #30161155;
+    -webkit-backdrop-filter: saturate(200%) blur(20px);
+    backdrop-filter: saturate(200%) blur(20px);
+}
 
 .bg-porter {
     background-color: #301611;
@@ -20,28 +34,22 @@
     background-color: #DDC08F;
 }
 
-
 .text-porter {
-    background-color: #301611;
+    color: #301611;
 }
 
 .text-belgian {
-    background-color: #68170B;
+    color: #68170B;
 }
 
 .text-fruit {
-    background-color: #A83518;
+    color: #A83518;
 }
 
 .text-wheat {
-    background-color: #E5932B;
-}
-.text-foam {
-    color: #DDC08F;
+    color: #E5932B;
 }
 
-.frosty-primary {
-    background-color: #68170b55;
-    -webkit-backdrop-filter: saturate(200%) blur(20px);
-    backdrop-filter: saturate(200%) blur(20px);
+.text-foam, .text-wheat:hover {
+    color: #DDC08F;
 }

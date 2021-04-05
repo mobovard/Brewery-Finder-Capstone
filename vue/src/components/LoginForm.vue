@@ -1,70 +1,79 @@
 <template>
-  <form @submit.prevent="login">
-    <h1>Please Sign In</h1>
-    <div role="alert" v-if="invalidCredentials">
-      Invalid username and password!
-    </div>
-    <div
-      role="alert"
-      v-if="this.$route.query.registration"
-    >
-      Thank you for registering, please sign in.
-    </div>
-    <label class="sr-only" for="username">Username</label>
-    <input
-      type="text"
-      id="username"
-      placeholder="Username"
-      v-model="user.username"
-      required
-      autofocus
-    />
-    <label for="password" class="sr-only">Password</label>
-    <input
-      type="password"
-      id="password"
-      placeholder="Password"
-      v-model="user.password"
-      required
-    />
-    <router-link :to="{ name: 'register' }">Need an account?</router-link>
-    <button type="submit">Sign in</button>
-  </form>
+  <div class="frosty-primary p-3">
+    <form class="d-flex flex-column" @submit.prevent="login">
+      <h1 class="text-foam">Please Sign In</h1>
+      <div role="alert" v-if="invalidCredentials">
+        Invalid username and password!
+      </div>
+      <div role="alert" v-if="this.$route.query.registration">
+        Thank you for registering, please sign in.
+      </div>
+      <label class="sr-only" for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        placeholder="Username"
+        v-model="user.username"
+        required
+        autofocus
+        class="form-control my-1"
+      />
+      <label for="password" class="sr-only">Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        v-model="user.password"
+        required
+        class="form-control my-1"
+      />
+
+      <button
+        type="submit"
+        class="btn bg-foam text-fruit my-1 font-weight-bold"
+      >
+        Sign in
+      </button>
+      <router-link :to="{ name: 'register' }" class="text-wheat"
+        >Need an account?</router-link
+      >
+    </form>
+  </div>
 </template>
 
 <script>
 import authService from "../services/AuthService";
 
 export default {
-data() {
+  data() {
     return {
       user: {
         username: "",
-        password: ""
+        password: "",
       },
-      invalidCredentials: false
+      invalidCredentials: false,
     };
   },
   methods: {
     login() {
       authService
         .login(this.user)
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push({name: 'home'});
+            this.$router.push({ name: "home" });
           }
         })
-        .catch(error => {
+        .catch((error) => {
           const response = error.response;
 
           if (response.status === 401) {
             this.invalidCredentials = true;
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

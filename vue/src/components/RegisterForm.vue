@@ -1,38 +1,49 @@
 <template>
-  <form @submit.prevent="register">
-    <h1>Create Account</h1>
-    <div role="alert" v-if="registrationErrors">
-      {{ registrationErrorMsg }}
-    </div>
-    <label for="username" class="sr-only">Username</label>
-    <input
-      type="text"
-      id="username"
-      placeholder="Username"
-      v-model="user.username"
-      required
-      autofocus
-    />
-    <label for="password" class="sr-only">Password</label>
-    <input
-      type="password"
-      id="password"
-      placeholder="Password"
-      v-model="user.password"
-      required
-    />
-    <input
-      type="password"
-      id="confirmPassword"
-      placeholder="Confirm Password"
-      v-model="user.confirmPassword"
-      required
-    />
-    <router-link :to="{ name: 'login' }">Have an account?</router-link>
-    <button type="submit">
-      Create Account
-    </button>
-  </form>
+  <div class="frosty-primary p-3">
+    <form class="d-flex flex-column" @submit.prevent="register">
+      <h1 class="text-foam">Create Account</h1>
+      <div role="alert" v-if="registrationErrors">
+        {{ registrationErrorMsg }}
+      </div>
+      <label for="username" class="sr-only">Username</label>
+      <input
+        type="text"
+        id="username"
+        placeholder="Username"
+        v-model="user.username"
+        required
+        autofocus
+        class="form-control my-1"
+      />
+      <label for="password" class="sr-only">Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        v-model="user.password"
+        required
+        class="form-control my-1"
+      />
+      <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm Password"
+        v-model="user.confirmPassword"
+        required
+        class="form-control my-1"
+      />
+
+      <button
+        type="submit"
+        class="btn bg-foam text-fruit my-1 font-weight-bold"
+      >
+        Create Account
+      </button>
+      <router-link :to="{ name: 'login' }" class="text-wheat"
+        >Have an account?</router-link
+      >
+    </form>
+  </div>
 </template>
 
 <script>

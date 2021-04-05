@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="d-flex flex-column">
     <NavBar />
     <router-view />
   </div>
@@ -15,10 +15,5 @@ export default {
 
 
 <style>
-#app {
-  background: url("./img/brewerybg.jpg") no-repeat;
-  height: 100vh;
-  background-attachment: fixed;
-  background-size: cover;
-}
+
 </style>

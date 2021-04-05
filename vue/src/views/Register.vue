@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex-grow-1 d-flex justify-content-center align-items-center">
     <RegisterForm />
   </div>
 </template>
