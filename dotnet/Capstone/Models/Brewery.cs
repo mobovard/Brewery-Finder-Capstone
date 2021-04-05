@@ -16,7 +16,7 @@ namespace Capstone.Models
         public bool Active { get; set; }
         public string Brewery_img { get; set; }
         public string Hours_of_operation { get; set; }
-        public int User_id { get; set; }
+        public int? User_id { get; set; }
     }
 }
 

@@ -57,7 +57,7 @@ namespace Capstone.DAO
             brewery.Phone_number = Convert.ToString(reader["phone_number"]);
             brewery.Hours_of_operation = Convert.ToString(reader["hours_of_operation"]);
             brewery.User_id = Convert.ToInt32(reader["user_id"]);
-            brewery.Email = Convert.ToString(reader["email"]);
+            brewery.Email = Convert.ToString(reader["brewery_email"]);
 
             return brewery;
 

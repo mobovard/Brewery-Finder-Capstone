@@ -35,7 +35,7 @@ CREATE TABLE brewery (
 	address varchar(200),
 	history varchar(1000),
 	active bit,
-	brewery_img varchar(100),
+	brewery_img varchar(7000),
 	hours_of_operation varchar(200),
 	user_id int,
 	CONSTRAINT PK_brewery PRIMARY KEY (brewery_id),
@@ -58,10 +58,10 @@ INSERT INTO users(username,password_hash,salt,user_role)
 VALUES('ratneshb','LuzmsyWVc5m7Y4ZyWNXnkSlEkVI=','fCRe2YcPIYw=','admin');
 
 INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,hours_of_operation,user_id)
-VALUES('Northern Row','(513)321-1234','northernrow@gmail.com','123 beer st','began as a brewery',1,'data:image/jpeg;base6','Monday-friday 12-5',2);
+VALUES('Northern Row','(513)321-1234','northernrow@gmail.com','123 beer st','began as a brewery',1,'https://cdn.citybeat.com/files/base/scomm/cb/image/2019/05/960w/NorthernRowBrewing_HB_15.5cdb2e7194008.jpg','Monday-friday 12-5',2);
 
-INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,hours_of_operation)
-VALUES('Mad Tree','(312)123-4567','madtree@gmail.com','456 pint st','this is a brewery',0,'data:image/jpeg;basddse6','Monday-Sunday 2-12');
+INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,hours_of_operation,user_id)
+VALUES('Mad Tree','(312)123-4567','madtree@gmail.com','456 pint st','this is a brewery',0,'https://ohiomagazine.imgix.net/sitefinity/images/default-source/articles/2019/02---february-2019/madtree-interior-2.jpg?sfvrsn=74d9a938_2&w=960&auto=compress%2Cformat','Monday-Sunday 2-12',2);
 
 
 
