@@ -1,0 +1,47 @@
+/* Color Classes*/
+
+.bg-porter {
+    background-color: #301611;
+}
+
+.bg-belgian {
+    background-color: #68170B;
+}
+
+.bg-fruit {
+    background-color: #A83518;
+}
+
+.bg-wheat {
+    background-color: #E5932B;
+}
+
+.bg-foam {
+    background-color: #DDC08F;
+}
+
+
+.text-porter {
+    background-color: #301611;
+}
+
+.text-belgian {
+    background-color: #68170B;
+}
+
+.text-fruit {
+    background-color: #A83518;
+}
+
+.text-wheat {
+    background-color: #E5932B;
+}
+.text-foam {
+    color: #DDC08F;
+}
+
+.frosty-primary {
+    background-color: #68170b55;
+    -webkit-backdrop-filter: saturate(200%) blur(20px);
+    backdrop-filter: saturate(200%) blur(20px);
+}

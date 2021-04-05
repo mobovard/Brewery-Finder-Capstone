@@ -1,7 +1,9 @@
 <template>
+<div class="bg-porter text-foam">
   <div class="home">
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
+  </div>
   </div>
 </template>
 
