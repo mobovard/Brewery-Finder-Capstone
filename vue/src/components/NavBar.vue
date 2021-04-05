@@ -16,7 +16,9 @@
           <template #button-content>
             <BIconPersonCircle />
           </template>
-          <b-dropdown-item v-if="$store.getters.isLoggedIn">{{$store.state.user.username}}</b-dropdown-item>
+          <b-dropdown-item v-if="$store.getters.isLoggedIn">{{
+            $store.state.user.username
+          }}</b-dropdown-item>
           <b-dropdown-item
             :to="{ name: 'logout' }"
             :disabled="!$store.state.token != ''"
