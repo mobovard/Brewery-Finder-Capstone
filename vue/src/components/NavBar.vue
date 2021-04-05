@@ -1,9 +1,8 @@
 <template>
   <b-navbar toggleable="md" class="frosty-porter" sticky>
-    <b-navbar-brand
-      ><span class="text-belgian font-weight-bold"
-        >Brewery Finder</span
-      ></b-navbar-brand
+    <b-navbar-brand class="img-logo"
+      ><img src="../img/BF.png" class="img-fluid" alt="Brewery Finder">
+      </b-navbar-brand
     >
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -47,5 +46,9 @@ export default {
 .router-link-exact-active,
 .router-link-exact-active:hover {
   text-decoration: underline;
+}
+
+.img-logo{
+  flex-basis: 3.5%;
 }
 </style>
