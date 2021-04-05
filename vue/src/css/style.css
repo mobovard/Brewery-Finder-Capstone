@@ -1,5 +1,5 @@
 #app {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: url("../img/brewerybg.jpg") no-repeat;
     height: 100vh;
     background-attachment: fixed;
@@ -8,8 +8,8 @@
 
 /* Color Classes*/
 
-.frosty-primary {
-    background-color: #30161155;
+.frosty-porter {
+    background-color: #30161166;
     -webkit-backdrop-filter: saturate(200%) blur(20px);
     backdrop-filter: saturate(200%) blur(20px);
 }
@@ -38,7 +38,7 @@
     color: #301611;
 }
 
-.text-belgian {
+.text-belgian, .text-wheat:hover {
     color: #68170B;
 }
 

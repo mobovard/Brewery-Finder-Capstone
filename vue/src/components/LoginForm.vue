@@ -1,5 +1,5 @@
 <template>
-  <div class="frosty-primary p-3">
+  <div class="frosty-porter rounded p-3">
     <form class="d-flex flex-column" @submit.prevent="login">
       <h1 class="text-foam">Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
