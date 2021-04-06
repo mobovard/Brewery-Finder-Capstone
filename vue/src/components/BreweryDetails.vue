@@ -3,8 +3,6 @@
     <div class="frosty-porterdk p-3">
       <div class="text-foam d-flex flex-column align-items-center">
         <h1>{{ $store.state.brewery.name }}</h1>
-        <h3>{{ $store.state.brewery.address }}</h3>
-        <h4>{{ $store.state.brewery.phone_number }}</h4>
       </div>
     </div>
 
@@ -25,10 +23,21 @@
             ></b-table>
           </div>
         </b-col>
-        <b-col class="frosty-porterdk p-3 ml-2 mt-2 text-foam ">
-          <p>{{ $store.state.brewery.history }}</p>
-        </b-col></b-row
-      >
+        <b-col
+          class="frosty-porterdk p-3 ml-2 mt-2 text-foam d-flex flex-column justify-content-around"
+        >
+          <div>
+            <h3>History</h3>
+            <p>{{ $store.state.brewery.history }}</p>
+          </div>
+          <div>
+            <h3>Contact Us</h3>
+            <h5>{{ $store.state.brewery.address }}</h5>
+            <h5>{{ $store.state.brewery.phone_number }}</h5>
+            <h5>{{ $store.state.brewery.email }}</h5>
+          </div>
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
