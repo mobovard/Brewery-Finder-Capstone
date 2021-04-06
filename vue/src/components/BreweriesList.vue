@@ -1,28 +1,44 @@
 <template>
-  <div>
-      <BreweryCard v-for="brewery in $store.state.breweries" :key="brewery.brewery_id" :brewery="brewery" />
+  <div >
+    <div v-if="hasError">{{ errMsg }}</div>
+    <div class="d-md-flex flex-wrap justify-content-center m-2" v-if="!hasError">
+      <BreweryCard
+        v-for="brewery in $store.state.breweries"
+        :key="brewery.brewery_id"
+        :brewery="brewery"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-//import breweriesServices from '../services/BreweriesService';
-import BreweryCard from './BreweryCard';
+import breweriesServices from "../services/BreweriesService";
+import BreweryCard from "./BreweryCard";
 
 export default {
-    components: { BreweryCard },
-    /*created() {
-        breweriesServices.getBreweries()
-            .then(resp => {
-                this.$store.commit('SET_BREWERIES', resp.data);
-                console.log(resp.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }*/
-}
+  components: { BreweryCard },
+  data() {
+    return {
+      errMsg: "",
+    };
+  },
+  created() {
+    breweriesServices
+      .getBreweries()
+      .then((resp) => {
+        this.$store.commit("SET_BREWERIES", resp.data);
+      })
+      .catch((err) => {
+        this.errMsg = err.message;
+        console.log(err);
+      });
+  },
+  computed: {
+    hasError() {
+      return this.errMsg != "";
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

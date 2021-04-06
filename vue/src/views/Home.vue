@@ -1,17 +1,13 @@
 <template>
-  <div class="bg-porter text-foam">
-    <div class="home">
-      <h1>Home</h1>
-      <p>You must be authenticated to see this</p>
-      <BreweriesList />
-    </div>
+  <div class="frosty-porter text-foam mx-auto my-auto p-2">
+    <h1>Home</h1>
+    <p>You must be authenticated to see this</p>
   </div>
 </template>
 
 <script>
-import BreweriesList from '../components/BreweriesList.vue';
 export default {
-  components: { BreweriesList },
+  components: {},
   name: "home",
 };
 </script>

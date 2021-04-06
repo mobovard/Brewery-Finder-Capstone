@@ -12,6 +12,9 @@
         <b-nav-item :to="{ name: 'home' }"
           ><span class="text-foam font-weight-bold">Home</span></b-nav-item
         >
+        <b-nav-item :to="{ name: 'breweries' }"
+          ><span class="text-foam font-weight-bold">Breweries</span></b-nav-item
+        >
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -44,6 +47,6 @@ export default {
 
 <style>
 .img-logo{
-  flex-basis: 3%;
+  width: 2.2rem;
 }
 </style>
