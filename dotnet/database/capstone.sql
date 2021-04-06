@@ -49,6 +49,7 @@ CREATE TABLE beers (
 	img varchar(500),
 	abv decimal(18,1),
 	brewery_id int,
+	beer_type varchar(50),
 
 	CONSTRAINT PK_beer PRIMARY KEY (beer_id),
 
@@ -85,11 +86,11 @@ INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewe
 VALUES('Wiedemann Brewery','(345)333-5555','wiedemann@gmail.com','321 Ross st','used to be a cool place',0,'https://www.gannett-cdn.com/presto/2020/08/03/PCIN/aa09ec77-343e-4668-8974-7bcfe29701f4-Wiedemanns_Exterior_Front.jpg','Monday-friday 11-5',2);
 
 
-INSERT INTO beers(name,description,img,abv,brewery_id)
-VALUES('Preacher','Peach and Apricot puree ale','https://untappd.akamaized.net/site/beer_logos_hd/beer-3256736_c500c_hd.jpeg',5.5,1);
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type)
+VALUES('Preacher','Peach and Apricot puree ale','https://untappd.akamaized.net/site/beer_logos_hd/beer-3256736_c500c_hd.jpeg',5.5,1,'good');
 
-INSERT INTO beers(name,description,img,abv,brewery_id)
-VALUES('Heckler','Juicy IPA, citrus aroma','https://images.squarespace-cdn.com/content/v1/58b449258419c27c67294376/1584892296298-F33WSFGS8CSVERPQPIYX/ke17ZwdGBToddI8pDm48kK3svdqmw2prsPjqjcUJoBVZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVF7RmyLDtJHBhtEIo-X_TAce22u6AHy1bdwsvc5E9QtZgBFgVkekprcylsdk2tFZ18/Northern+Row+Beer+Shot+Peach+Hi+Res+%2825%29.jpg?format=300w',6,1);
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type)
+VALUES('Heckler','Juicy IPA, citrus aroma','https://images.squarespace-cdn.com/content/v1/58b449258419c27c67294376/1584892296298-F33WSFGS8CSVERPQPIYX/ke17ZwdGBToddI8pDm48kK3svdqmw2prsPjqjcUJoBVZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVF7RmyLDtJHBhtEIo-X_TAce22u6AHy1bdwsvc5E9QtZgBFgVkekprcylsdk2tFZ18/Northern+Row+Beer+Shot+Peach+Hi+Res+%2825%29.jpg?format=300w',6,1,'IPA');
 
 
 
