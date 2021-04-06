@@ -34,9 +34,9 @@
 </template>
 
 <script>
-//import breweriesServices from "../services/BreweriesService";
+import breweriesServices from "../services/BreweriesService";
 export default {
-  /* created() {
+   created() {
     breweriesServices
       .getBrewery(this.$route.params.id)
       .then((resp) => {
@@ -46,7 +46,7 @@ export default {
       .catch((err) => {
         console.log(err);
       });
-  },*/
+  },
 };
 </script>
 

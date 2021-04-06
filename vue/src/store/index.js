@@ -20,20 +20,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    breweries: [
-      {
-        brewery_id: 1,
-        name: 'A Brewery',
-        phone_number: "123-456-7890",
-        email: "breweryemail@email.com",
-        address: "123 A St.",
-        history: "this is a sample history of this brewery",
-        active: true,
-        brewery_img: "https://images.unsplash.com/photo-1528823872057-9c018a7a7553?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        hours_of_operation: '10-5 M-F',
-        user_id: 2
-      }
-    ],
+    breweries: [],
     brewery: {
       brewery_id: 1,
       name: 'A Brewery',
