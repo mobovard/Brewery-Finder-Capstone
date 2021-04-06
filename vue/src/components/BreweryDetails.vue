@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="frosty-porterdk p-3">
       <div class="text-foam d-flex flex-column align-items-center">
         <h1>{{ $store.state.brewery.name }}</h1>
@@ -9,12 +8,12 @@
       </div>
     </div>
 
-    <div class="d-grid">
-        <b-row class="">
-            <BeerList/>
-        </b-row>
+    <div class="d-grid mt-3">
       <b-row class="m-0">
-        <b-col class="frosty-porterdk p-3 mt-3 mr-2">
+        <BeerList class="col" />
+      </b-row>
+      <b-row class="m-0">
+        <b-col class="frosty-porterdk p-3 mr-2 mt-2">
           <img class="img-fluid" :src="$store.state.brewery.brewery_img" />
           <div class="hours-table">
             <b-table
@@ -26,18 +25,21 @@
             ></b-table>
           </div>
         </b-col>
-        <b-col class="frosty-porterdk  p-3 mt-3 ml-2 text-foam ">
-        <p>{{$store.state.brewery.history}}</p> </b-col
-      ></b-row>
+        <b-col class="frosty-porterdk p-3 ml-2 mt-2 text-foam ">
+          <p>{{ $store.state.brewery.history }}</p>
+        </b-col></b-row
+      >
     </div>
   </div>
 </template>
 
 <script>
 //import breweriesServices from "../services/BreweriesService.vue";
-import BeerList from "../components/BeerList.vue"
+import BeerList from "./BeerList";
+
 export default {
-/*  created() {
+  components: { BeerList },
+  /*  created() {
     breweriesServices
       .getBrewery(this.$route.params.id)
       .then((resp) => {
@@ -48,11 +50,7 @@ export default {
         console.log(err);
       });
   },*/
-  components: {BeerList},
-
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

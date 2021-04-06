@@ -1,7 +1,7 @@
 <template>
-  <div >
+  <div class="d-flex">
     <div v-if="hasError">{{ errMsg }}</div>
-    <div class="d-md-flex flex-wrap justify-content-center m-2" v-if="!hasError">
+    <div class="flex-grow-1 d-md-flex flex-wrap justify-content-center m-2" v-if="!hasError">
       <BreweryCard
         v-for="brewery in $store.state.breweries"
         :key="brewery.brewery_id"
