@@ -42,12 +42,12 @@ namespace Capstone.Controllers
         }
 
         [HttpGet("/breweries/{id}")]
-        
+
         public ActionResult<Brewery> GetBreweryById(int id)
         {
             Brewery brewery = breweriesDAO.GetBreweryById(id);
-            
-            if(brewery != null)
+
+            if (brewery != null)
             {
                 return Ok(brewery);
             }
@@ -57,9 +57,9 @@ namespace Capstone.Controllers
             }
         }
 
-       [HttpGet("/breweries/{id}/beers")]
+        [HttpGet("/breweries/{id}/beers")]
 
-       public ActionResult<List<Beer>> BeersByBrewery(int id)
+        public ActionResult<List<Beer>> BeersByBrewery(int id)
         {
             IList<Beer> beers = beerDAO.GetBeersByBrewery(id);
 
@@ -74,12 +74,5 @@ namespace Capstone.Controllers
 
         }
 
-     
-           
-
     }
-
-
-
 }
-
