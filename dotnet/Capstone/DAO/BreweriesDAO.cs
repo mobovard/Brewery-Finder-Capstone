@@ -62,5 +62,32 @@ namespace Capstone.DAO
             return brewery;
 
         }
+
+        public Brewery GetBreweryById(int id)
+        {
+            Brewery brewery = new Brewery();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT * FROM brewery WHERE brewery_id = @brewery_id;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("brewery_id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while(reader.Read())
+                    {
+                       brewery = breweryFromReader(reader);
+
+                    }
+
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return brewery;
+        }
     }
 }

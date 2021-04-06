@@ -41,19 +41,20 @@ namespace Capstone.Controllers
         [HttpGet("/breweries/{id}")]
         
         public ActionResult<Brewery> GetBreweryById(int id)
+        {
+            Brewery brewery = breweriesDAO.GetBreweryById(id);
+            
+            if(brewery != null)
             {
-            
-
-                if (id != null)
-                {
-                    return Ok(id);
-                }
-                else
-                {
-                    return NotFound();
-                }
-            
+                return Ok(brewery);
             }
+            else
+            {
+                return NoContent();
+            }
+        }
+     
+            
 
        
 
