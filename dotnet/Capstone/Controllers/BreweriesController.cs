@@ -36,9 +36,26 @@ namespace Capstone.Controllers
                 return NotFound();
             }
 
-
-
         }
+
+        [HttpGet("/breweries/{id}")]
+        
+        public ActionResult<Brewery> GetBreweryById(int id)
+            {
+            
+
+                if (id != null)
+                {
+                    return Ok(id);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            
+            }
+
+       
 
 
     }
