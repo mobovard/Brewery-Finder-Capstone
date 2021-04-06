@@ -40,7 +40,30 @@ export default new Vuex.Store({
         { Day: "Sunday", Hours: "11AM - 11PM" }
       ],
       user_id: 2
-    }
+    },
+    beers: [
+      {
+        beer_id: 1,
+        name: "a beer",
+        description: "definitely a beer",
+        image: 'https://www.sciencenews.org/wp-content/uploads/2020/05/050620_mt_beer_feat-1028x579.jpg',
+        abv: 6.5
+      },
+      {
+        beer_id: 2,
+        name: "another beer",
+        description: "tastiest another beer you'll ever have!",
+        image: 'https://images.ctfassets.net/sz2xpiwl6od9/46m7jZmTTNKqKiOHtBlXT6/15a66dae4cca5d86017b0bc86500a38c/De-Ranke-Guldenberg-Tripel.jpg?w=500&h=250&fm=jpg&fit=fill',
+        abv: 4.5
+      },
+      {
+        beer_id: 3,
+        name: "a third beer",
+        description: "a full beer for the price of one!",
+        image: 'https://media.wired.com/photos/5f066bb7af3d0a069fd1d63d/master/w_2560%2Cc_limit/Gear-Homebrew-630019103.jpg',
+        abv: 7.5
+      }
+    ]
   },
 
   mutations: {
@@ -65,6 +88,9 @@ export default new Vuex.Store({
     },
     SET_BREWERY(state, brewery) {
       state.brewery = brewery;
+    },
+    SET_BEERS(state, beers) {
+      state.beers = beers;
     }
   },
   getters: {
