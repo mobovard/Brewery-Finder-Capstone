@@ -16,12 +16,15 @@ namespace Capstone.Controllers
     {
         private readonly IBreweriesDAO breweriesDAO;
 
-        public BreweriesController(IBreweriesDAO _breweriesDAO)
+        private readonly IBeerDAO beerDAO;
+
+        public BreweriesController(IBreweriesDAO _breweriesDAO, IBeerDAO _beerDAO)
         {
             breweriesDAO = _breweriesDAO;
+            beerDAO = _beerDAO;
         }
 
-        [HttpGet("/breweries")]
+        [HttpGet]
 
         public ActionResult<List<Brewery>> BreweryList()
         {
@@ -53,11 +56,26 @@ namespace Capstone.Controllers
                 return NoContent();
             }
         }
+
+       [HttpGet("/breweries/{id}/beers")]
+
+       public ActionResult<List<Beer>> BeersByBrewery(int id)
+        {
+            IList<Beer> beers = beerDAO.GetBeersByBrewery(id);
+
+            if (beers != null)
+            {
+                return Ok(beers);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
      
-            
-
-       
-
+           
 
     }
 
