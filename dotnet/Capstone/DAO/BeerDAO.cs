@@ -63,7 +63,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT * FROM beer WHERE beer_id = @beer_id";
+                    string sql = "SELECT * FROM beers WHERE beer_id = @beer_id";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("beer_id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
