@@ -13,12 +13,16 @@
     -webkit-backdrop-filter: saturate(200%) blur(20px);
     backdrop-filter: saturate(200%) blur(20px);
 }
-.frosty-belgian {
-    background-color: #68170B66;
+.frosty-porterdk    {
+    background-color: #30161199;
     -webkit-backdrop-filter: saturate(200%) blur(20px);
     backdrop-filter: saturate(200%) blur(20px);
 }
-
+.frosty-foam {
+    background-color: #DDC08F66;
+    -webkit-backdrop-filter: saturate(200%) blur(20px);
+    backdrop-filter: saturate(200%) blur(20px);
+}
 .bg-porter {
     background-color: #301611;
 }

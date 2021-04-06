@@ -27,7 +27,7 @@ export default new Vuex.Store({
       phone_number: "123-456-7890",
       email: "breweryemail@email.com",
       address: "123 A St.",
-      history: "this is a sample history of this brewery",
+      history: "MadTree puts purpose in every pour. Founded in 2013, MadTree has always been driven to craft great beer - but more importantly - to build something bigger than themselves and the high-quality beer they produce. Since the beginning, MadTree has cared deeply about creating meaningful connections with their communities. They embrace their namesake and work to celebrate and protect nature while reducing their impact on the environment. They are proud members of 1% for the Planet, with a commitment to donate 1% of sales to non-profits focused on environmental sustainability. The craftspeople at MadTree wake up every day to connect people to nature and each other. MadTree. Inspiring Madness. Rooted in Purpose.",
       active: true,
       brewery_img: "https://images.unsplash.com/photo-1528823872057-9c018a7a7553?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       hours_of_operation: [
