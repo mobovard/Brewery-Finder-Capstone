@@ -1,16 +1,34 @@
 <template>
   <div>
+
     <div class="frosty-porter p-3">
-      <div class="brew-contactinfo text-foam d-flex flex-column">
+      <div class="text-foam d-flex flex-column align-items-center">
         <h1>{{ $store.state.brewery.name }}</h1>
         <h3>{{ $store.state.brewery.address }}</h3>
         <h4>{{ $store.state.brewery.phone_number }}</h4>
       </div>
     </div>
-    <div class="brew-info">
-      <picture>
-        <img class="brew-img" :src="$store.state.brewery.brewery_img" />
-      </picture>
+
+    <div class="d-grid">
+      <b-row class="m-0">
+        <b-col class="frosty-belgian p-3 mt-4 mr-2">
+          <img class="img-fluid" :src="$store.state.brewery.brewery_img" />
+          <div class="hours-table">
+            <b-table
+              class="text-foam"
+              striped
+              borderless
+              small
+              :items="$store.state.brewery.hours_of_operation"
+            ></b-table>
+          </div>
+        </b-col>
+        <b-col class="frosty-belgian p-3 mt-4 ml-2">
+          <img
+            class="img-fluid"
+            :src="$store.state.brewery.brewery_img"
+          /> </b-col
+      ></b-row>
     </div>
   </div>
 </template>
@@ -33,4 +51,5 @@ export default {
 </script>
 
 <style>
+
 </style>

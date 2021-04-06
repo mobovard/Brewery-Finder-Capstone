@@ -12,7 +12,7 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
-if(currentToken != null) {
+if (currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
 }
 
@@ -22,7 +22,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     breweries: [
       {
-        brewery_id: 1, 
+        brewery_id: 1,
         name: 'A Brewery',
         phone_number: "123-456-7890",
         email: "breweryemail@email.com",
@@ -34,17 +34,25 @@ export default new Vuex.Store({
         user_id: 2
       }
     ],
-    brewery:{
-      brewery_id: 1, 
-        name: 'A Brewery',
-        phone_number: "123-456-7890",
-        email: "breweryemail@email.com",
-        address: "123 A St.",
-        history: "this is a sample history of this brewery",
-        active: true,
-        brewery_img: "https://images.unsplash.com/photo-1528823872057-9c018a7a7553?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        hours_of_operation: '10-5 M-F',
-        user_id: 2
+    brewery: {
+      brewery_id: 1,
+      name: 'A Brewery',
+      phone_number: "123-456-7890",
+      email: "breweryemail@email.com",
+      address: "123 A St.",
+      history: "this is a sample history of this brewery",
+      active: true,
+      brewery_img: "https://images.unsplash.com/photo-1528823872057-9c018a7a7553?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      hours_of_operation: [
+        { Day: "Monday", Hours: "11AM - 11PM" },
+        { Day: "Tuesday", Hours: "11AM - 11PM" },
+        { Day: "Wednesday", Hours: "11AM - 11PM" },
+        { Day: "Thursday", Hours: "11AM - 11PM" },
+        { Day: "Friday", Hours: "11AM - 1AM" },
+        { Day: "Saturday", Hours: "11AM - 1AM" },
+        { Day: "Sunday", Hours: "11AM - 11PM" }
+      ],
+      user_id: 2
     }
   },
 
@@ -56,7 +64,7 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
-      localStorage.setItem('user',JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
@@ -68,7 +76,7 @@ export default new Vuex.Store({
     SET_BREWERIES(state, breweries) {
       state.breweries = breweries;
     },
-    SET_BREWERY(state, brewery){
+    SET_BREWERY(state, brewery) {
       state.brewery = brewery;
     }
   },
