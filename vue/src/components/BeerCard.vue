@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card
-    @click=" $router.push({name: 'beer', params: {breweryId: $route.params.id, beerId: beer.id}}) "
+    @click=" $router.push({name: 'beer', params: {breweryId: $route.params.id, beerId: beer.beer_id}}) "
       no-body
       class="d-flex flex-column text-porter frosty-foam card-size m-1 p-1"
     >

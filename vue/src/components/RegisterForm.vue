@@ -28,7 +28,7 @@
             type="text"
             id="lastemailaddressname"
             placeholder="Email Address"
-            v-model="user.emailaddress"
+            v-model="user.email"
             autofocus
             class="form-control my-1"
           />

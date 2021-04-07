@@ -1,5 +1,5 @@
 <template>
-  <div :class="this.class">
+  <div>
     <div v-if="hasError">{{ errMsg }}</div>
     <div
       class="d-flex flex-wrap justify-content-around"
@@ -7,7 +7,7 @@
     >
       <BeerCard
         v-for="beer in $store.state.beers"
-        :key="beer.brewery_id"
+        :key="beer.beer_id"
         :beer="beer"
       />
     </div>
@@ -19,7 +19,6 @@ import breweriesServices from "../services/BreweriesService";
 import BeerCard from "./BeerCard";
 
 export default {
-  props: [ "class" ],
   components: { BeerCard },
   data() {
     return {
@@ -30,7 +29,7 @@ export default {
     breweriesServices
       .getBeers(this.$route.params.id)
       .then((resp) => {
-        this.$store.commit("SET_aEERS", resp.data);
+        this.$store.commit("SET_BEERS", resp.data);
       })
       .catch((err) => {
         this.errMsg = err.message;

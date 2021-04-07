@@ -19,7 +19,7 @@
               striped
               borderless
               small
-              :items="$store.state.brewery.hours_of_operation"
+              :items="hoo"
             ></b-table>
           </div>
         </b-col>
@@ -32,6 +32,7 @@
           </div>
           <div>
             <h3>Contact Us</h3>
+
             <h5>{{ $store.state.brewery.address }}</h5>
             <h5>{{ $store.state.brewery.phone_number }}</h5>
             <h5>{{ $store.state.brewery.email }}</h5>
@@ -43,22 +44,31 @@
 </template>
 
 <script>
-//import breweriesServices from "../services/BreweriesService.vue";
+import breweriesServices from "../services/BreweriesService";
 import BeerList from "./BeerList";
 
 export default {
   components: { BeerList },
-  /*  created() {
+  data() {
+    return {
+      hoo: [],
+    };
+  },
+  created() {
     breweriesServices
       .getBrewery(this.$route.params.id)
       .then((resp) => {
         this.$store.commit("SET_BREWERY", resp.data);
-        console.log(resp.data);
+        for (const [day, time] of Object.entries(
+          this.$store.state.brewery.hoursOfOperation
+        )) {
+          this.hoo.push({ Day: day, Hours: time });
+        }
       })
       .catch((err) => {
         console.log(err);
       });
-  },*/
+  },
 };
 </script>
 
