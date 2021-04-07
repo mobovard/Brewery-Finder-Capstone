@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="frosty-porterdk p-3">
+    <div class="frosty-porterdk p-3 rounded">
       <div class="text-foam d-flex flex-column align-items-center">
         <h1>{{ $store.state.brewery.name }}</h1>
       </div>
@@ -11,7 +11,7 @@
         <BeerList class="col" />
       </b-row>
       <b-row class="m-0">
-        <b-col class="frosty-porterdk p-3 mr-2 mt-2">
+        <b-col class="frosty-porterdk p-3 mr-2 mt-2 rounded">
           <img class="img-fluid" :src="$store.state.brewery.brewery_img" />
           <div class="hours-table">
             <b-table
@@ -24,7 +24,7 @@
           </div>
         </b-col>
         <b-col
-          class="frosty-porterdk p-3 ml-2 mt-2 text-foam d-flex flex-column justify-content-around"
+          class="frosty-porterdk p-3 ml-2 mt-2 rounded text-foam d-flex flex-column justify-content-around"
         >
           <div>
             <h3>History</h3>

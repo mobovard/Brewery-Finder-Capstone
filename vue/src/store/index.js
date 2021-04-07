@@ -44,10 +44,11 @@ export default new Vuex.Store({
     beers: [
       {
         beer_id: 1,
-        name: "a beer",
-        description: "definitely a beer",
+        name: "Shade",
+        description: "If a shortcut through the woods beats the heat, why not take it? Though non-traditional, Shade’s blackberries and sea salt quench thirst amidst any sunny day. Feel free to kick back and relax, the ‘Tree has you covered.",
         image: 'https://www.sciencenews.org/wp-content/uploads/2020/05/050620_mt_beer_feat-1028x579.jpg',
-        abv: 6.5
+        abv: 4.6,
+        type:"Fruit Beer"
       },
       {
         beer_id: 2,
