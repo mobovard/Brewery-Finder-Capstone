@@ -26,7 +26,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT * FROM brewery WHERE active=1";
+                    string sql = "SELECT *  FROM brewery JOIN operation ON operation.brewery_id = brewery.brewery_id WHERE brewery.active =1";
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -55,9 +55,16 @@ namespace Capstone.DAO
             brewery.Active = Convert.ToBoolean(reader["active"]);
             brewery.History = Convert.ToString(reader["history"]);
             brewery.Phone_number = Convert.ToString(reader["phone_number"]);
-            brewery.Hours_of_operation = Convert.ToString(reader["hours_of_operation"]);
             brewery.User_id = Convert.ToInt32(reader["user_id"]);
             brewery.Email = Convert.ToString(reader["brewery_email"]);
+
+            brewery.Monday = Convert.ToString(reader["monday"]);
+            brewery.Tuesday = Convert.ToString(reader["tuesday"]);
+            brewery.Wednesday = Convert.ToString(reader["wednesday"]);
+            brewery.Thursday = Convert.ToString(reader["thursday"]);
+            brewery.Friday = Convert.ToString(reader["friday"]);
+            brewery.Saturday = Convert.ToString(reader["saturday"]);
+            brewery.Sunday = Convert.ToString(reader["sunday"]);
 
             return brewery;
 
@@ -71,7 +78,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT * FROM brewery WHERE brewery_id = @brewery_id;";
+                    string sql = "SELECT *  FROM brewery JOIN operation ON operation.brewery_id = brewery.brewery_id WHERE brewery.brewery_id =  @brewery_id;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("brewery_id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
