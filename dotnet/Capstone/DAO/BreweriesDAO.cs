@@ -47,6 +47,8 @@ namespace Capstone.DAO
         private Brewery breweryFromReader(SqlDataReader reader)
         {
             Brewery brewery = new Brewery();
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+
 
             brewery.Name = Convert.ToString(reader["name"]);
             brewery.Brewery_id = Convert.ToInt32(reader["brewery_id"]);
@@ -58,14 +60,21 @@ namespace Capstone.DAO
             brewery.User_id = Convert.ToInt32(reader["user_id"]);
             brewery.Email = Convert.ToString(reader["brewery_email"]);
 
-            brewery.Monday = Convert.ToString(reader["monday"]);
-            brewery.Tuesday = Convert.ToString(reader["tuesday"]);
-            brewery.Wednesday = Convert.ToString(reader["wednesday"]);
-            brewery.Thursday = Convert.ToString(reader["thursday"]);
-            brewery.Friday = Convert.ToString(reader["friday"]);
-            brewery.Saturday = Convert.ToString(reader["saturday"]);
-            brewery.Sunday = Convert.ToString(reader["sunday"]);
-
+            string monday = Convert.ToString(reader["monday"]);
+            string tuesday= Convert.ToString(reader["tuesday"]);
+            string wednesday = Convert.ToString(reader["wednesday"]);
+            string thursday  = Convert.ToString(reader["thursday"]);
+            string friday = Convert.ToString(reader["friday"]);
+            string saturday = Convert.ToString(reader["saturday"]);
+            string sunday = Convert.ToString(reader["sunday"]);
+            dictionary.Add("Monday", monday);
+            dictionary.Add("Tuesday", tuesday);
+            dictionary.Add("Wednesday", wednesday);
+            dictionary.Add("Thursday", thursday);
+            dictionary.Add("Friday", friday);
+            dictionary.Add("Saturday", saturday);
+            dictionary.Add("Sunday", sunday);
+            brewery.HoursOfOperation = dictionary;
             return brewery;
 
         }
