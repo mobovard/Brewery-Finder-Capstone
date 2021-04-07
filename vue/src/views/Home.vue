@@ -10,5 +10,8 @@
 export default {
   components: {},
   name: "home",
+  created() {
+    console.log(this.$store.state.user);
+  }
 };
 </script>

@@ -27,7 +27,7 @@
               <BIconPersonCircle class="text-porter" />
             </template>
             <b-dropdown-item v-if="$store.getters.isLoggedIn">{{
-              $store.state.user.username
+              $store.state.user.firstName
             }}</b-dropdown-item>
             <b-dropdown-item
               :to="{ name: 'logout' }"
