@@ -36,7 +36,9 @@ height: 50%;
 }
 .custom-img{
  max-width:100%;
- max-height:100%;}
+ max-height:100%;
+ object-fit: cover;
+ }
 .card-size {
   max-width: 10rem;
   height: 15rem;
