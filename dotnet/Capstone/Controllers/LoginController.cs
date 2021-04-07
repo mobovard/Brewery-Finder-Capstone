@@ -36,7 +36,7 @@ namespace Capstone.Controllers
                 string token = tokenGenerator.GenerateToken(user.UserId, user.Username, user.Role);
 
                 // Create a ReturnUser object to return to the client
-                LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { UserId = user.UserId, Username = user.Username, Role = user.Role }, Token = token };
+                LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { UserId = user.UserId, Username = user.Username, Role = user.Role, FirstName = user.FirstName, LastName = user.LastName, Email = user.Email}, Token = token };
 
                 // Switch to 200 OK
                 result = Ok(retUser);
@@ -56,7 +56,7 @@ namespace Capstone.Controllers
                 return Conflict(new { message = "Username already taken. Please choose a different username." });
             }
 
-            User user = userDAO.AddUser(userParam.Username, userParam.Password, userParam.Role);
+            User user = userDAO.AddUser(userParam.Username, userParam.Password, userParam.Role,userParam.FirstName,userParam.LastName);
             if (user != null)
             {
                 result = Created(user.Username, null); //values aren't read on client
