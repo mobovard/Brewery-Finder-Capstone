@@ -78,14 +78,14 @@ ALTER TABLE operation
 
 
 INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email)
-VALUES('jonnien','fJnUh2pOEqhWhCqi5yvJ/CHV6GE=','A6osdPJs1uk=','BeerLover','Jonnie','Niesz','startrekfan89@gmail.com');
+VALUES('jonnien','fJnUh2pOEqhWhCqi5yvJ/CHV6GE=','A6osdPJs1uk=','Beer Lover','Jonnie','Niesz','startrekfan89@gmail.com');
 
 INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email)
-VALUES('christ','s/q71yQeDo2A3Gx1FrSrThAUYqA=','+4wB449eXoE=','brewer','Chris','Templeton','loser@yahoo.com');
+VALUES('christ','s/q71yQeDo2A3Gx1FrSrThAUYqA=','+4wB449eXoE=','Brewer','Chris','Templeton','loser@yahoo.com');
 
 
 INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email)
-VALUES('ratneshb','LuzmsyWVc5m7Y4ZyWNXnkSlEkVI=','fCRe2YcPIYw=','admin','ratnesh','bhattacharya','mrmr@email.com');
+VALUES('ratneshb','LuzmsyWVc5m7Y4ZyWNXnkSlEkVI=','fCRe2YcPIYw=','Admin','ratnesh','bhattacharya','mrmr@email.com');
 
 INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id)
 VALUES('Northern Row','(513)321-1234','northernrow@gmail.com','123 beer st','began as a brewery',1,'https://cdn.citybeat.com/files/base/scomm/cb/image/2019/05/960w/NorthernRowBrewing_HB_15.5cdb2e7194008.jpg',2);
@@ -101,10 +101,28 @@ VALUES('Wiedemann Brewery','(345)333-5555','wiedemann@gmail.com','321 Ross st','
 
 
 INSERT INTO beers(name,description,img,abv,brewery_id,beer_type)
-VALUES('Preacher','Peach and Apricot puree ale','https://untappd.akamaized.net/site/beer_logos_hd/beer-3256736_c500c_hd.jpeg',5.5,1,'good');
+VALUES('Preacher','Golden ale with a fresh addition of peach and apricot puree','https://untappd.akamaized.net/site/beer_logos_hd/beer-3256736_c500c_hd.jpeg',5.5,1,'Lager');
 
 INSERT INTO beers(name,description,img,abv,brewery_id,beer_type)
-VALUES('Heckler','Juicy IPA, citrus aroma','https://images.squarespace-cdn.com/content/v1/58b449258419c27c67294376/1584892296298-F33WSFGS8CSVERPQPIYX/ke17ZwdGBToddI8pDm48kK3svdqmw2prsPjqjcUJoBVZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVF7RmyLDtJHBhtEIo-X_TAce22u6AHy1bdwsvc5E9QtZgBFgVkekprcylsdk2tFZ18/Northern+Row+Beer+Shot+Peach+Hi+Res+%2825%29.jpg?format=300w',6,1,'IPA');
+VALUES('Heckler','Not just hops! Juicy citrus aroma with a pronounced bitter touch - Mosaic and Citra hops.','https://images.squarespace-cdn.com/content/v1/58b449258419c27c67294376/1584892296298-F33WSFGS8CSVERPQPIYX/ke17ZwdGBToddI8pDm48kK3svdqmw2prsPjqjcUJoBVZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVF7RmyLDtJHBhtEIo-X_TAce22u6AHy1bdwsvc5E9QtZgBFgVkekprcylsdk2tFZ18/Northern+Row+Beer+Shot+Peach+Hi+Res+%2825%29.jpg?format=300w',6,1,'IPA');
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type)
+VALUES('Shade','Have it made with Shade and add a splash of color to any occasion. With real blackberries, this fruit ales versatility compliments a day of relaxation to a fun, vibrant happy hour get together.','https://untappd.akamaized.net/site/beer_logos_hd/beer-1156045_e8d85_hd.jpeg',4.6,2,'Fruit Beer')
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type)
+VALUES('Rubus Cacao','Sweet chocolate notes lead as raspberry tartness follows in unison resembling a perfectly executed dance. The result is a blend of flavors even more spectacular together than apart. It’s love at first sip.','https://untappd.akamaized.net/site/beer_logos_hd/beer-493755_f2ee6_hd.jpeg',7,2,'Stout')
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type)
+VALUES('Java Mama','Cousin to our wildly popular Wake Me Up coffee stout. Java Mama starts off with a strong kick of coffee complemented by mild hop bitterness and a rich French vanilla finish!','https://untappd.akamaized.net/site/beer_logos_hd/beer-4017492_c838e_hd.jpeg',4,4,'Blonde Ale')
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type)
+VALUES('Monkeys Dunkle','German-style Munich Dunkel with a flavorful melding of roasted, slightly nutty mal','https://untappd.akamaized.net/photos/2020_11_07/b970e63e9f9dbe984bf78cf1b88a32a7_640x640.jpg',5,4,'Lager')
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type)
+VALUES('John Lemon','Based on the homebrew recipe of our buddies Brandon Lomax and Kory Roaden, scaled up for production, John Lemon is a tasty treat hopped generously with Citra for delightful citrus flavors. Lemon juice and vanilla add the perfect lemon meringue and whipped cream flavors, while a smooth milkshake mouthfeel, complemented by our heavy handed oat-filled grist bill, caresses the palate. We hope you enjoy this beer as much as we enjoyed brewing it with our friends!','https://untappd.akamaized.net/site/beer_logos_hd/beer-2552524_041ad_hd.jpeg',6.2,3,'IPA')
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type)
+VALUES('Suh,Brah','Starting with an intense nose of stone, fruit, grapefruit, and light pineapple, Suh, Brah?''s aromatics are created by piney dank notes from our double dry hop of Simcoe hopes. Suh, Brah?''s flavor leads with soft mango and pineapple, peach, and light dankness and then is rounded out by a soft, fluffy, almost creamy body.','https://untappd.akamaized.net/site/beer_logos_hd/beer-1805650_a88d6_hd.jpeg',6.7,3,'IPA')
 
 INSERT INTO operation(monday,tuesday,wednesday,thursday,friday,saturday,sunday,brewery_id)
 VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',1)
