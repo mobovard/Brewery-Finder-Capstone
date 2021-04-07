@@ -1,14 +1,19 @@
 <template>
   <div>
     <b-card
-    @click=" $router.push({name: 'beer', params: {breweryId: $route.params.id, beerId: beer.beer_id}}) "
+      @click="
+        $router.push({
+          name: 'beer',
+          params: { breweryId: $route.params.id, beerId: beer.beer_id },
+        })
+      "
       no-body
-      class="d-flex flex-column text-porter frosty-foam card-size m-1 p-1"
+      class="d-grid text-porter frosty-foam card-size m-1 p-1"
     >
-      <div class="flex-custom d-flex align-items-center">
+      <div class="row m-0 max-height-img p-1 ">
         <b-card-img
           :src="beer.image"
-          class="rounded-circle img-fluid"
+          class="rounded-circle custom-img"
         ></b-card-img>
       </div>
       <div class="flex-custom">
@@ -26,6 +31,12 @@ export default {
 </script>
 
 <style scoped>
+.max-height-img {
+height: 50%;
+}
+.custom-img{
+ max-width:100%;
+ max-height:100%;}
 .card-size {
   max-width: 10rem;
   height: 15rem;
