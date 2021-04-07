@@ -2,7 +2,11 @@
   <div class="frosty-porter rounded p-3">
     <form class="d-grid" @submit.prevent="register">
       <h1 class="text-foam text-center">Create Account</h1>
-      <div role="alert" v-if="registrationErrors">
+      <div
+        role="alert"
+        class="alert alert-danger text-center"
+        v-if="registrationErrors"
+      >
         {{ registrationErrorMsg }}
       </div>
       <div class="row">
@@ -88,9 +92,9 @@
           </button>
         </div>
       </div>
-      <div class="row mt-2">
-        <div class="col">
-          <router-link :to="{ name: 'login' }" class="text-center text-wheat"
+      <div class="row mt-1">
+        <div class="col d-flex justify-content-end">
+          <router-link :to="{ name: 'login' }" class="text-wheat"
             >Have an account?</router-link
           >
         </div>
@@ -111,7 +115,7 @@ export default {
         confirmPassword: "",
         firstname: "",
         lastname: "",
-        emailaddress: "",
+        email: "",
         role: "Beer Lover",
       },
       registrationErrors: false,

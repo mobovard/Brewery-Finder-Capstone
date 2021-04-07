@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="d-flex flex-column">
     <NavBar />
-    <div class="d-flex flex-column container">
+    <div class="container flex-grow-1 d-flex flex-column">
       <router-view />
     </div>
   </div>
@@ -14,7 +14,3 @@ export default {
   components: { NavBar },
 };
 </script>
-
-
-<style>
-</style>

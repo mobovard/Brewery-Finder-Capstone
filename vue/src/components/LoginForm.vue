@@ -1,11 +1,15 @@
 <template>
   <div class="frosty-porter rounded p-3">
     <form class="d-flex flex-column" @submit.prevent="login">
-      <h1 class="text-foam">Please Sign In</h1>
-      <div role="alert" v-if="invalidCredentials">
+      <h1 class="text-foam text-center">Please Sign In</h1>
+      <div role="alert" class="alert alert-danger" v-if="invalidCredentials">
         Invalid username and password!
       </div>
-      <div role="alert" v-if="this.$route.query.registration">
+      <div
+        role="alert"
+        class="alert alert-success"
+        v-if="this.$route.query.registration && !invalidCredentials"
+      >
         Thank you for registering, please sign in.
       </div>
       <label class="sr-only" for="username">Username</label>
@@ -34,7 +38,7 @@
       >
         Sign in
       </button>
-      <router-link :to="{ name: 'register' }" class="text-wheat"
+      <router-link :to="{ name: 'register' }" class="text-wheat text-right mt-1"
         >Need an account?</router-link
       >
     </form>
