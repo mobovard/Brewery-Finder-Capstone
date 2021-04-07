@@ -77,15 +77,15 @@ ALTER TABLE operation
 
 
 
-INSERT INTO users(username,password_hash,salt,user_role)
-VALUES('jonnien','fJnUh2pOEqhWhCqi5yvJ/CHV6GE=','A6osdPJs1uk=','user');
+INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email)
+VALUES('jonnien','fJnUh2pOEqhWhCqi5yvJ/CHV6GE=','A6osdPJs1uk=','BeerLover','Jonnie','Niesz','startrekfan89@gmail.com');
 
-INSERT INTO users(username,password_hash,salt,user_role)
-VALUES('christ','s/q71yQeDo2A3Gx1FrSrThAUYqA=','+4wB449eXoE=','brewer');
+INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email)
+VALUES('christ','s/q71yQeDo2A3Gx1FrSrThAUYqA=','+4wB449eXoE=','brewer','Chris','Templeton','loser@yahoo.com');
 
 
-INSERT INTO users(username,password_hash,salt,user_role)
-VALUES('ratneshb','LuzmsyWVc5m7Y4ZyWNXnkSlEkVI=','fCRe2YcPIYw=','admin');
+INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email)
+VALUES('ratneshb','LuzmsyWVc5m7Y4ZyWNXnkSlEkVI=','fCRe2YcPIYw=','admin','ratnesh','bhattacharya','mrmr@email.com');
 
 INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id)
 VALUES('Northern Row','(513)321-1234','northernrow@gmail.com','123 beer st','began as a brewery',1,'https://cdn.citybeat.com/files/base/scomm/cb/image/2019/05/960w/NorthernRowBrewing_HB_15.5cdb2e7194008.jpg',2);
@@ -97,7 +97,7 @@ INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewe
 VALUES('Streetside','(513)454-6544','streetside@gmail.com','593 wow st','began as a street car and then became a brewery',1,'https://2blxhf2wgxaolzlxi2xuosnn-wpengine.netdna-ssl.com/wp-content/uploads/2019/10/Streetside-Brewery-Patio.jpg',2);
 
 INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id)
-VALUES('Wiedemann Brewery','(345)333-5555','wiedemann@gmail.com','321 Ross st','used to be a cool place',0,'https://www.gannett-cdn.com/presto/2020/08/03/PCIN/aa09ec77-343e-4668-8974-7bcfe29701f4-Wiedemanns_Exterior_Front.jpg',2);
+VALUES('Wiedemann Brewery','(345)333-5555','wiedemann@gmail.com','321 Ross st','used to be a cool place',1,'https://www.gannett-cdn.com/presto/2020/08/03/PCIN/aa09ec77-343e-4668-8974-7bcfe29701f4-Wiedemanns_Exterior_Front.jpg',2);
 
 
 INSERT INTO beers(name,description,img,abv,brewery_id,beer_type)
