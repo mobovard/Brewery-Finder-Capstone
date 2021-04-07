@@ -1,7 +1,9 @@
 <template>
-  <div id="app" class="d-flex flex-column">
+  <div id="app">
     <NavBar />
-    <router-view />
+    <div class="d-flex flex-column container">
+      <router-view />
+    </div>
   </div>
 </template>
 
