@@ -104,6 +104,24 @@ VALUES('Streetside','(513)454-6544','streetside@gmail.com','593 wow st','began a
 INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id,logo)
 VALUES('Wiedemann Brewery','(345)333-5555','wiedemann@gmail.com','321 Ross st','used to be a cool place',1,'https://www.gannett-cdn.com/presto/2020/08/03/PCIN/aa09ec77-343e-4668-8974-7bcfe29701f4-Wiedemanns_Exterior_Front.jpg',2,'https://wiedemannsfinebeer.com/wp-content/uploads/2018/01/logoWhiteTransBG.png');
 
+INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id,logo)
+VALUES('North High Brewing','(614)876-9119','northhigh@gmail.com','321 North High St','told him this would never work, eating crow now',1,'https://www.gannett-cdn.com/presto/2020/08/03/PCIN/aa09ec77-343e-4668-8974-7bcfe29701f4-Wiedemanns_Exterior_Front.jpg',2,'https://wiedemannsfinebeer.com/wp-content/uploads/2018/01/logoWhiteTransBG.png');
+
+INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id,logo)
+VALUES('Brooklyn Brewery','(718)222-6666','info@brooklynbrewery.com','321 Main Ave','Our team stretches around the planet, ensuring our beer is delicious, adventurous, and available to all. Walk through our Packaging Hall in Brooklyn and you’ll meet people from over a dozen countries, speaking more than twenty languages.',1,'https://www.gannett-cdn.com/presto/2020/08/03/PCIN/aa09ec77-343e-4668-8974-7bcfe29701f4-Wiedemanns_Exterior_Front.jpg',2,'https://wiedemannsfinebeer.com/wp-content/uploads/2018/01/logoWhiteTransBG.png');
+
+INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id,logo)
+VALUES('Smokehouse Brewing Co','(614)592-9686','Smokehouse@gmail.com','5454 Olentangy River Road','Smokehouse Brewing Company is a community place where one feels at home, no matter where home happens to be',1,'https://cdn.beeradvocate.com/im/c_place_image.gif',1,'https://www.smokehousebrewing.com/images/home_header1.jpg');
+
+INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id,logo)
+VALUES('Doolally Taproom','01191(022)48931314','DoolallyTaproom@gmail.com','10A Road Number 3','The first microbrewery in India, with three outlets in Mumbai',1,'https://imgmediagumlet.lbb.in/media/2017/08/599470d03e05710dff4c8621_56aad8b4dae5d95f37743284_1502900432931.jpg?fm=webp&w=750&h=500&dpr=2',1,'https://doolally.in/asset/images/splashLogo.png');
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
+VALUES('Mango Cider','A cider made with kesar mangoes','https://images.indianexpress.com/2016/02/doolallycider-pint-with-mango_759_mumbai-pune.jpg',4,8,'Cider',1);
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
+VALUES('Smoked Porter','Few words in the dictionary can describe the smoky, woody flavours of this beer. Even Shashi Tharoor would struggle.','https://untappd.akamaized.net/photos/2020_09_17/c23ef6952fa4c7477fe581a3d9ed1d26_raw.jpg',5.7,8,'Porter',1);
+
 
 INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
 VALUES('Preacher','Golden ale with a fresh addition of peach and apricot puree','https://untappd.akamaized.net/site/beer_logos_hd/beer-3256736_c500c_hd.jpeg',5.5,1,'Lager',1);
@@ -128,6 +146,24 @@ VALUES('John Lemon','Based on the homebrew recipe of our buddies Brandon Lomax a
 
 INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
 VALUES('Suh,Brah','Starting with an intense nose of stone, fruit, grapefruit, and light pineapple, Suh, Brah?''s aromatics are created by piney dank notes from our double dry hop of Simcoe hopes. Suh, Brah?''s flavor leads with soft mango and pineapple, peach, and light dankness and then is rounded out by a soft, fluffy, almost creamy body.','https://untappd.akamaized.net/site/beer_logos_hd/beer-1805650_a88d6_hd.jpeg',6.7,3,'IPA',1)
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
+VALUES('Filty McNasty','A big, bold stout showcasing layers of chocolate, coffee and roast character.','https://untappd.akamaized.net/photos/2021_04_07/578fd9a7aa00758dc658d777860fe074_raw.jpg',9,5,'Stout',1);
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
+VALUES('Cover Crop','An easy drinking ale brewed with all Ohio malt and hops','https://www.porchdrinking.com/wp-content/uploads/2019/01/North-High-Cover-Crop-Beer-4-700x325.jpg',4.5,5,'Stout',1);
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
+VALUES('Black Chocolate Stout','Rich roasted malts come together to create an unmistakable dark chocolate flavor perfect for special occasions and late nights by the fire.','https://brooklynbrewery.com/wp-content/uploads/2019/10/beer-1@3x-2-828x1024.jpg',10,6,'Stout',1);
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
+VALUES('Oktoberfest','Our take on the classic Märzen lager style with sweet, bready malts and German noble hops.', 'https://brooklynbrewery.com/wp-content/uploads/2019/10/beer-1@2x-5-828x1024.jpg',5.5,6,'Stout',1);
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
+VALUES('Alexanders Russian Imperial Stout','The result is a roasty, fruity beer that you might be tempted to eat with a spoon.', 'https://untappd.akamaized.net/photos/2020_12_10/c0c1b69da11bbb208154192a6fb4b919_640x640.jpg',7.6,7,'Stout',1);
+
+INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
+VALUES('Centennial India Pale Ale','First brewed to celebrate our 100th batch, this IPA is a British-style IPA. Whole hop additions add a citrus fruitness.', 'https://untappd.akamaized.net/photos/2021_01_24/b2c252cc70466da4fab2c61c9360bee9_raw.jpg',7.6,7,'IPA',1);
 
 INSERT INTO operation(monday,tuesday,wednesday,thursday,friday,saturday,sunday,brewery_id)
 VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',1)
