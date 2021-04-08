@@ -3,7 +3,7 @@
     <b-row>
       <b-col md="3" lg="2">
         <button
-          class="btn bg-porter text-foam"
+          class="btn bg-porter text-foam text-wheat-h"
           @click="displayAddBrewery = !displayAddBrewery"
           >Add Brewery</button
         >

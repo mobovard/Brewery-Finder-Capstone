@@ -10,10 +10,10 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item :to="{ name: 'home' }"
-            ><span class="text-foam font-weight-bold">Home</span></b-nav-item
+            ><span class="text-foam text-wheat-h font-weight-bold">Home</span></b-nav-item
           >
           <b-nav-item :to="{ name: 'breweries' }"
-            ><span class="text-foam font-weight-bold"
+            ><span class="text-foam text-wheat-h font-weight-bold"
               >Breweries</span
             ></b-nav-item
           >
@@ -24,7 +24,7 @@
           <b-nav-item
             v-if="$store.getters.isAdmin"
             :to="{name: 'admin'}"
-          ><span class="text-foam font-weight-bold">Admin</span></b-nav-item>
+          ><span class="text-foam text-wheat-h font-weight-bold">Admin</span></b-nav-item>
           <b-nav-item-dropdown id="user-dropdown" right>
             <!-- Using 'button-content' slot -->
             <template #button-content>
