@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BeerInfo from "../components/BeerInfo.vue";
+import BeerInfo from "../components/BeerDetails.vue";
 export default {
   components: { BeerInfo },
 };

@@ -1,8 +1,22 @@
 #app {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background: url("../img/brewerybg.jpg") no-repeat;
+    background: url("../img/beer.jpg") no-repeat;
     height: 100vh;
     background-attachment: fixed;
+    background-size: cover;
+}
+
+:root {
+    font-size: 20px;
+}
+
+.carousel-item {
+    height: 100vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
 }
 
@@ -13,16 +27,19 @@
     -webkit-backdrop-filter: saturate(200%) blur(20px);
     backdrop-filter: saturate(200%) blur(20px);
 }
-.frosty-porterdk    {
+
+.frosty-porterdk {
     background-color: #30161199;
     -webkit-backdrop-filter: saturate(200%) blur(20px);
     backdrop-filter: saturate(200%) blur(20px);
 }
+
 .frosty-foam {
     background-color: #DDC08F66;
     -webkit-backdrop-filter: saturate(200%) blur(20px);
     backdrop-filter: saturate(200%) blur(20px);
 }
+
 .bg-porter {
     background-color: #301611;
 }
@@ -43,22 +60,22 @@
     background-color: #DDC08F;
 }
 
-.text-porter {
+.text-porter, text-porter-h:hover {
     color: #301611;
 }
 
-.text-belgian, .text-fruit:hover {
+.text-belgian, text-belgian-h:hover {
     color: #68170B;
 }
 
-.text-fruit, .text-belgian:hover {
+.text-fruit, text-fruit-h:hover {
     color: #A83518;
 }
 
-.text-wheat {
+.text-wheat, text-wheat-h:hover {
     color: #E5932B;
 }
 
-.text-foam, .text-wheat:hover {
+.text-foam, text-foam-h:hover {
     color: #DDC08F;
 }

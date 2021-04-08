@@ -34,11 +34,11 @@
 
       <button
         type="submit"
-        class="btn bg-foam text-fruit my-1 font-weight-bold"
+        class="btn bg-foam text-fruit text-belgian-h my-1 font-weight-bold"
       >
         Sign in
       </button>
-      <router-link :to="{ name: 'register' }" class="text-wheat text-right mt-1"
+      <router-link :to="{ name: 'register' }" class="text-wheat text-foam-h text-right mt-1"
         >Need an account?</router-link
       >
     </form>

@@ -8,7 +8,7 @@
         })
       "
       no-body
-      class="d-grid text-porter frosty-foam card-size m-1 p-1"
+      class="d-grid text-porter frosty-foam card-size m-1 p-1 pointer"
     >
       <div class="row m-0 max-height-img p-1 ">
         <b-card-img
@@ -45,5 +45,8 @@ height: 50%;
 }
 .flex-custom {
   flex: 1 1 50%;
+}
+.pointer {
+  cursor: pointer;
 }
 </style>
