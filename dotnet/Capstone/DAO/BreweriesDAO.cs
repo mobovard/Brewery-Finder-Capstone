@@ -59,6 +59,7 @@ namespace Capstone.DAO
             brewery.Phone_number = Convert.ToString(reader["phone_number"]);
             brewery.User_id = Convert.ToInt32(reader["user_id"]);
             brewery.Email = Convert.ToString(reader["brewery_email"]);
+            brewery.Logo = Convert.ToString(reader["logo"]);
 
             string monday = Convert.ToString(reader["monday"]);
             string tuesday= Convert.ToString(reader["tuesday"]);
@@ -104,6 +105,47 @@ namespace Capstone.DAO
                 Console.WriteLine(ex.Message);
             }
             return brewery;
+        }
+
+        public Brewery AddBrewery(Brewery brewery,string monday,string tuesday,string wednesday, string thursday,string friday,string saturday,string sunday)
+        {
+            int id = 0;
+            Dictionary<string, string> hoursOfOperation = new Dictionary<string, string>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,user_id,brewery_img,logo) VALUES(@name,@phoneNumber,@brewery_email,@address,@history,@active,@logo,@user_id,@brewery_img);SELECT @@IDENTITY;";
+                    SqlCommand cmd = new SqlCommand(sql,conn);
+                    cmd.Parameters.AddWithValue("@name", brewery.Name);
+                    cmd.Parameters.AddWithValue("@phoneNumber", brewery.Phone_number);
+                    cmd.Parameters.AddWithValue("@brewery_email", brewery.Email);
+                    cmd.Parameters.AddWithValue("@address", brewery.Address);
+                    cmd.Parameters.AddWithValue("@history", brewery.History);
+                    cmd.Parameters.AddWithValue("@active", brewery.Active);
+                    cmd.Parameters.AddWithValue("@logo", brewery.Logo);
+                    cmd.Parameters.AddWithValue("@user_id", brewery.User_id);
+                    cmd.Parameters.AddWithValue("@brewery_img", brewery.Brewery_img);
+                    hoursOfOperation.Add("Monday", monday);
+                    hoursOfOperation.Add("Tuesday", tuesday);
+                    hoursOfOperation.Add("Wednesday", wednesday);
+                    hoursOfOperation.Add("Thursday", thursday);
+                    hoursOfOperation.Add("Friday", friday);
+                    hoursOfOperation.Add("Saturday", saturday);
+                    hoursOfOperation.Add("Sunday", sunday);
+                    brewery.HoursOfOperation = hoursOfOperation;
+                    id = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return GetBreweryById(id);
         }
     }
 }

@@ -14,5 +14,6 @@ namespace Capstone.Models
         public decimal Abv { get; set; }
         public int Brewery_id { get; set; }
         public string Beer_type { get; set; }
+        public bool Active { get; set; }
     }
 }

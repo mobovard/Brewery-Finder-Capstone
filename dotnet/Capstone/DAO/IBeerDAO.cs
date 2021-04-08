@@ -11,5 +11,7 @@ namespace Capstone.DAO
         IList<Beer> GetBeersByBrewery(int id);
 
         Beer GetBeerById(int id);
+
+        Beer AddBeer(Beer beer);
     }
 }

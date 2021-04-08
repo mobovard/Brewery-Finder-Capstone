@@ -52,6 +52,7 @@ namespace Capstone.DAO
             beer.Beer_id = Convert.ToInt32(reader["beer_id"]);
             beer.Abv = Convert.ToDecimal(reader["abv"]);
             beer.Beer_type = Convert.ToString(reader["beer_type"]);
+            beer.Active = Convert.ToBoolean(reader["active_beer"]);
      
             return beer;
 
@@ -81,6 +82,40 @@ namespace Capstone.DAO
                 Console.WriteLine(ex.Message);
             }
             return beer;
+        }
+
+        public Beer AddBeer(Beer beer)
+        {
+            int myId = 0;
+        
+            try
+            {
+                
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer) VALUES(@name,@description,@img,@abv,@brewery_id,@beer_type,@active_beer);SELECT @@IDENTITY;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@name", beer.Name);
+                    cmd.Parameters.AddWithValue("@description", beer.Description);
+                    cmd.Parameters.AddWithValue("@img", beer.Image);
+                    cmd.Parameters.AddWithValue("@abv", beer.Abv);
+                    cmd.Parameters.AddWithValue("@brewery_id", beer.Brewery_id);
+                    cmd.Parameters.AddWithValue("@beer_type", beer.Beer_type);
+                    cmd.Parameters.AddWithValue("@active_beer", beer.Active);
+                    
+             
+                    int id = Convert.ToInt32(cmd.ExecuteScalar());
+                    myId = id;
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return GetBeerById(myId);
         }
     }
     

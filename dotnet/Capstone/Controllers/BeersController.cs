@@ -37,5 +37,18 @@ namespace Capstone.Controllers
                 return NoContent();
             }
         }
+        [HttpPost("/beers/add")]
+        public ActionResult<Beer> CreateBeer(Beer beer)
+        {
+            Beer beer1 = beerDAO.AddBeer(beer);
+            if(beer1 != null)
+            {
+                return Ok(beer);
+            }
+            else
+            {
+                return NoContent();
+            }
+        }
     }
 }
