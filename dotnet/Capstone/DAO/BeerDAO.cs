@@ -103,11 +103,11 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@brewery_id", beer.Brewery_id);
                     cmd.Parameters.AddWithValue("@beer_type", beer.Beer_type);
                     cmd.Parameters.AddWithValue("@active_beer", beer.Active);
-                    
-             
-                    int id = Convert.ToInt32(cmd.ExecuteScalar());
-                    myId = id;
+
                     cmd.ExecuteNonQuery();
+                    myId = Convert.ToInt32(cmd.ExecuteScalar());
+                    
+                   
                 }
 
             }
