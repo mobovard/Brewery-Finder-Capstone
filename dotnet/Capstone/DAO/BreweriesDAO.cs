@@ -107,16 +107,19 @@ namespace Capstone.DAO
             return brewery;
         }
 
-        public Brewery AddBrewery(Brewery brewery,string monday,string tuesday,string wednesday, string thursday,string friday,string saturday,string sunday)
+        public Brewery AddBrewery(Brewery brewery)
         {
             int id = 0;
-            Dictionary<string, string> hoursOfOperation = new Dictionary<string, string>();
+            int hoursOfOperationId = 0;
+           
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,user_id,brewery_img,logo) VALUES(@name,@phoneNumber,@brewery_email,@address,@history,@active,@logo,@user_id,@brewery_img);SELECT @@IDENTITY;";
+                    string sql = "INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,user_id,brewery_img,logo) VALUES(@name,@phoneNumber,@brewery_email,@address,@history,@active,@user_id,@brewery_img,@logo);SELECT @@IDENTITY;";
+                  
+
                     SqlCommand cmd = new SqlCommand(sql,conn);
                     cmd.Parameters.AddWithValue("@name", brewery.Name);
                     cmd.Parameters.AddWithValue("@phoneNumber", brewery.Phone_number);
@@ -127,17 +130,34 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@logo", brewery.Logo);
                     cmd.Parameters.AddWithValue("@user_id", brewery.User_id);
                     cmd.Parameters.AddWithValue("@brewery_img", brewery.Brewery_img);
-                    hoursOfOperation.Add("Monday", monday);
-                    hoursOfOperation.Add("Tuesday", tuesday);
-                    hoursOfOperation.Add("Wednesday", wednesday);
-                    hoursOfOperation.Add("Thursday", thursday);
-                    hoursOfOperation.Add("Friday", friday);
-                    hoursOfOperation.Add("Saturday", saturday);
-                    hoursOfOperation.Add("Sunday", sunday);
-                    brewery.HoursOfOperation = hoursOfOperation;
-                    id = Convert.ToInt32(cmd.ExecuteScalar());
 
                     cmd.ExecuteNonQuery();
+                    id = Convert.ToInt32(cmd.ExecuteScalar());
+
+
+                    string sql2 = "INSERT INTO operation(monday,tuesday,wednesday,thursday,friday,saturday,sunday,brewery_id) VALUES(@monday,@tuesday,@wednesday,@thursday,@friday,@saturday,@sunday,@brewery_id)";
+                    SqlCommand cmd2= new SqlCommand(sql2, conn);
+                    brewery.HoursOfOperation.TryGetValue("Monday", out string monday);
+                    brewery.HoursOfOperation.TryGetValue("Tuesday", out string tuesday);
+                    brewery.HoursOfOperation.TryGetValue("Wednesday", out string wednesday);
+                    brewery.HoursOfOperation.TryGetValue("Thursday", out string thursday);
+                    brewery.HoursOfOperation.TryGetValue("Friday", out string friday);
+                    brewery.HoursOfOperation.TryGetValue("Saturday", out string saturday);
+                    brewery.HoursOfOperation.TryGetValue("Sunday", out string sunday);
+
+                    cmd2.Parameters.AddWithValue("@monday", monday);
+                    cmd2.Parameters.AddWithValue("@tuesday", tuesday);
+                    cmd2.Parameters.AddWithValue("@wednesday", wednesday);
+                    cmd2.Parameters.AddWithValue("@thursday", thursday);
+                    cmd2.Parameters.AddWithValue("@friday", friday);
+                    cmd2.Parameters.AddWithValue("@saturday", saturday);
+                    cmd2.Parameters.AddWithValue("@sunday", sunday);
+                    cmd2.Parameters.AddWithValue("@brewery_id", id);
+
+                    cmd2.ExecuteNonQuery();
+                    
+
+                    
                 }
 
             }
