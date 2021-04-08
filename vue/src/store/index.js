@@ -97,6 +97,9 @@ export default new Vuex.Store({
   getters: {
     isLoggedIn(state) {
       return state.token != '';
+    },
+    isAdmin(state) {
+      return state.token != '' && state.user.role == 'Admin';
     }
   }
 })

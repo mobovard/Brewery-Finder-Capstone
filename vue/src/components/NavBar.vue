@@ -21,19 +21,38 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
+          <b-nav-item
+            v-if="$store.getters.isAdmin"
+            :to="{name: 'admin'}"
+          ><span class="text-foam font-weight-bold">Admin</span></b-nav-item>
           <b-nav-item-dropdown id="user-dropdown" right>
             <!-- Using 'button-content' slot -->
             <template #button-content>
               <BIconPersonCircle class="text-porter" />
             </template>
-            <b-dropdown-item v-if="$store.getters.isLoggedIn">{{
-              $store.state.user.firstName
-            }}</b-dropdown-item>
+            <b-dropdown-item 
+              v-if="$store.getters.isLoggedIn"
+              >
+                {{$store.state.user.firstName}}
+              </b-dropdown-item>
             <b-dropdown-item
               :to="{ name: 'logout' }"
-              :disabled="!$store.getters.isLoggedIn"
-              >Sign Out</b-dropdown-item
+              v-if="$store.getters.isLoggedIn"
             >
+              Sign Out
+            </b-dropdown-item>
+            <b-dropdown-item
+              :to="{ name: 'login' }"
+              v-if="!$store.getters.isLoggedIn"
+            >
+              Sign in
+            </b-dropdown-item>
+            <b-dropdown-item
+              :to="{ name: 'register' }"
+              v-if="!$store.getters.isLoggedIn"
+            >
+              Register
+            </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>

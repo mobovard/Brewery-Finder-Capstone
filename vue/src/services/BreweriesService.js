@@ -9,5 +9,9 @@ export default {
     },
     getBeers(breweryId) {
         return axios.get(`/breweries/${breweryId}/beers`);
+    },
+
+    addBrewery(brewery) {
+        return axios.post('/breweries', brewery);
     }
 }

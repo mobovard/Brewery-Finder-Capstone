@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import Brewery from '../views/Brewery.vue'
 import Breweries from '../views/Breweries.vue'
 import Beer from '../views/Beer.vue'
+import Admin from '../views/Admin.vue'
 import store from '../store/index'
 
 Vue.use(Router)
@@ -29,7 +30,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -80,16 +81,29 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin,
+      meta: {
+        requiresAuth: true,
+        is_admin: true,
+      }
+    }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+  const requiresAdmin = to.matched.some(x => x.meta.is_admin);
 
+  if (requiresAdmin && !store.getters.isAdmin) {
+    next({name: 'home'});
+  }
   // If it does and they are not logged in, send the user to "/login"
-  if (requiresAuth && store.state.token === '') {
-    next("/login");
+  else if (requiresAuth && !store.getters.isLoggedIn) {
+    next({name: 'home'});
   } else {
     // Else let them go to their next destination
     next();
