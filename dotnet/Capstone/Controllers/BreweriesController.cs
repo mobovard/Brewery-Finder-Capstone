@@ -76,9 +76,9 @@ namespace Capstone.Controllers
 
         [HttpPost("/breweries/add")]
 
-        public ActionResult<Brewery>  CreateBrewery(Brewery brewery, string monday, string tuesday, string wednesday, string thursday, string friday, string saturday, string sunday)
+        public ActionResult<Brewery>  CreateBrewery(Brewery brewery)
         {
-            Brewery brewery1 = breweriesDAO.AddBrewery(brewery,monday,tuesday,wednesday,thursday,friday,saturday,sunday);
+            Brewery brewery1 = breweriesDAO.AddBrewery(brewery);
             if(brewery1 != null)
             {
                 return Ok(brewery1);

@@ -12,6 +12,6 @@ namespace Capstone.DAO
 
         Brewery GetBreweryById(int id);
 
-        Brewery AddBrewery(Brewery brewery, string monday, string tuesday, string wednesday, string thursday, string friday, string saturday, string sunday);
+        Brewery AddBrewery(Brewery brewery);
     }
 }

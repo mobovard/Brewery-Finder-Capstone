@@ -43,7 +43,7 @@ namespace Capstone.Controllers
             Beer beer1 = beerDAO.AddBeer(beer);
             if(beer1 != null)
             {
-                return Ok(beer);
+                return Ok(beer1);
             }
             else
             {
