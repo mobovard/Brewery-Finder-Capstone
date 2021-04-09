@@ -73,7 +73,7 @@
           placeholder="Brewery Phone Number"
           class="mb-3 text-foam"
         >
-        Please check if brewery is inactive at this time.
+          Please check if brewery is inactive at this time.
         </b-form-checkbox>
       </b-col>
     </b-row>

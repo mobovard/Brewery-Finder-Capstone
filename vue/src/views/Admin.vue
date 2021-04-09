@@ -5,12 +5,20 @@
         <button
           class="btn bg-porter text-foam text-wheat-h"
           @click="displayAddBrewery = !displayAddBrewery"
-          >Add Brewery</button
         >
+          Add Brewery
+        </button>
+        <button
+          class="btn bg-porter text-foam text-wheat-h"
+          @click="displayAddBeer = !displayAddBeer"
+        >
+          Add Beer
+        </button>
       </b-col>
 
       <b-col>
         <AddBreweryForm v-if="displayAddBrewery" />
+        <AddBeerForm v-if="displayAddBeer" />
       </b-col>
     </b-row>
   </div>
@@ -18,14 +26,22 @@
 
 <script>
 import AddBreweryForm from "../components/AddBreweryForm";
+import AddBeerForm from "../components/AddBeerForm";
 
 export default {
-  components: { AddBreweryForm },
+  components: {
+    AddBreweryForm,
+    AddBeerForm,
+  },
   data() {
     return {
       displayAddBrewery: false,
+      displayAddBeer: false,
     };
   },
+  methods: {
+
+  }
 };
 </script>
 
