@@ -15,5 +15,10 @@
 export default {
   components: {},
   name: "home",
-  };
+  created() {
+    this.$store.commit('SET_BACKGROUND','./img/beer.jpg');
+  }
+};
 </script>
+
+
