@@ -1,5 +1,6 @@
 ﻿using Capstone.DAO;
 using Capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
 
     public class BreweriesController : ControllerBase
     {
@@ -23,7 +25,6 @@ namespace Capstone.Controllers
             breweriesDAO = _breweriesDAO;
             beerDAO = _beerDAO;
         }
-
         [HttpGet]
 
         public ActionResult<List<Brewery>> BreweryList()
@@ -40,7 +41,6 @@ namespace Capstone.Controllers
             }
 
         }
-
         [HttpGet("/breweries/{id}")]
 
         public ActionResult<Brewery> GetBreweryById(int id)
@@ -56,7 +56,7 @@ namespace Capstone.Controllers
                 return NoContent();
             }
         }
-
+        
         [HttpGet("/breweries/{id}/beers")]
 
         public ActionResult<List<Beer>> BeersByBrewery(int id)
@@ -73,8 +73,8 @@ namespace Capstone.Controllers
             }
 
         }
-
-        [HttpPost("/breweries/add")]
+        [AllowAnonymous]
+        [HttpPost("/breweries")]
 
         public ActionResult<Brewery>  CreateBrewery(Brewery brewery)
         {
@@ -85,11 +85,11 @@ namespace Capstone.Controllers
             }
             else
             {
-                return NoContent();
+                return BadRequest();
             }
         }
-
-        [HttpPut("/breweries/update")]
+        [Authorize(Roles = "Admin,Brewer")]
+        [HttpPut("/breweries")]
 
         public ActionResult<Brewery> UpdatedBrewery(Brewery updatedBrewery)
         {
@@ -100,15 +100,9 @@ namespace Capstone.Controllers
             }
             else
             {
-                return NoContent();
+                return BadRequest();
             }
 
         }
-        
-
-
-        
-
-
     }
 }

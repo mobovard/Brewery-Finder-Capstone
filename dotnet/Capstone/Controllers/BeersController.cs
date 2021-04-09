@@ -1,5 +1,6 @@
 ﻿using Capstone.DAO;
 using Capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
 
     public class BeersController : ControllerBase
     {
@@ -37,7 +39,8 @@ namespace Capstone.Controllers
                 return NoContent();
             }
         }
-        [HttpPost("/beers/add")]
+        [Authorize(Roles ="Admin,Brewer")]
+        [HttpPost("/beers")]
         public ActionResult<Beer> CreateBeer(Beer beer)
         {
             Beer beer1 = beerDAO.AddBeer(beer);
@@ -47,10 +50,11 @@ namespace Capstone.Controllers
             }
             else
             {
-                return NoContent();
+                return BadRequest();
             }
         }
-        [HttpPut("/beers/update")]
+        [Authorize(Roles = "Admin,Brewer")]
+        [HttpPut("/beers")]
         public ActionResult<Beer> BeerActive(Beer updated)
         {
             Beer beer1 = beerDAO.UpdateBeer(updated);
@@ -61,7 +65,7 @@ namespace Capstone.Controllers
             }
             else
             {
-                return NoContent();
+                return BadRequest();
             }
         }
     }
