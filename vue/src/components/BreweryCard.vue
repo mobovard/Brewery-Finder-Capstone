@@ -16,9 +16,9 @@
         ></b-card-img>
       </b-col>
       <b-col
-        class="d-flex flex-column align-items-center justify-content-center testing"
+        class="d-flex flex-column align-items-center scrollbar-custom"
       >
-        <b-card-text class="">{{ brewery.history }}</b-card-text>
+        <b-card-text>{{ brewery.history }}</b-card-text>
       </b-col>
     </b-row>
   </b-card>
@@ -36,17 +36,18 @@ export default {
   max-width: 40rem;
   max-height: 10rem;
 }
-.testing {
+
+.scrollbar-custom{
   display: block;
   text-overflow: ellipsis;
   overflow: auto;
   max-height: 5rem;
 }
-.testing::-webkit-scrollbar {
+.scrollbar-custom::-webkit-scrollbar {
   background-color: rgba(221, 192, 143, 0.3);
   border-radius: 2rem;
 }
-.testing::-webkit-scrollbar-thumb {
+.scrollbar-custom::-webkit-scrollbar-thumb {
   background-color: rgba(48, 22, 17, 0.3);
   border-radius: 2rem;
 }
