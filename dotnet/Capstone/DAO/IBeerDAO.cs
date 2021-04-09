@@ -14,6 +14,6 @@ namespace Capstone.DAO
 
         Beer AddBeer(Beer beer);
 
-        Beer Update(Beer updated);
+        Beer UpdateBeer(Beer updated);
     }
 }

@@ -53,7 +53,7 @@ namespace Capstone.Controllers
         [HttpPut("/beers/update")]
         public ActionResult<Beer> BeerActive(Beer updated)
         {
-            Beer beer1 = beerDAO.Update(updated);
+            Beer beer1 = beerDAO.UpdateBeer(updated);
             if(beer1 != null)
             {
                 return Ok(beer1);

@@ -118,7 +118,7 @@ namespace Capstone.DAO
             }
             return GetBeerById(myId);
         }
-        public Beer Update(Beer updated)
+        public Beer UpdateBeer(Beer updated)
         {
             Beer beer = new Beer();
             try

@@ -168,5 +168,77 @@ namespace Capstone.DAO
             }
             return GetBreweryById(id);
         }
+        public Brewery UpdateBrewery(Brewery updatedBrewery)
+        {
+            int totalRows = 0;
+            Brewery brewery = new Brewery();
+            
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open();
+                    string sql = "UPDATE brewery SET name = @name, phone_number = @phone_number,brewery_email=@brewery_email,address = @address,history = @history,active =@active,brewery_img=@brewery_img,user_id=@user_id,logo=@logo WHERE brewery_id = @brewery_id;";
+
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@name", updatedBrewery.Name);
+                    cmd.Parameters.AddWithValue("@phone_number", updatedBrewery.Phone_number);
+                    cmd.Parameters.AddWithValue("@brewery_email", updatedBrewery.Email);
+                    cmd.Parameters.AddWithValue("@address", updatedBrewery.Address);
+                    cmd.Parameters.AddWithValue("@history", updatedBrewery.History);
+                    cmd.Parameters.AddWithValue("@active", updatedBrewery.Active);
+                    cmd.Parameters.AddWithValue("@logo", updatedBrewery.Logo);
+                    cmd.Parameters.AddWithValue("@user_id", updatedBrewery.User_id);
+                    cmd.Parameters.AddWithValue("@brewery_img", updatedBrewery.Brewery_img);
+
+                    cmd.Parameters.AddWithValue("@brewery_id", updatedBrewery.Brewery_id);
+
+                    int numberOfRowsBrewery = cmd.ExecuteNonQuery();
+             
+
+
+
+                    string sql2 = "UPDATE operation SET monday = @monday, tuesday = @tuesday, wednesday = @wednesday, thursday = @thursday, friday = @friday, saturday = @saturday, sunday = @sunday WHERE brewery_id = @brewery_id;";
+                    SqlCommand cmd2 = new SqlCommand(sql2, conn);
+                    updatedBrewery.HoursOfOperation.TryGetValue("Monday", out string monday);
+                    updatedBrewery.HoursOfOperation.TryGetValue("Tuesday", out string tuesday);
+                    updatedBrewery.HoursOfOperation.TryGetValue("Wednesday", out string wednesday);
+                    updatedBrewery.HoursOfOperation.TryGetValue("Thursday", out string thursday);
+                    updatedBrewery.HoursOfOperation.TryGetValue("Friday", out string friday);
+                    updatedBrewery.HoursOfOperation.TryGetValue("Saturday", out string saturday);
+                    updatedBrewery.HoursOfOperation.TryGetValue("Sunday", out string sunday);
+
+                    cmd2.Parameters.AddWithValue("@monday", monday);
+                    cmd2.Parameters.AddWithValue("@tuesday", tuesday);
+                    cmd2.Parameters.AddWithValue("@wednesday", wednesday);
+                    cmd2.Parameters.AddWithValue("@thursday", thursday);
+                    cmd2.Parameters.AddWithValue("@friday", friday);
+                    cmd2.Parameters.AddWithValue("@saturday", saturday);
+                    cmd2.Parameters.AddWithValue("@sunday", sunday);
+                    cmd2.Parameters.AddWithValue("@brewery_id", updatedBrewery.Brewery_id);
+
+                    int numberOfRowsOperation = cmd2.ExecuteNonQuery();
+                    totalRows = numberOfRowsBrewery + numberOfRowsOperation;
+
+                   
+                    if (totalRows == 2)
+                    {
+                        brewery = updatedBrewery;
+                    }
+                    else
+                    {
+                        brewery = null;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return brewery;
+        }
     }
 }

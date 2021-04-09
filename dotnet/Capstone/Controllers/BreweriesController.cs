@@ -88,6 +88,22 @@ namespace Capstone.Controllers
                 return NoContent();
             }
         }
+
+        [HttpPut("/breweries/update")]
+
+        public ActionResult<Brewery> UpdatedBrewery(Brewery updatedBrewery)
+        {
+            Brewery brewery1 = breweriesDAO.UpdateBrewery(updatedBrewery);
+            if(brewery1 != null)
+            {
+                return Ok(brewery1);
+            }
+            else
+            {
+                return NoContent();
+            }
+
+        }
         
 
 

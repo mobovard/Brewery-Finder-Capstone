@@ -13,5 +13,7 @@ namespace Capstone.DAO
         Brewery GetBreweryById(int id);
 
         Brewery AddBrewery(Brewery brewery);
+
+        Brewery UpdateBrewery(Brewery updatedBrewery);
     }
 }
