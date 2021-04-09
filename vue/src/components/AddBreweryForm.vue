@@ -1,5 +1,5 @@
 <template>
-  <b-form class="d-grid">
+  <b-form class="d-grid" @submit.prevent="addBrewery">
     <b-row>
       <b-col>
         <h4 class="text-foam text-center mt-2 mb-3">Add a Brewery</h4>
@@ -7,7 +7,7 @@
     </b-row>
     <b-row>
       <b-col>
-        <h5 class="text-foam text-center">Brewery & Contact Info:</h5>
+        <h5 class="text-foam text-center">Brewery &amp; Contact Info:</h5>
       </b-col>
     </b-row>
     <b-row>
@@ -57,6 +57,27 @@
     </b-row>
     <b-row>
       <b-col>
+        <label for="brewer" class="sr-only">User ID of Brewer</label>
+        <b-form-input
+          id="brewer"
+          v-model="brewery.user_id"
+          placeholder="User ID of Brewer"
+          class="mb-3"
+        ></b-form-input>
+      </b-col>
+      <b-col>
+        <label for="active" class="sr-only">Inactive</label>
+        <b-form-checkbox
+          id="active"
+          v-model="brewery.active"
+          class="mb-3 text-foam"
+        >
+          Currently {{ brewery.active ? "Active" : "Inactive" }} Brewery
+        </b-form-checkbox>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
         <label for="img" class="sr-only">Brewery Image</label>
         <b-form-input
           id="img"
@@ -64,17 +85,6 @@
           placeholder="Brewery Image"
           class="mb-3"
         ></b-form-input>
-      </b-col>
-      <b-col>
-        <label for="inactive" class="sr-only">Inactive</label>
-        <b-form-checkbox
-          id="inactive"
-          v-model="brewery.phone_number"
-          placeholder="Brewery Phone Number"
-          class="mb-3 text-foam"
-        >
-          Please check if brewery is inactive at this time.
-        </b-form-checkbox>
       </b-col>
     </b-row>
     <!-- Hours of Operation -->
@@ -171,15 +181,20 @@
         </b-form-textarea>
       </b-col>
     </b-row>
-
-    <button type="submit" class="btn bg-porter text-foam text-wheat-h">
-      Add
-    </button>
-    <button class="btn bg-porter text-foam text-wheat-h">Cancel</button>
+    <b-row class="mt-2">
+      <b-col class="d-flex justify-content-end">
+        <button type="submit" class="btn bg-porter text-foam text-wheat-h">
+          Add
+        </button>
+        <button class="btn bg-porter text-foam text-wheat-h ml-2">
+          Cancel
+        </button>
+      </b-col>
+    </b-row>
   </b-form>
 </template>
-
 <script>
+import breweriesService from "../services/BreweriesService";
 export default {
   data() {
     return {
@@ -189,7 +204,7 @@ export default {
         email: "",
         address: "",
         history: "",
-        active: true,
+        active: false,
         brewery_img: "",
         user_id: "",
         hoursOfOperation: {
@@ -204,7 +219,18 @@ export default {
       },
     };
   },
+  methods: {
+    addBrewery() {
+      breweriesService
+        .addBrewery(this.brewery)
+        .then((resp) => {
+          console.log(resp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
-
 <style></style>
