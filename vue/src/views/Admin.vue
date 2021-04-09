@@ -9,7 +9,7 @@
           Add Brewery
         </button>
         <button
-          class="btn bg-porter text-foam text-wheat-h"
+          class="btn bg-porter text-foam text-wheat-h mt-2"
           @click="displayAddBeer = !displayAddBeer"
         >
           Add Beer
@@ -45,4 +45,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.btn{
+  min-width: 148px;
+}
+</style>
