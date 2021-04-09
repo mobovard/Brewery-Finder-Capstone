@@ -10,7 +10,7 @@
     <b-row class="m-2">
       <b-col class="col-4 d-none d-md-block">
         <b-card-img
-          :src="brewery.brewery_img"
+          :src="brewery.logo"
           class="rounded-circle img-fluid"
         ></b-card-img>
       </b-col>

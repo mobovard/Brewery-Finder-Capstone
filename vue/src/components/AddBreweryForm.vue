@@ -65,6 +65,17 @@
           class="mb-3"
         ></b-form-input>
       </b-col>
+      <b-col>
+        <label for="inactive" class="sr-only">Inactive</label>
+        <b-form-checkbox
+          id="inactive"
+          v-model="brewery.phone_number"
+          placeholder="Brewery Phone Number"
+          class="mb-3 text-foam"
+        >
+        Please check if brewery is inactive at this time.
+        </b-form-checkbox>
+      </b-col>
     </b-row>
     <!-- Hours of Operation -->
     <b-row>
