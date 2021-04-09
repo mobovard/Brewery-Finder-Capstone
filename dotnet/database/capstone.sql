@@ -105,13 +105,13 @@ INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewe
 VALUES('Wiedemann Brewery','(345)333-5555','wiedemann@gmail.com','321 Ross st','used to be a cool place',1,'https://www.gannett-cdn.com/presto/2020/08/03/PCIN/aa09ec77-343e-4668-8974-7bcfe29701f4-Wiedemanns_Exterior_Front.jpg',2,'https://wiedemannsfinebeer.com/wp-content/uploads/2018/01/logoWhiteTransBG.png');
 
 INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id,logo)
-VALUES('North High Brewing','(614)876-9119','northhigh@gmail.com','321 North High St','told him this would never work, eating crow now',1,'https://www.gannett-cdn.com/presto/2020/08/03/PCIN/aa09ec77-343e-4668-8974-7bcfe29701f4-Wiedemanns_Exterior_Front.jpg',2,'https://wiedemannsfinebeer.com/wp-content/uploads/2018/01/logoWhiteTransBG.png');
+VALUES('North High Brewing','(614)876-9119','northhigh@gmail.com','321 North High St','told him this would never work, eating crow now',1,'https://www.breakfastwithnick.com/wp-content/uploads/img_9803.jpg',2,'https://shortnorth.org/wp-content/uploads/2015/04/north-high-logo.jpg');
 
 INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id,logo)
-VALUES('Brooklyn Brewery','(718)222-6666','info@brooklynbrewery.com','321 Main Ave','Our team stretches around the planet, ensuring our beer is delicious, adventurous, and available to all. Walk through our Packaging Hall in Brooklyn and you’ll meet people from over a dozen countries, speaking more than twenty languages.',1,'https://www.gannett-cdn.com/presto/2020/08/03/PCIN/aa09ec77-343e-4668-8974-7bcfe29701f4-Wiedemanns_Exterior_Front.jpg',2,'https://wiedemannsfinebeer.com/wp-content/uploads/2018/01/logoWhiteTransBG.png');
+VALUES('Brooklyn Brewery','(718)222-6666','info@brooklynbrewery.com','321 Main Ave','Our team stretches around the planet, ensuring our beer is delicious, adventurous, and available to all. Walk through our Packaging Hall in Brooklyn and you’ll meet people from over a dozen countries, speaking more than twenty languages.',1,'https://api.time.com/wp-content/uploads/2016/10/161013_em_brooklynbrewery.jpg?w=800&quality=85',2,'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Brookylnbrewery.svg/800px-Brookylnbrewery.svg.png');
 
 INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id,logo)
-VALUES('Smokehouse Brewing Co','(614)592-9686','Smokehouse@gmail.com','5454 Olentangy River Road','Smokehouse Brewing Company is a community place where one feels at home, no matter where home happens to be',1,'https://cdn.beeradvocate.com/im/c_place_image.gif',1,'https://www.smokehousebrewing.com/images/home_header1.jpg');
+VALUES('Smokehouse Brewing Co','(614)592-9686','Smokehouse@gmail.com','5454 Olentangy River Road','Smokehouse Brewing Company is a community place where one feels at home, no matter where home happens to be',1,'https://cdn.usarestaurants.info/assets/uploads/4f321f244a78f98b0668d589891e5c20_-united-states-ohio-franklin-county-columbus-414133-smokehouse-brewing-companyhtm.jpg',1,'https://www.smokehousebrewing.com/images/home_header1.jpg');
 
 INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id,logo)
 VALUES('Doolally Taproom','01191(022)48931314','DoolallyTaproom@gmail.com','10A Road Number 3','The first microbrewery in India, with three outlets in Mumbai',1,'https://imgmediagumlet.lbb.in/media/2017/08/599470d03e05710dff4c8621_56aad8b4dae5d95f37743284_1502900432931.jpg?fm=webp&w=750&h=500&dpr=2',1,'https://doolally.in/asset/images/splashLogo.png');
@@ -121,7 +121,6 @@ VALUES('Mango Cider','A cider made with kesar mangoes','https://images.indianexp
 
 INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
 VALUES('Smoked Porter','Few words in the dictionary can describe the smoky, woody flavours of this beer. Even Shashi Tharoor would struggle.','https://untappd.akamaized.net/photos/2020_09_17/c23ef6952fa4c7477fe581a3d9ed1d26_raw.jpg',5.7,8,'Porter',1);
-
 
 INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
 VALUES('Preacher','Golden ale with a fresh addition of peach and apricot puree','https://untappd.akamaized.net/site/beer_logos_hd/beer-3256736_c500c_hd.jpeg',5.5,1,'Lager',1);
@@ -148,7 +147,7 @@ INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
 VALUES('Suh,Brah','Starting with an intense nose of stone, fruit, grapefruit, and light pineapple, Suh, Brah?''s aromatics are created by piney dank notes from our double dry hop of Simcoe hopes. Suh, Brah?''s flavor leads with soft mango and pineapple, peach, and light dankness and then is rounded out by a soft, fluffy, almost creamy body.','https://untappd.akamaized.net/site/beer_logos_hd/beer-1805650_a88d6_hd.jpeg',6.7,3,'IPA',1)
 
 INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
-VALUES('Filty McNasty','A big, bold stout showcasing layers of chocolate, coffee and roast character.','https://untappd.akamaized.net/photos/2021_04_07/578fd9a7aa00758dc658d777860fe074_raw.jpg',9,5,'Stout',1);
+VALUES('Filthy McNasty','A big, bold stout showcasing layers of chocolate, coffee and roast character.','https://untappd.akamaized.net/photos/2021_04_07/578fd9a7aa00758dc658d777860fe074_raw.jpg',9,5,'Stout',1);
 
 INSERT INTO beers(name,description,img,abv,brewery_id,beer_type,active_beer)
 VALUES('Cover Crop','An easy drinking ale brewed with all Ohio malt and hops','https://www.porchdrinking.com/wp-content/uploads/2019/01/North-High-Cover-Crop-Beer-4-700x325.jpg',4.5,5,'Stout',1);
