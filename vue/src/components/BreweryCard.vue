@@ -4,17 +4,18 @@
       $router.push({ name: 'brewery', params: { id: brewery.brewery_id } })
     "
     no-body
-    class="frosty-porter text-foam card-size m-1 pointer"
+    class="frosty-porter text-foam card-size m-1 pointer "
+    style="max-width:40%"
   >
     <b-card-header class="text-center h3">{{ brewery.name }}</b-card-header>
-    <b-row class="m-2">
+    <b-row class="m-2 row-height">
       <b-col class="col-4 d-none d-md-block">
         <b-card-img
           :src="brewery.logo"
           class="rounded-circle img-fluid"
         ></b-card-img>
       </b-col>
-      <b-col class="d-flex flex-column justify-content-center">
+      <b-col class="d-flex flex-column align-items-center justify-content-center">
         <b-card-text>{{ brewery.history }}</b-card-text>
       </b-col>
     </b-row>
@@ -34,5 +35,9 @@ export default {
 }
 .pointer {
   cursor: pointer;
+}
+.row-height{
+  min-height: 107.98px;
+  align-items: center;
 }
 </style>

@@ -13,5 +13,7 @@ namespace Capstone.DAO
         Beer GetBeerById(int id);
 
         Beer AddBeer(Beer beer);
+
+        Beer Update(Beer updated);
     }
 }
