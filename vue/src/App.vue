@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="d-flex flex-column vh-100" :style="{ backgroundImage: `url(${$store.state.bg_image})`}">
+  <div id="app" class="d-flex flex-column vh-100" > <!-- took this out of class and added css for background :style="{ backgroundImage: `url(${$store.state.bg_image})`}" -->
     <NavBar />
     <div class="container flex-grow-1 d-flex flex-column">
       <router-view />
@@ -16,9 +16,9 @@ export default {
 </script> 
 
 <style scoped>
-.bg-full {
+/* .bg-full {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 </style>
