@@ -20,12 +20,14 @@
     >
       Register
     </button>
+   
   </div>
 </template>
 
 <script>
+
 export default {
-  components: {},
+
   name: "home",
   created() {
     this.$store.commit("SET_BACKGROUND", "./img/beer.jpg");
