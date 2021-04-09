@@ -73,7 +73,7 @@ namespace Capstone.Controllers
             }
 
         }
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin,Brewer")]
         [HttpPost("/breweries")]
 
         public ActionResult<Brewery>  CreateBrewery(Brewery brewery)

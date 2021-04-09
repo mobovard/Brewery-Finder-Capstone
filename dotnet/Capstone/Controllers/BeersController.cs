@@ -11,7 +11,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
+    
 
     public class BeersController : ControllerBase
     {
@@ -39,7 +39,7 @@ namespace Capstone.Controllers
                 return NoContent();
             }
         }
-        [Authorize(Roles ="Admin,Brewer")]
+       
         [HttpPost("/beers")]
         public ActionResult<Beer> CreateBeer(Beer beer)
         {

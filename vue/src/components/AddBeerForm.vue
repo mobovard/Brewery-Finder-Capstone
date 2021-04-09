@@ -61,6 +61,7 @@
     <b-form-checkbox id="active" class="mb-3 text-foam" v-model="beer.active">
       {{ beer.active ? "Currently available" : "Not currently available" }}
     </b-form-checkbox>
+
     <!-- Add Beer Buttons -->
     <b-row class="mt-2">
       <b-col class="d-flex justify-content-end">
