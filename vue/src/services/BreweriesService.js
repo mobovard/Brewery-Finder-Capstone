@@ -10,12 +10,11 @@ export default {
     getBeers(breweryId) {
         return axios.get(`/breweries/${breweryId}/beers`);
     },
-
     addBrewery(brewery) {
+        console.log(brewery);
         return axios.post('/breweries', brewery);
     },
-
-  addBeer(breweryId,beer) {
-        return axios.post(`/breweries/${breweryId}/beers`, beer);
+    addBeer(beer) {
+        return axios.post(`/beers`, beer);
     },
 }

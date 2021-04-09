@@ -60,7 +60,7 @@
         <label for="brewer" class="sr-only">User ID of Brewer</label>
         <b-form-input
           id="brewer"
-          v-model="brewery.user_id"
+          v-model.number="brewery.user_id"
           placeholder="User ID of Brewer"
           class="mb-3"
         ></b-form-input>
@@ -83,6 +83,15 @@
           id="img"
           v-model="brewery.brewery_img"
           placeholder="Brewery Image"
+          class="mb-3"
+        ></b-form-input>
+      </b-col>
+      <b-col>
+        <label for="logo" class="sr-only">Brewery Logo</label>
+        <b-form-input
+          id="logo"
+          v-model="brewery.logo"
+          placeholder="Brewery Logo"
           class="mb-3"
         ></b-form-input>
       </b-col>
@@ -193,44 +202,54 @@
     </b-row>
   </b-form>
 </template>
+
 <script>
 import breweriesService from "../services/BreweriesService";
 export default {
+  props: {
+    add: { type: Boolean },
+    update: { type: Boolean },
+  },
   data() {
     return {
       brewery: {
-        name: "",
-        phone_number: "",
-        email: "",
-        address: "",
-        history: "",
+        name: null,
+        phone_number: null,
+        email: null,
+        address: null,
+        history: null,
         active: false,
-        brewery_img: "",
-        user_id: "",
+        brewery_img: null,
+        user_id: null,
+        logo: null,
         hoursOfOperation: {
-          Monday: "",
-          Tuesday: "",
-          Wednesday: "",
-          Thursday: "",
-          Friday: "",
-          Saturday: "",
-          Sunday: "",
+          Monday: null,
+          Tuesday: null,
+          Wednesday: null,
+          Thursday: null,
+          Friday: null,
+          Saturday: null,
+          Sunday: null,
         },
       },
     };
   },
   methods: {
     addBrewery() {
-      breweriesService
-        .addBrewery(this.brewery)
-        .then((resp) => {
-          console.log(resp);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (confirm("Are you sure?")) {
+        breweriesService
+          .addBrewery(this.brewery)
+          .then((resp) => {
+            console.log(resp);
+            if (resp.status === 201) {
+              // this is because eslint won't let me have an empty block...
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     },
   },
 };
 </script>
-<style></style>

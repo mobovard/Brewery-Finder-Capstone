@@ -3,21 +3,21 @@
     <b-row>
       <b-col md="3" lg="2">
         <button
-          class="btn bg-porter text-foam text-wheat-h"
-          @click="displayAddBrewery = !displayAddBrewery"
+          class="btn btn-block bg-porter text-foam text-wheat-h"
+          @click="hideForms(); displayAddBrewery = true"
         >
           Add Brewery
         </button>
         <button
-          class="btn bg-porter text-foam text-wheat-h mt-2"
-          @click="displayAddBeer = !displayAddBeer"
+          class="btn btn-block bg-porter text-foam text-wheat-h mt-md-2"
+          @click="hideForms(); displayAddBeer = true"
         >
           Add Beer
         </button>
       </b-col>
 
       <b-col>
-        <AddBreweryForm v-if="displayAddBrewery" />
+        <AddBreweryForm add v-if="displayAddBrewery" />
         <AddBeerForm v-if="displayAddBeer" />
       </b-col>
     </b-row>
@@ -40,13 +40,10 @@ export default {
     };
   },
   methods: {
-
+    hideForms() {
+      this.displayAddBrewery = false;
+      this.displayAddBeer = false;
+    }
   }
 };
 </script>
-
-<style scoped>
-.btn{
-  min-width: 148px;
-}
-</style>
