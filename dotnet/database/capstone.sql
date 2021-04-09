@@ -68,6 +68,16 @@ CREATE TABLE beers (
 	CONSTRAINT PK_beer PRIMARY KEY (beer_id),
 
 );
+CREATE TABLE ratings(
+	rating_id int IDENTITY(2500,3),
+	rating int,
+	rating_description varchar(500),
+	user_id int,
+	beer_id int,
+
+
+
+);
 ALTER TABLE brewery
 	ADD FOREIGN KEY(user_id) REFERENCES users(user_id);
 
@@ -76,6 +86,11 @@ ALTER TABLE beers
 
 ALTER TABLE operation 
 	ADD FOREIGN KEY(brewery_id) REFERENCES brewery(brewery_id);
+
+ALTER TABLE ratings
+	ADD FOREIGN KEY(user_id) REFERENCES users(user_id);
+ALTER TABLE ratings
+	ADD FOREIGN KEY(beer_id) REFERENCES beers(beer_id);
 
 
 
