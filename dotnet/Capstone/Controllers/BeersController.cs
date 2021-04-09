@@ -50,5 +50,19 @@ namespace Capstone.Controllers
                 return NoContent();
             }
         }
+        [HttpPut("/beers/update")]
+        public ActionResult<Beer> BeerActive(Beer updated)
+        {
+            Beer beer1 = beerDAO.Update(updated);
+            if(beer1 != null)
+            {
+                return Ok(beer1);
+
+            }
+            else
+            {
+                return NoContent();
+            }
+        }
     }
 }

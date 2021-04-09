@@ -110,12 +110,13 @@ namespace Capstone.DAO
         public Brewery AddBrewery(Brewery brewery)
         {
             int id = 0;
-            int hoursOfOperationId = 0;
+            
            
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+
                     conn.Open();
                     string sql = "INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,user_id,brewery_img,logo) VALUES(@name,@phoneNumber,@brewery_email,@address,@history,@active,@user_id,@brewery_img,@logo);SELECT @@IDENTITY;";
                   
