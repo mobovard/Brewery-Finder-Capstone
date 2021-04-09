@@ -1,6 +1,5 @@
 <template>
   <div>
-      <b-img :src="$store.state.brewery.brewery_img" class="bg-img" />
     <div class="frosty-porterdk p-3 rounded">
       <div class="text-foam d-flex flex-column align-items-center">
         <h1>{{ $store.state.brewery.name }}</h1>
@@ -60,6 +59,9 @@ export default {
       .getBrewery(this.$route.params.id)
       .then((resp) => {
         this.$store.commit("SET_BREWERY", resp.data);
+        this.$store.commit("SET_BACKGROUND", resp.data.brewery_img )
+        
+        // creates list version of hours of op
         for (const [day, time] of Object.entries(
           this.$store.state.brewery.hoursOfOperation
         )) {
@@ -72,14 +74,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.bg-img {
-  position: absolute;
-  left: 0;
-  top:0;
-  height:100vh;
-  width:100vw;
-  object-fit: cover;
-  z-index: 0;
-}</style>

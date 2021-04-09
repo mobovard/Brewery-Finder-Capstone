@@ -41,30 +41,8 @@ export default new Vuex.Store({
           "Sunday": "10-9"
       }
   },
-    beers: [
-      {
-        beer_id: 1,
-        name: "Shade",
-        description: "If a shortcut through the woods beats the heat, why not take it? Though non-traditional, Shade’s blackberries and sea salt quench thirst amidst any sunny day. Feel free to kick back and relax, the ‘Tree has you covered.",
-        image: 'https://www.sciencenews.org/wp-content/uploads/2020/05/050620_mt_beer_feat-1028x579.jpg',
-        abv: 4.6,
-        beer_type:"Fruit Beer"
-      },
-      {
-        beer_id: 2,
-        name: "another beer",
-        description: "tastiest another beer you'll ever have!",
-        image: 'https://images.ctfassets.net/sz2xpiwl6od9/46m7jZmTTNKqKiOHtBlXT6/15a66dae4cca5d86017b0bc86500a38c/De-Ranke-Guldenberg-Tripel.jpg?w=500&h=250&fm=jpg&fit=fill',
-        abv: 4.5
-      },
-      {
-        beer_id: 3,
-        name: "a third beer",
-        description: "a full beer for the price of one!",
-        image: 'https://media.wired.com/photos/5f066bb7af3d0a069fd1d63d/master/w_2560%2Cc_limit/Gear-Homebrew-630019103.jpg',
-        abv: 7.5
-      }
-    ]
+    beers: [],
+    bg_image: ""
   },
 
   mutations: {
@@ -92,6 +70,9 @@ export default new Vuex.Store({
     },
     SET_BEERS(state, beers) {
       state.beers = beers;
+    },
+    SET_BACKGROUND(state, image) {
+      state.bg_image = image;
     }
   },
   getters: {
@@ -99,7 +80,7 @@ export default new Vuex.Store({
       return state.token != '';
     },
     isAdmin(state) {
-      return state.token != '' && state.user.role == 'Admin';
+      return state.token != '' && state.user.role === 'Admin';
     }
   }
 })
