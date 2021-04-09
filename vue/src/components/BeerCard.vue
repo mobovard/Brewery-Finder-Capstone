@@ -10,7 +10,7 @@
       no-body
       class="d-grid text-porter frosty-foam card-size m-1 p-1 pointer"
     >
-      <div class="row m-0 max-height-img p-1 ">
+      <div class="row m-0 max-height-img p-1 d-flex justify-content-around">
         <b-card-img
           :src="beer.image"
           class="rounded-circle custom-img"
@@ -32,15 +32,15 @@ export default {
 
 <style scoped>
 .max-height-img {
-height: 50%;
+  height: 50%;
 }
-.custom-img{
- max-width:100%;
- max-height:100%;
- object-fit: cover;
- }
-.card-size {
+.custom-img {
   max-width: 10rem;
+  max-height: 100%;
+  object-fit: cover;
+}
+.card-size {
+  max-width: 15rem;
   height: 15rem;
 }
 .flex-custom {
