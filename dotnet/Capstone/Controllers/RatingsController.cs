@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Capstone.DAO;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +7,16 @@ using System.Threading.Tasks;
 
 namespace Capstone.Controllers
 {
-    public class RatingsController : Controller
+    [Route("[controller]")]
+    [ApiController]
+    public class RatingsController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IRatingsDAO ratingsDAO;
+
+        public RatingsController(IRatingsDAO _ratingsDAO)
         {
-            return View();
+            ratingsDAO = _ratingsDAO;
         }
     }
+ 
 }
