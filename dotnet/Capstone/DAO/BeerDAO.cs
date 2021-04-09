@@ -9,6 +9,7 @@ namespace Capstone.DAO
 {
     public class BeerDAO : IBeerDAO
     {
+        
         private readonly string connectionString;
 
         public BeerDAO(string databaseConnectionString)
@@ -116,6 +117,38 @@ namespace Capstone.DAO
                 Console.WriteLine(ex.Message);
             }
             return GetBeerById(myId);
+        }
+        public Beer Update(Beer updated)
+        {
+            Beer beer = new Beer();
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    string sql = "UPDATE beers SET active_beer = @active WHERE beers.beer_id = @beer_id";
+                    SqlCommand cmd = new SqlCommand(sql,conn);
+                    cmd.Parameters.AddWithValue("@active", updated.Active);
+                    cmd.Parameters.AddWithValue("@beer_id", updated.Beer_id);
+                    int numberOfRows =cmd.ExecuteNonQuery();
+                    if(numberOfRows==1)
+                    {
+                        beer = updated;
+                    }
+                    else
+                    {
+                        beer = null;
+                    }
+
+                }
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return beer;
         }
     }
     
