@@ -30,7 +30,7 @@
     backdrop-filter: saturate(200%) blur(20px);
 }
 
-.bg-porter
+.bg-porter,
 .bg-porter-h:hover {
     background-color: #301611;
 }
