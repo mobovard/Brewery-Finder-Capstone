@@ -177,3 +177,14 @@ VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',3)
 INSERT INTO operation(monday,tuesday,wednesday,thursday,friday,saturday,sunday,brewery_id)
 VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',4)
 
+INSERT INTO operation(monday,tuesday,wednesday,thursday,friday,saturday,sunday,brewery_id)
+VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',5)
+
+INSERT INTO operation(monday,tuesday,wednesday,thursday,friday,saturday,sunday,brewery_id)
+VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',6)
+
+INSERT INTO operation(monday,tuesday,wednesday,thursday,friday,saturday,sunday,brewery_id)
+VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',7)
+
+INSERT INTO operation(monday,tuesday,wednesday,thursday,friday,saturday,sunday,brewery_id)
+VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',8)
