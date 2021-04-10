@@ -21,30 +21,10 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     breweries: [],
-    brewery: {
-      "brewery_id": 1,
-      "name": "Northern Row",
-      "phone_number": "(513)321-1234",
-      "email": "northernrow@gmail.com",
-      "address": "123 beer st",
-      "history": "MadTree puts purpose in every pour. Founded in 2013, MadTree has always been driven to craft great beer - but more importantly - to build something bigger than themselves and the high-quality beer they produce. Since the beginning, MadTree has cared deeply about creating meaningful connections with their communities. They embrace their namesake and work to celebrate and protect nature while reducing their impact on the environment. They are proud members of 1% for the Planet, with a commitment to donate 1% of sales to non-profits focused on environmental sustainability. The craftspeople at MadTree wake up every day to connect people to nature and each other. MadTree. Inspiring Madness. Rooted in Purpose.",
-      "active": true,
-      "brewery_img": "https://cdn.citybeat.com/files/base/scomm/cb/image/2019/05/960w/NorthernRowBrewing_HB_15.5cdb2e7194008.jpg",
-      "user_id": 2,
-      "hoursOfOperation": {
-          "Monday": "10-5",
-          "Tuesday": "10-5",
-          "Wednesday": "10-5",
-          "Thursday": "10-5",
-          "Friday": "10-5",
-          "Saturday": "10-9",
-          "Sunday": "10-9"
-      }
-  },
+    brewery: {},
     beers: [],
     bg_image: ""
   },
-
   mutations: {
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
@@ -81,6 +61,12 @@ export default new Vuex.Store({
     },
     isAdmin(state) {
       return state.token != '' && state.user.role === 'Admin';
+    },
+    getBrewery: (state) => (id) => {
+      return state.breweries.find(brewery => brewery.brewery_id === id);
+    },
+    getBeer: state => id => {
+      return state.beers.find(beer => beer.beer_id === id);
     }
   }
 })

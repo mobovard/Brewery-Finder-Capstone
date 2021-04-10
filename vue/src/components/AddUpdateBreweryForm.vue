@@ -1,8 +1,18 @@
 <template>
-  <b-form class="d-grid" @submit.prevent="addBrewery">
+  <b-form
+    class="d-grid"
+    @submit.prevent="isAdd ? addBrewery() : updateBrewery()"
+  >
     <b-row>
       <b-col>
-        <h4 class="text-foam text-center mt-2 mb-3">Add a Brewery</h4>
+        <h4 class="text-foam text-center mt-2 mb-3">
+          {{ isAdd ? "Add" : "Update" }} a Brewery
+        </h4>
+      </b-col>
+    </b-row>
+    <b-row v-if="respMsg">
+      <b-col>
+        <p class="alert alert-warning text-center">{{ respMsg }}</p>
       </b-col>
     </b-row>
     <b-row>
@@ -107,7 +117,7 @@
         <label for="Monday" class="sr-only">Monday</label>
         <b-form-input
           id="Monday"
-          v-model="brewery.hoursOfOperation.Monday"
+          v-model="hoursOfOperation.Monday"
           placeholder="Monday"
           class="mb-3"
         >
@@ -117,7 +127,7 @@
         <label for="Tuesday" class="sr-only">Tuesday</label>
         <b-form-input
           id="Tuesday"
-          v-model="brewery.hoursOfOperation.Tuesday"
+          v-model="hoursOfOperation.Tuesday"
           placeholder="Tuesday"
           class="mb-3"
         >
@@ -129,7 +139,7 @@
         <label for="Wednesday" class="sr-only">Wednesday</label>
         <b-form-input
           id="Wednesday"
-          v-model="brewery.hoursOfOperation.Wednesday"
+          v-model="hoursOfOperation.Wednesday"
           placeholder="Wednesday"
           class="mb-3"
         ></b-form-input>
@@ -138,7 +148,7 @@
         <label for="Thursday" class="sr-only">Thursday</label>
         <b-form-input
           id="Thursday"
-          v-model="brewery.hoursOfOperation.Thursday"
+          v-model="hoursOfOperation.Thursday"
           placeholder="Thursday"
           class="mb-3"
         >
@@ -150,7 +160,7 @@
         <label for="Friday" class="sr-only">Friday</label>
         <b-form-input
           id="Friday"
-          v-model="brewery.hoursOfOperation.Friday"
+          v-model="hoursOfOperation.Friday"
           placeholder="Friday"
           class="mb-3"
         ></b-form-input>
@@ -159,7 +169,7 @@
         <label for="Saturday" class="sr-only">Saturday</label>
         <b-form-input
           id="Saturday"
-          v-model="brewery.hoursOfOperation.Saturday"
+          v-model="hoursOfOperation.Saturday"
           placeholder="Saturday"
           class="mb-3"
         >
@@ -171,7 +181,7 @@
         <label for="Sunday" class="sr-only">Sunday</label>
         <b-form-input
           id="Sunday"
-          v-model="brewery.hoursOfOperation.Sunday"
+          v-model="hoursOfOperation.Sunday"
           placeholder="Sunday"
           class="mb-3"
         >
@@ -192,8 +202,19 @@
     </b-row>
     <b-row class="mt-2">
       <b-col class="d-flex justify-content-end">
-        <button type="submit" class="btn bg-porter text-foam text-wheat-h">
+        <button
+          type="submit"
+          class="btn bg-porter text-foam text-wheat-h"
+          v-if="isAdd"
+        >
           Add
+        </button>
+        <button
+          type="submit"
+          class="btn bg-porter text-foam text-wheat-h"
+          v-if="!isAdd"
+        >
+          Update
         </button>
         <button class="btn bg-porter text-foam text-wheat-h ml-2">
           Cancel
@@ -204,48 +225,80 @@
 </template>
 
 <script>
+import BreweriesService from "../services/BreweriesService";
 import breweriesService from "../services/BreweriesService";
 export default {
   props: {
-    add: { type: Boolean },
-    update: { type: Boolean },
+    breweryId: { type: Number },
   },
   data() {
     return {
-      brewery: {
-        name: null,
-        phone_number: null,
-        email: null,
-        address: null,
-        history: null,
-        active: false,
-        brewery_img: null,
-        user_id: null,
-        logo: null,
-        hoursOfOperation: {
-          Monday: null,
-          Tuesday: null,
-          Wednesday: null,
-          Thursday: null,
-          Friday: null,
-          Saturday: null,
-          Sunday: null,
-        },
-      },
+      brewery: {},
+      hoursOfOperation: {},
+      respMsg: "",
     };
   },
+  created() {
+    if (!this.isAdd) {
+      // finds brewery in store if it exists
+      let b = this.$store.getters.getBrewery(this.breweryId);
+      if (b) {
+        // if brewery was found, sets brewery objects in current component
+        this.setBrewery(b);
+      } else {
+        // if brewery not found, calls API for information
+        breweriesService
+          .getBrewery(this.breweryId)
+          .then((resp) => {
+            this.setBrewery(resp.data);
+          })
+          .catch((err) => {
+            this.respMsg = `No Brewery with ID ${this.breweryId} exists. Please Add instead`;
+            console.log(err);
+          });
+      }
+    } else {
+      this.setBrewery();
+    }
+  },
+  computed: {
+    isAdd() {
+      return !this.breweryId;
+    },
+    fullBrewery() {
+      return { ...this.brewery, hoursOfOperation: this.hoursOfOperation };
+    },
+  },
   methods: {
+    setBrewery(brewery) {
+      this.brewery = brewery ?? {};
+      this.hoursOfOperation = brewery?.hoursOfOperation ?? {};
+    },
     addBrewery() {
       if (confirm("Are you sure?")) {
         breweriesService
-          .addBrewery(this.brewery)
-          .then((resp) => {
-            console.log(resp);
-            if (resp.status === 201) {
-              // this is because eslint won't let me have an empty block...
-            }
+          .addBrewery(this.fullBrewery)
+          .then(() => {
+            this.respMsg = "Successfully added Brewery";
+            this.setBrewery();
           })
           .catch((err) => {
+            this.respMsg = "Unable to add Brewery";
+            console.log(err);
+          });
+      }
+    },
+    updateBrewery() {
+      if (confirm("Are you sure?")) {
+        BreweriesService.updateBrewery(this.fullBrewery)
+          .then((resp) => {
+            if (resp.status === 200) {
+              this.respMsg = "Successfullly updated Brewery";
+            }
+            this.setBrewery(resp.data);
+          })
+          .catch((err) => {
+            this.respMsg = "Unable to update Brewery";
             console.log(err);
           });
       }

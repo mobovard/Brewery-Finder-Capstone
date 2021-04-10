@@ -1,6 +1,7 @@
 <template>
-  <b-form class="d-grid" @submit.prevent="addBeer">
-    <h4 class="text-foam text-center mt-2 mb-3">Add a Beer</h4>
+  <b-form class="d-grid" @submit.prevent="isAdd ? addBeer() : updateBeer()">
+    <h4 class="text-foam text-center mt-2 mb-3">{{isAdd ? "Add" : "Update"}} a Beer</h4>
+    <p class="alert alert-warning text-center" v-if="respMsg">{{ respMsg }}</p>
 
     <h5 class="text-foam text-left mt-2 mb-3">Beer Information:</h5>
 
@@ -63,19 +64,20 @@
     </b-form-checkbox>
 
     <!-- Add Beer Buttons -->
-    <b-row class="mt-2">
-      <b-col class="d-flex justify-content-end">
-        <button type="submit" class="btn bg-porter text-foam text-wheat-h">
+    <div class="mt-2 d-flex justify-content-end">
+        <button type="submit" class="btn bg-porter text-foam text-wheat-h" v-if="isAdd">
           Add
+        </button>
+        <button type="submit" class="btn bg-porter text-foam text-wheat-h" v-if="!isAdd">
+          Update
         </button>
         <button
           class="btn bg-porter text-foam text-wheat-h ml-2"
-          @click.prevent="clearBeer"
+          @click.prevent="setBeer"
         >
           Cancel
         </button>
-      </b-col>
-    </b-row>
+    </div>
   </b-form>
 </template>
 
@@ -83,36 +85,71 @@
 import breweriesService from "../services/BreweriesService";
 
 export default {
+  props: {
+    beerId: { type: Number },
+  },
   data() {
     return {
       beer: {},
+      respMsg: "",
     };
   },
   created() {
-    this.clearBeer;
+    if (!this.isAdd) {
+      // finds beer in store if it exists
+      let b = this.$store.getters.getBeer(this.beerId);
+      if (b) {
+        // if beer was found, sets brewery objects in current component
+        this.setBeer(b);
+      } else {
+        // if brewery not found, calls API for information
+        breweriesService
+          .getBeer(this.beerId)
+          .then((resp) => {
+            this.setBeer(resp.data);
+          })
+          .catch((err) => {
+            this.respMsg = `No Brewery with ID ${this.beerId} exists. Please Add instead`;
+            console.log(err);
+          });
+      }
+    } else {
+      this.setBeer();
+    }
+  },
+  computed: {
+    isAdd() {
+      return !this.beerId;
+    },
   },
   methods: {
-    clearBeer() {
-      this.beer = {
-        name: null,
-        description: null,
-        image: null,
-        abv: null,
-        brewery_id: null,
-        beer_type: null,
-        active: false,
-      };
+    setBeer(beer) {
+      this.beer = beer ?? {};
     },
     addBeer() {
       breweriesService
         .addBeer(this.beer)
-        .then((resp) => {
-          console.log(resp);
+        .then(() => {
+          this.respMsg = "Successfully added Beer";
+          this.setBeer();
         })
         .catch((err) => {
+          this.respMsg = "Unable to add Beer";
           console.log(err);
         });
     },
+    updateBeer() {
+      breweriesService
+        .updateBeer(this.beer)
+        .then(() => {
+          this.respMsg = "Successfully updated Beer";
+          this.setBeer();
+        })
+        .catch(err => {
+          this.respMsg = "Unable to update Beer";
+          console.log(err);
+        })
+    }
   },
 };
 </script>
