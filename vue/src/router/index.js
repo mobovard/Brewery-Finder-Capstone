@@ -8,6 +8,7 @@ import Brewery from '../views/Brewery.vue'
 import Breweries from '../views/Breweries.vue'
 import Beer from '../views/Beer.vue'
 import Admin from '../views/Admin.vue'
+import DOB from '../views/DOB.vue'
 import AddUpdateBreweryForm from '../components/AddUpdateBreweryForm.vue'
 import AddUpdateBeerForm from '../components/AddUpdateBeerForm.vue'
 import store from '../store/index'
@@ -28,11 +29,20 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/dob',
+      name: 'dob',
+      component: DOB,
+      meta: {
+        requiresAuth: false,
+        dob_check: true,
+      }
+    },
+    {
       path: '/',
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
       }
     },
     {
@@ -122,11 +132,14 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication or Admin access
+  const requiresDobCheck = to.matched.some(x => !x.meta.dob_check);
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
   const requiresAdmin = to.matched.some(x => x.meta.reqAdmin);
 
   // If it does and they are not logged in, send the user to "/login"
-  if ((requiresAdmin && !store.getters.isAdmin) 
+  if (requiresDobCheck && !store.getters.isOver21 && !store.getters.isLoggedIn) {
+    next({name: 'dob'});
+  } else if ((requiresAdmin && !store.getters.isAdmin) 
       || (requiresAuth && !store.getters.isLoggedIn)) {
     next({name: 'home'});
   } else {

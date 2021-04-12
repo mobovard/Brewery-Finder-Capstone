@@ -87,6 +87,7 @@ import breweriesService from "../services/BreweriesService";
 export default {
   props: {
     beerId: { type: Number },
+    breweryId: { type: Number },
   },
   data() {
     return {

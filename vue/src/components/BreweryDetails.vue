@@ -5,15 +5,21 @@
       <div class="text-foam d-flex flex-column align-items-center">
         <h1>{{ $store.state.brewery.name }}</h1>
       </div>
-      <b-link
-        class="btn bg-porter text-foam text-wheat-h"
-        v-if="$store.getters.isAdmin"
-        :to="{
-          name: 'updateBrewery',
-          params: { breweryId: $store.state.brewery.brewery_id },
-        }"
-      > Update
-      </b-link>
+      <div v-if="$store.getters.isAdmin" class="d-flex justify-content-end">
+        <b-link
+          class="btn bg-porter text-foam text-wheat-h"
+          :to="{
+            name: 'updateBrewery',
+            params: { breweryId: $store.state.brewery.brewery_id },
+          }"
+          >Edit Brewery</b-link
+        >
+        <b-link
+          class="btn bg-porter text-foam text-wheat-h ml-2"
+          :to="{ name: 'addBeer' }"
+          >Add Beer</b-link
+        >
+      </div>
     </div>
 
     <div class="d-grid mt-3">
