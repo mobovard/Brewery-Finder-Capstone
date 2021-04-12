@@ -157,7 +157,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@user_id", brewery.User_id);
                     cmd.Parameters.AddWithNullableValue("@brewery_img", brewery.Brewery_img);
 
-                    cmd.ExecuteNonQuery();
+                    
                     id = Convert.ToInt32(cmd.ExecuteScalar());
 
 
