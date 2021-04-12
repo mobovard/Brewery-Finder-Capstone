@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using Capstone.Models;
 using Capstone.Security;
@@ -6,11 +7,11 @@ using Capstone.Security.Models;
 
 namespace Capstone.DAO
 {
-    public class UserSqlDAO : IUserDAO
+    public class UserDAO : IUserDAO
     {
         private readonly string connectionString;
 
-        public UserSqlDAO(string dbConnectionString)
+        public UserDAO(string dbConnectionString)
         {
             connectionString = dbConnectionString;
         }
@@ -93,6 +94,44 @@ namespace Capstone.DAO
             };
 
             return u;
+        }
+
+        private User GetShortUserFromReader(SqlDataReader reader)
+        {
+            User u = new User()
+            {
+                UserId = Convert.ToInt32(reader["user_id"]),
+                Username = Convert.ToString(reader["username"]),
+                Role = Convert.ToString(reader["user_role"])
+            };
+
+            return u;
+        }
+        public IList<User> GetUsers()
+        {
+            List<User> userList = new List<User>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("SELECT user_id, username, user_role FROM users;", conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        userList.Add(GetShortUserFromReader(reader));
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return userList;
         }
     }
 }

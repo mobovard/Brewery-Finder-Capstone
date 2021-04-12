@@ -62,10 +62,11 @@ namespace Capstone
             // Dependency Injection configuration
             services.AddSingleton<ITokenGenerator>(tk => new JwtGenerator(Configuration["JwtSecret"]));
             services.AddSingleton<IPasswordHasher>(ph => new PasswordHasher());
-            services.AddTransient<IUserDAO>(m => new UserSqlDAO(connectionString));
+            services.AddTransient<IUserDAO>(m => new UserDAO(connectionString));
             services.AddTransient<IBreweriesDAO>(br => new BreweriesDAO(connectionString));
             services.AddTransient<IBeerDAO>(ber => new BeerDAO(connectionString));
             services.AddTransient<IRatingsDAO>(sl => new RatingsDAO(connectionString));
+            services.AddTransient<IUserDAO>(u => new UserDAO(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
