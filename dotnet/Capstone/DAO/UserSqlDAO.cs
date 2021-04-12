@@ -25,7 +25,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("SELECT user_id, username, password_hash, salt, user_role,first_name,last_name,email FROM users WHERE username = @username", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT user_id, username, password_hash, salt, user_role,first_name,last_name,email,DOB FROM users WHERE username = @username", conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -43,7 +43,7 @@ namespace Capstone.DAO
             return returnUser;
         }
 
-        public User AddUser(string username, string password, string role,string firstName,string lastName,string email)
+        public User AddUser(string username, string password, string role,string firstName,string lastName,string email,DateTime dob)
         {
             IPasswordHasher passwordHasher = new PasswordHasher();
             PasswordHash hash = passwordHasher.ComputeHash(password);
@@ -54,7 +54,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password_hash, salt, user_role,first_name,last_name,email) VALUES (@username, @password_hash, @salt, @user_role,@first_name,@last_name,@email)", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password_hash, salt, user_role,first_name,last_name,email,DOB) VALUES (@username, @password_hash, @salt, @user_role,@first_name,@last_name,@email,@DOB)", conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password_hash", hash.Password);
                     cmd.Parameters.AddWithValue("@salt", hash.Salt);
@@ -62,6 +62,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@first_name", firstName);
                     cmd.Parameters.AddWithValue("@last_name", lastName);
                     cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@DOB", dob);
                     
                     
                     cmd.ExecuteNonQuery();
@@ -86,7 +87,9 @@ namespace Capstone.DAO
                 Role = Convert.ToString(reader["user_role"]),
                 FirstName = Convert.ToString(reader["first_name"]),
                 LastName = Convert.ToString(reader["last_name"]),
-                Email = Convert.ToString(reader["email"])
+                Email = Convert.ToString(reader["email"]),
+                DOB = Convert.ToDateTime(reader["DOB"])
+                
             };
 
             return u;
