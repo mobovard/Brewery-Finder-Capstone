@@ -23,7 +23,8 @@ CREATE TABLE users (
 	user_role varchar(50) NOT NULL,
 	first_name varchar(50),
 	last_name varchar(50),
-	email varchar(100) 
+	email varchar(100),
+	DOB date,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
@@ -71,7 +72,8 @@ CREATE TABLE beers (
 CREATE TABLE ratings(
 	rating_id int IDENTITY(2500,3),
 	rating int,
-	rating_description varchar(500),
+	title varchar(500),
+	review varchar(1000),
 	user_id int,
 	beer_id int,
 
@@ -95,17 +97,17 @@ ALTER TABLE ratings
 
 
 
-INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email)
-VALUES('jonnien','fJnUh2pOEqhWhCqi5yvJ/CHV6GE=','A6osdPJs1uk=','Beer Lover','Jonnie','Niesz','startrekfan89@gmail.com');
+INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email,DOB)
+VALUES('jonnien','fJnUh2pOEqhWhCqi5yvJ/CHV6GE=','A6osdPJs1uk=','Beer Lover','Jonnie','Niesz','startrekfan89@gmail.com','01/19/1995');
 
-INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email)
-VALUES('christ','s/q71yQeDo2A3Gx1FrSrThAUYqA=','+4wB449eXoE=','Brewer','Chris','Templeton','loser@yahoo.com');
+INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email,DOB)
+VALUES('christ','s/q71yQeDo2A3Gx1FrSrThAUYqA=','+4wB449eXoE=','Brewer','Chris','Templeton','loser@yahoo.com','01/19/1995');
 
-INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email)
-VALUES('test','YhV94SHg0bgikouwOQFLg4404U4=','h5I+1EZqAog=','Admin','Test','Test','Test@email.com');
+INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email,DOB)
+VALUES('test','YhV94SHg0bgikouwOQFLg4404U4=','h5I+1EZqAog=','Admin','Test','Test','Test@email.com','01/19/1995');
 
-INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email)
-VALUES('ratneshb','LuzmsyWVc5m7Y4ZyWNXnkSlEkVI=','fCRe2YcPIYw=','Admin','ratnesh','bhattacharya','mrmr@email.com');
+INSERT INTO users(username,password_hash,salt,user_role,first_name,last_name,email,DOB)
+VALUES('ratneshb','LuzmsyWVc5m7Y4ZyWNXnkSlEkVI=','fCRe2YcPIYw=','Admin','ratnesh','bhattacharya','mrmr@email.com','01/19/1995');
 
 INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,brewery_img,user_id,logo)
 VALUES('Northern Row','(513)321-1234','northernrow@gmail.com','123 beer st','began as a brewery',1,'https://cdn.citybeat.com/files/base/scomm/cb/image/2019/05/960w/NorthernRowBrewing_HB_15.5cdb2e7194008.jpg',2,'https://lh3.googleusercontent.com/cQQsD35yTmfZEBun6AYlkD9c_o5EdOtaA_3_1bU8V2iq5xq1BABgYbAMHNI52WopAUjXG4SCSUzhLDQZcfJdJVKuNbad1w=s750');
@@ -203,32 +205,32 @@ VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',7)
 INSERT INTO operation(monday,tuesday,wednesday,thursday,friday,saturday,sunday,brewery_id)
 VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',8)
 
-INSERT INTO ratings(rating,rating_description,user_id,beer_id)
-VALUES('5','The mango cider is a tart reminder of a perfect vacation, bringing the summer of a coastal beach town to your lips.','3','1')
+INSERT INTO ratings(title,rating,review,user_id,beer_id)
+VALUES('Great beer',5,'The mango cider is a tart reminder of a perfect vacation, bringing the summer of a coastal beach town to your lips.','3','1')
 
-INSERT INTO ratings(rating,rating_description,user_id,beer_id)
-VALUES('3','I found this to look like a porter but not as viscous as I would think. An excellent first try.','3','2')
+INSERT INTO ratings(title,rating,review,user_id,beer_id)
+VALUES('meh all around',3,'I found this to look like a porter but not as viscous as I would think. An excellent first try.','3','2')
 
-INSERT INTO ratings(rating,rating_description,user_id,beer_id)
-VALUES('4','Wow. Make sure you get a buddy to drive you home after this one. The only knock is that you can taste the high ABV.','3','11')
+INSERT INTO ratings(title,rating,review,user_id,beer_id)
+VALUES('pretty darn good',4,'Wow. Make sure you get a buddy to drive you home after this one. The only knock is that you can taste the high ABV.','3','11')
 
-INSERT INTO ratings(rating,rating_description,user_id,beer_id)
-VALUES('5','The mango cider is a tart reminder of a perfect vacation, bringing the summer of a coastal beach town to your lips.','3','1')
+INSERT INTO ratings(title,rating,review,user_id,beer_id)
+VALUES('The best around',5,'The mango cider is a tart reminder of a perfect vacation, bringing the summer of a coastal beach town to your lips.','3','1')
 
-INSERT INTO ratings(rating,rating_description,user_id,beer_id)
-VALUES('3','I found this to look like a porter but not as viscous as I would think. An excellent first try.','3','2')
+INSERT INTO ratings(title,rating,review,user_id,beer_id)
+VALUES('It is okay',3,'I found this to look like a porter but not as viscous as I would think. An excellent first try.','3','2')
 
-INSERT INTO ratings(rating,rating_description,user_id,beer_id)
-VALUES('3','Tasted light and sweet, with a bit of tanginess.','3','12')
+INSERT INTO ratings(title,rating,review,user_id,beer_id)
+VALUES('No flavor',3,'Tasted light and sweet, with a bit of tanginess.','3','12')
 
-INSERT INTO ratings(rating,rating_description,user_id,beer_id)
-VALUES('2','This one is full of hops, creating a very bitter aftertaste.','3','14')
+INSERT INTO ratings(title,rating,review,user_id,beer_id)
+VALUES('yuck',2,'This one is full of hops, creating a very bitter aftertaste.','3','14')
 
-INSERT INTO ratings(rating,rating_description,user_id,beer_id)
-VALUES('5','Possibly my most favorite beer ever, tastes like a dessert','3','13')
+INSERT INTO ratings(title,rating,review,user_id,beer_id)
+VALUES('woof',3,'Possibly my most favorite beer ever, tastes like a dessert','3','13')
 
-INSERT INTO ratings(rating,rating_description,user_id,beer_id)
-VALUES('5','This is the perfectly crafted imperial stout','3','15')
+INSERT INTO ratings(title,rating,review,user_id,beer_id)
+VALUES('Great beer yo',5,'This is the perfectly crafted imperial stout','3','15')
 
-INSERT INTO ratings(rating,rating_description,user_id,beer_id)
-VALUES('1','Not really an IPA guy. Struggled to accept its bitterness.','3','16')
+INSERT INTO ratings(title,rating,review,user_id,beer_id)
+VALUES('yeah, you know, not good',1,'Not really an IPA guy. Struggled to accept its bitterness.','3','16')
