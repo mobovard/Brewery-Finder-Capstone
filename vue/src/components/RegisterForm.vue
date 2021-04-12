@@ -84,19 +84,17 @@
       </div>
       <div class="row">
         <div class="col">
-          <label for="dob" class="sr-only">Date of Birth</label>
-          <input
-            type="date"
-            id="dob"
-            placeholder="YYYY-MM-DD"
-            autofocus
-            class="form-control my-1"
-            min="1900-01-01"
-            :max="maxDate"
-            required
-          />
+          <b-form-datepicker
+            v-model="value"
+            locale="en"
+            :start-weekday="weekday"
+            :show-decade-nav="showDecadeNav"
+            :hide-header="hideHeader"
+            :max="max"
+            value-as-date
+            class="mb-2"
+          ></b-form-datepicker>
         </div>
-        <!-- <DOBForm /> -->
       </div>
       <div class="row">
         <div class="col">
@@ -110,7 +108,7 @@
       </div>
       <div class="row mt-1">
         <div class="col d-flex justify-content-end">
-          <router-link :to="{ name: 'login' }" class="text-wheat"
+          <router-link :to="{ name: 'login' }" class="text-wheat text-foam-h"
             >Have an account?</router-link
           >
         </div>
@@ -121,10 +119,9 @@
 <script>
 // DO WE MAKE ROLE A DROP-DOWN or Hard CODE
 import authService from "../services/AuthService";
-// import DOBForm from "./DOBForm";
 
 export default {
-  // components: { DOBForm },
+  props: {},
   data() {
     return {
       user: {
@@ -139,7 +136,11 @@ export default {
       },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
-      maxDate: null,
+      value: "",
+      max: null,
+      showDecadeNav: true,
+      hideHeader: false,
+      weekday: 0,
     };
   },
   methods: {
@@ -176,9 +177,8 @@ export default {
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const maxDate = new Date(today);
-    maxDate.setMonth(maxDate.getMonth() - 252);
-    maxDate.setDate(1);
-    this.maxDate = maxDate;
+    maxDate.setYear(maxDate.getFullYear() - 21);
+    this.max = maxDate;
     console.log(maxDate);
   },
 };
