@@ -23,6 +23,12 @@ export default {
         return axios.post(`/beers`, beer);
     },
     updateBeer(beer) {
-        return axios.put('/beers', beer)
+        return axios.put('/beers', beer);
+    },
+    getReviews(beerId) {
+        return axios.get(`/ratings/${beerId}`);
+    },
+    addReview(review) {
+        return axios.post('/ratings', review);
     }
 }

@@ -202,3 +202,33 @@ VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',7)
 
 INSERT INTO operation(monday,tuesday,wednesday,thursday,friday,saturday,sunday,brewery_id)
 VALUES ('10-5','10-5','10-5','10-5','10-5','10-9','10-9',8)
+
+INSERT INTO ratings(rating,rating_description,user_id,beer_id)
+VALUES('5','The mango cider is a tart reminder of a perfect vacation, bringing the summer of a coastal beach town to your lips.','3','1')
+
+INSERT INTO ratings(rating,rating_description,user_id,beer_id)
+VALUES('3','I found this to look like a porter but not as viscous as I would think. An excellent first try.','3','2')
+
+INSERT INTO ratings(rating,rating_description,user_id,beer_id)
+VALUES('4','Wow. Make sure you get a buddy to drive you home after this one. The only knock is that you can taste the high ABV.','3','11')
+
+INSERT INTO ratings(rating,rating_description,user_id,beer_id)
+VALUES('5','The mango cider is a tart reminder of a perfect vacation, bringing the summer of a coastal beach town to your lips.','3','1')
+
+INSERT INTO ratings(rating,rating_description,user_id,beer_id)
+VALUES('3','I found this to look like a porter but not as viscous as I would think. An excellent first try.','3','2')
+
+INSERT INTO ratings(rating,rating_description,user_id,beer_id)
+VALUES('3','Tasted light and sweet, with a bit of tanginess.','3','12')
+
+INSERT INTO ratings(rating,rating_description,user_id,beer_id)
+VALUES('2','This one is full of hops, creating a very bitter aftertaste.','3','14')
+
+INSERT INTO ratings(rating,rating_description,user_id,beer_id)
+VALUES('5','Possibly my most favorite beer ever, tastes like a dessert','3','13')
+
+INSERT INTO ratings(rating,rating_description,user_id,beer_id)
+VALUES('5','This is the perfectly crafted imperial stout','3','15')
+
+INSERT INTO ratings(rating,rating_description,user_id,beer_id)
+VALUES('1','Not really an IPA guy. Struggled to accept its bitterness.','3','16')
