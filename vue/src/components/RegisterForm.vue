@@ -84,6 +84,22 @@
       </div>
       <div class="row">
         <div class="col">
+          <label for="dob" class="sr-only">Date of Birth</label>
+          <input
+            type="date"
+            id="dob"
+            placeholder="YYYY-MM-DD"
+            autofocus
+            class="form-control my-1"
+            min="1900-01-01"
+            :max="maxDate"
+            required
+          />
+        </div>
+        <!-- <DOBForm /> -->
+      </div>
+      <div class="row">
+        <div class="col">
           <button
             type="submit"
             class="btn-block btn bg-foam text-fruit my-1 font-weight-bold"
@@ -105,8 +121,10 @@
 <script>
 // DO WE MAKE ROLE A DROP-DOWN or Hard CODE
 import authService from "../services/AuthService";
+// import DOBForm from "./DOBForm";
 
 export default {
+  // components: { DOBForm },
   data() {
     return {
       user: {
@@ -116,10 +134,12 @@ export default {
         firstname: "",
         lastname: "",
         email: "",
+        dob: "",
         role: "Beer Lover",
       },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
+      maxDate: null,
     };
   },
   methods: {
@@ -151,6 +171,15 @@ export default {
       this.registrationErrors = false;
       this.registrationErrorMsg = "There were problems registering this user.";
     },
+  },
+  created() {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const maxDate = new Date(today);
+    maxDate.setMonth(maxDate.getMonth() - 252);
+    maxDate.setDate(1);
+    this.maxDate = maxDate;
+    console.log(maxDate);
   },
 };
 </script>

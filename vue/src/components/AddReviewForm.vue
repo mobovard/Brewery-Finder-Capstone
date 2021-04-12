@@ -30,26 +30,16 @@
       <b-col class="d-flex justify-content-start align-items-center">
         <label class="mr-2" for="rating">Rating:</label>
         <b-form-select id="rating" v-model.number="newReview.rating" :select-size="1" size="sm" class="selectRating" > 
-          <option value="1">1 Star</option>
-          <option value="2">2 Stars</option>
-          <option value="3">3 Stars</option>
-          <option value="4">4 Stars</option>
-          <option value="5">5 Stars</option>
+          <option value="1">1 Hops</option>
+          <option value="2">2 Hops</option>
+          <option value="3">3 Hops</option>
+          <option value="4">4 Hops</option>
+          <option value="5">5 Hops</option>
         </b-form-select>
       </b-col>
     </b-row>
 
-
-    <b-row>
-      <b-col class="d-flex justify-content-start">
-        <p v-if="$store.getters.isLoggedIn">
-          Username:
-          {{ $store.state.user.username }}
-        </p>
-      </b-col>
-    </b-row>
-
-    <!-- Buttons -->
+   <!-- Buttons -->
     <b-row>
       <b-col>
         <button class="btn bg-porter text-foam text-wheat-h ml-2" v-on:click.prevent="resetForm" type="cancel">Cancel</button>

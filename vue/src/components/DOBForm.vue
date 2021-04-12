@@ -1,13 +1,16 @@
 <template>
   <div>
-    <b-form-datepicker
-      v-model="value"
-      :min="min"
-      :max="max"
-      locale="en"
-      showDecadeNav: true,
-      hideHeader: false
-    ></b-form-datepicker>
+    <b-form>
+      <b-form-datepicker
+        v-model="value"
+        v-bind="labels[locale] || {}"
+        :locale="locale"
+        :start-weekday="weekday"
+        :show-decade-nav="showDecadeNav"
+        :hide-header="hideHeader"
+        class="mb-2"
+      ></b-form-datepicker>
+    </b-form>
   </div>
 </template>
 
@@ -16,19 +19,25 @@ export default {
   data() {
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    // 15th two months prior
-    const minDate = new Date(today);
-    minDate.setMonth(minDate.getMonth() - 2);
-    minDate.setDate(15);
-    // 15th in two months
+ 
     const maxDate = new Date(today);
-    maxDate.setMonth(maxDate.getMonth() + 2);
+    maxDate.setMonth(maxDate.getMonth() - 252);
     maxDate.setDate(15);
 
     return {
       value: "",
+      locale: "en-US",
       min: minDate,
       max: maxDate,
+      showDecadeNav: true,
+      hideHeader: false,
+      weekday: 0,
+
+      weekdays: [
+        { value: 0, text: "Sunday" },
+        { value: 1, text: "Monday" },
+        { value: 6, text: "Saturday" },
+      ],
     };
   },
 };
