@@ -42,15 +42,9 @@
               Favorite?
               <input type="checkbox" />
             </p>
-            <button
-              class="btn bg-porter text-foam text-wheat-h"
-              @click="displayAddReviewForm = !displayAddReviewForm"
-            >
-              Add a Review?
-            </button>
             <b-row>
               <b-col>
-                <AddReviewForm v-if="displayAddReviewForm" />
+                <AddReviewForm />
               </b-col>
             </b-row>
           </div>
@@ -80,9 +74,6 @@ export default {
   props: {
     breweryId: { type: Number },
     beerId: { type: Number },
-  },
-  data() {
-    return { displayAddReviewForm: false };
   },
   computed: {
     beer() {
