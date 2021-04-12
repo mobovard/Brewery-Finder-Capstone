@@ -34,7 +34,7 @@ export default {
 .card-size {
   flex: 1 1 33%;
   max-width: 40rem;
-  max-height: 10rem;
+  max-height: 15rem;
 }
 
 .scrollbar-custom{
