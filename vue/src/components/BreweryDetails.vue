@@ -5,6 +5,15 @@
       <div class="text-foam d-flex flex-column align-items-center">
         <h1>{{ $store.state.brewery.name }}</h1>
       </div>
+      <b-link
+        class="btn bg-porter text-foam text-wheat-h"
+        v-if="$store.getters.isAdmin"
+        :to="{
+          name: 'updateBrewery',
+          params: { breweryId: $store.state.brewery.brewery_id },
+        }"
+      > Update
+      </b-link>
     </div>
 
     <div class="d-grid mt-3">
@@ -60,8 +69,7 @@ export default {
       .getBrewery(this.$route.params.id)
       .then((resp) => {
         this.$store.commit("SET_BREWERY", resp.data);
-        this.$store.commit("SET_BACKGROUND", resp.data.brewery_img )
-        
+
         // creates list version of hours of op
         for (const [day, time] of Object.entries(
           this.$store.state.brewery.hoursOfOperation
@@ -75,13 +83,14 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .bg-img {
   position: fixed;
   left: 0;
-  top:0;
-  height:100vh;
-  width:100vw;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
   object-fit: cover;
   z-index: 0;
 }

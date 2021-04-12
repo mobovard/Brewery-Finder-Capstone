@@ -8,6 +8,8 @@ import Brewery from '../views/Brewery.vue'
 import Breweries from '../views/Breweries.vue'
 import Beer from '../views/Beer.vue'
 import Admin from '../views/Admin.vue'
+import AddUpdateBreweryForm from '../components/AddUpdateBreweryForm.vue'
+import AddUpdateBeerForm from '../components/AddUpdateBeerForm.vue'
 import store from '../store/index'
 
 Vue.use(Router)
@@ -77,6 +79,7 @@ const router = new Router({
       path: '/breweries/:breweryId/beers/:beerId',
       name: 'beer',
       component: Beer,
+      props: true,
       meta: {
         requiresAuth: true
       }
@@ -87,22 +90,44 @@ const router = new Router({
       component: Admin,
       meta: {
         requiresAuth: true,
-        is_admin: true,
-      }
+        reqAdmin: true,
+      },
+      children: [
+        {
+          path: '/add-brewery',
+          name: 'addBrewery',
+          components: { adminForm: AddUpdateBreweryForm},
+        },
+        {
+          path: '/update-brewery/:breweryId',
+          name: 'updateBrewery',
+          components: { adminForm: AddUpdateBreweryForm},
+          props: { adminForm: true }
+        },
+        {
+          path: '/add-beer',
+          name: 'addBeer',
+          components: { adminForm: AddUpdateBeerForm},
+        },
+        {
+          path: '/update-beer/:beerId',
+          name: 'updateBeer',
+          components: { adminForm: AddUpdateBeerForm},
+          props: { adminForm: true }
+        },
+      ]
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  // Determine if the route requires Authentication
+  // Determine if the route requires Authentication or Admin access
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
-  const requiresAdmin = to.matched.some(x => x.meta.is_admin);
+  const requiresAdmin = to.matched.some(x => x.meta.reqAdmin);
 
-  if (requiresAdmin && !store.getters.isAdmin) {
-    next({name: 'home'});
-  }
   // If it does and they are not logged in, send the user to "/login"
-  else if (requiresAuth && !store.getters.isLoggedIn) {
+  if ((requiresAdmin && !store.getters.isAdmin) 
+      || (requiresAuth && !store.getters.isLoggedIn)) {
     next({name: 'home'});
   } else {
     // Else let them go to their next destination

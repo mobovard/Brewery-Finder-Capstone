@@ -23,7 +23,7 @@ export default new Vuex.Store({
     breweries: [],
     brewery: {},
     beers: [],
-    bg_image: ""
+    bg_image: "./beer.jpg"
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {

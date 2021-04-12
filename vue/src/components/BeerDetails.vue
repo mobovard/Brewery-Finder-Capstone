@@ -66,17 +66,16 @@ export default {
   components: {
     AddReviewForm,
   },
+  props: {
+    breweryId: { type: Number },
+    beerId: { type: Number },
+  },
   data() {
     return { displayAddReviewForm: false };
   },
-
-  props: [],
-  methods: {},
   computed: {
     beer() {
-      return this.$store.state.beers.filter(
-        (beer) => beer.beer_id == this.$route.params.beerId
-      )[0];
+      return this.$store.getters.getBeer(this.beerId);
     },
   },
 };
