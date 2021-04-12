@@ -43,6 +43,68 @@ namespace Capstone.DAO
             }
             return ratingList;
         }
+        public Ratings GetRatingById(int id)
+        {
+            Ratings rating = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT rating_id,title,review,rating,user_id,beer_id,(SELECT username FROM users WHERE user_id = ratings.user_id)AS username FROM ratings";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@beer_id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        rating = ratingFromReader(reader);
+                        
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return rating;
+        }
+        public Ratings AddRating(Ratings rating)
+        {
+            int myId = 0;
+
+            try
+            {
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "INSERT INTO ratings(title, review, rating, user_id, beer_id) VALUES(@title, @review, @rating, @user_id, @beer_id); SELECT @@IDENTITY;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                 
+
+                    cmd.Parameters.AddWithValue("@title", rating.Title);
+                    cmd.Parameters.AddWithValue("@review", rating.Review);
+                    cmd.Parameters.AddWithValue("@rating", rating.Rating);
+                    cmd.Parameters.AddWithValue("@user_id", rating.User_id);
+                    cmd.Parameters.AddWithValue("@beer_id", rating.Beer_id);
+                    
+
+
+
+                    myId = Convert.ToInt32(cmd.ExecuteScalar());
+
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return GetRatingById(myId);
+        }
         private Ratings ratingFromReader(SqlDataReader reader)
         {
             Ratings rating = new Ratings();

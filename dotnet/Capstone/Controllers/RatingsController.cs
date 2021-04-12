@@ -33,6 +33,19 @@ namespace Capstone.Controllers
                 return NoContent();
             }
         }
+        [HttpPost("/ratings")]
+        public ActionResult<Ratings> CreateRating(Ratings rating)
+        {
+            Ratings rating1 = ratingsDAO.AddRating(rating);
+            if (rating1 != null)
+            {
+                return Ok(rating1);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
  
 }
