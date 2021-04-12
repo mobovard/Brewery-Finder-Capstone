@@ -4,7 +4,10 @@
     <h2>Are you over 21?</h2>
     <button
       class="btn bg-porter text-foam text-wheat-h"
-      @click="$router.push({ name: 'home' })"
+      @click="
+        $store.commit('SET_AGE_OVER_21');
+        $router.push({ name: 'home' });
+      "
     >
       Yes
     </button>
@@ -20,6 +23,3 @@
 <script>
 export default {};
 </script>
-
-<style scoped>
-</style>

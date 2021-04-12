@@ -33,7 +33,8 @@ const router = new Router({
       name: 'dob',
       component: DOB,
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
+        dob_check: true,
       }
     },
     {
@@ -41,7 +42,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
       }
     },
     {
@@ -131,11 +132,14 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication or Admin access
+  const requiresDobCheck = to.matched.some(x => !x.meta.dob_check);
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
   const requiresAdmin = to.matched.some(x => x.meta.reqAdmin);
 
   // If it does and they are not logged in, send the user to "/login"
-  if ((requiresAdmin && !store.getters.isAdmin) 
+  if (requiresDobCheck && !store.getters.isOver21 && !store.getters.isLoggedIn) {
+    next({name: 'dob'});
+  } else if ((requiresAdmin && !store.getters.isAdmin) 
       || (requiresAuth && !store.getters.isLoggedIn)) {
     next({name: 'home'});
   } else {
