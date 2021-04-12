@@ -85,17 +85,19 @@
       <div class="row">
         <div class="col">
           <b-form-datepicker
-            v-model="value"
+            v-model="user.DOB"
             locale="en"
-            :start-weekday="weekday"
-            :show-decade-nav="showDecadeNav"
-            :hide-header="hideHeader"
+            :date-format-options="{
+              year: 'numeric',
+              month: 'numeric',
+              day: 'numeric',
+            }"
             :max="max"
-            value-as-date
             class="mb-2"
           ></b-form-datepicker>
         </div>
       </div>
+
       <div class="row">
         <div class="col">
           <button
@@ -131,7 +133,7 @@ export default {
         firstname: "",
         lastname: "",
         email: "",
-        dob: "",
+        DOB: "",
         role: "Beer Lover",
       },
       registrationErrors: false,
@@ -178,7 +180,7 @@ export default {
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const maxDate = new Date(today);
     maxDate.setYear(maxDate.getFullYear() - 21);
-    this.max = maxDate;
+    this.max = maxDate.toISOString();
     console.log(maxDate);
   },
 };
