@@ -8,6 +8,7 @@ import Brewery from '../views/Brewery.vue'
 import Breweries from '../views/Breweries.vue'
 import Beer from '../views/Beer.vue'
 import Admin from '../views/Admin.vue'
+import DOB from '../views/DOB.vue'
 import AddUpdateBreweryForm from '../components/AddUpdateBreweryForm.vue'
 import AddUpdateBeerForm from '../components/AddUpdateBeerForm.vue'
 import store from '../store/index'
@@ -27,6 +28,14 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/dob',
+      name: 'dob',
+      component: DOB,
+      meta: {
+        requiresAuth: false
+      }
+    },
     {
       path: '/',
       name: 'home',
