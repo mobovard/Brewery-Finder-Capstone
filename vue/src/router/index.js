@@ -11,6 +11,7 @@ import Admin from '../views/Admin.vue'
 import DOB from '../views/DOB.vue'
 import AddUpdateBreweryForm from '../components/AddUpdateBreweryForm.vue'
 import AddUpdateBeerForm from '../components/AddUpdateBeerForm.vue'
+import AdminBrewerySelector from '../components/AdminBrewerySelector.vue'
 import store from '../store/index'
 
 Vue.use(Router)
@@ -108,6 +109,11 @@ const router = new Router({
           name: 'addBrewery',
           components: { adminForm: AddUpdateBreweryForm},
           meta: { reqAdmin: true }
+        },
+        {
+          path: '/update-brewery',
+          name: 'brewerySelector',
+          components: { adminForm: AdminBrewerySelector }
         },
         {
           path: '/update-brewery/:breweryId',

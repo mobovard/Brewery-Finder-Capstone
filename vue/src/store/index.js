@@ -24,7 +24,7 @@ export default new Vuex.Store({
     brewery: {},
     beers: [],
     ageVerified: false,
-    adminBreweryIds: [],
+    adminBreweryIds: [ 1 ],
     reviews: []
   },
   mutations: {
@@ -79,8 +79,8 @@ export default new Vuex.Store({
     getBeer: state => id => {
       return state.beers.find(beer => beer.beer_id === id);
     },
-    adminBreweries: (state, getters) => {
-      return state.breweries.filter(() => getters.isAdmin || (false))
+    adminBreweries(state, getters) {
+      return state.breweries.filter(brewery => getters.isAdmin || (getters.isBrewer && state.adminBreweryIds.includes(brewery.brewery_id)));
     }
   }
 })
