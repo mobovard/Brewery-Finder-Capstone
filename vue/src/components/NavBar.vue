@@ -10,7 +10,9 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item :to="{ name: 'home' }"
-            ><span class="text-foam text-wheat-h font-weight-bold">Home</span></b-nav-item
+            ><span class="text-foam text-wheat-h font-weight-bold"
+              >Home</span
+            ></b-nav-item
           >
           <b-nav-item :to="{ name: 'breweries' }"
             ><span class="text-foam text-wheat-h font-weight-bold"
@@ -22,19 +24,20 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-item
-            v-if="$store.getters.isAdmin"
-            :to="{name: 'admin'}"
-          ><span class="text-foam text-wheat-h font-weight-bold">Admin</span></b-nav-item>
+            v-if="$store.getters.isAdmin || $store.getters.isBrewer"
+            :to="{ name: 'admin' }"
+            ><span class="text-foam text-wheat-h font-weight-bold">
+              {{$store.getters.isAdmin ? "Admin" : "Brewer"}}
+            </span></b-nav-item
+          >
           <b-nav-item-dropdown id="user-dropdown" right>
             <!-- Using 'button-content' slot -->
             <template #button-content>
               <BIconPersonCircle class="text-porter" />
             </template>
-            <b-dropdown-item 
-              v-if="$store.getters.isLoggedIn"
-              >
-                {{$store.state.user.firstName}}
-              </b-dropdown-item>
+            <b-dropdown-item v-if="$store.getters.isLoggedIn">
+              {{ $store.state.user.firstName }}
+            </b-dropdown-item>
             <b-dropdown-item
               :to="{ name: 'logout' }"
               v-if="$store.getters.isLoggedIn"

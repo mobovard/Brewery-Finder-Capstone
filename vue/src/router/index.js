@@ -100,13 +100,14 @@ const router = new Router({
       component: Admin,
       meta: {
         requiresAuth: true,
-        reqAdmin: true,
+        reqBrewer: true,
       },
       children: [
         {
           path: '/add-brewery',
           name: 'addBrewery',
           components: { adminForm: AddUpdateBreweryForm},
+          meta: { reqAdmin: true }
         },
         {
           path: '/update-brewery/:breweryId',
@@ -126,7 +127,7 @@ const router = new Router({
           props: { adminForm: true }
         },
       ]
-    }
+    },
   ]
 })
 
@@ -135,12 +136,14 @@ router.beforeEach((to, from, next) => {
   const requiresDobCheck = to.matched.some(x => !x.meta.dob_check);
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
   const requiresAdmin = to.matched.some(x => x.meta.reqAdmin);
+  const requiresBrewer = to.matched.some(x => x.meta.reqBrewer);
 
   // If it does and they are not logged in, send the user to "/login"
   if (requiresDobCheck && !store.getters.isOver21 && !store.getters.isLoggedIn) {
     next({name: 'dob'});
-  } else if ((requiresAdmin && !store.getters.isAdmin) 
-      || (requiresAuth && !store.getters.isLoggedIn)) {
+  } else if ((requiresAdmin && !store.getters.isAdmin) // redirects to home if not admin
+      || (requiresBrewer && !(store.getters.isBrewer || store.getters.isAdmin)) // redirects to home if not brewer (or admin)
+      || (requiresAuth && !store.getters.isLoggedIn)) { // redirects to home if not logged in
     next({name: 'home'});
   } else {
     // Else let them go to their next destination

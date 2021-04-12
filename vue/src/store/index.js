@@ -24,6 +24,8 @@ export default new Vuex.Store({
     brewery: {},
     beers: [],
     ageVerified: false,
+    adminBreweryIds: [],
+    reviews: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -51,6 +53,9 @@ export default new Vuex.Store({
     SET_BEERS(state, beers) {
       state.beers = beers;
     },
+    SET_REVIEWS(state, reviews) {
+      state.reviews = reviews;
+    },
     SET_AGE_OVER_21(state) {
       state.ageVerified = true;
     }
@@ -58,6 +63,9 @@ export default new Vuex.Store({
   getters: {
     isLoggedIn(state) {
       return state.token != '';
+    },
+    isBrewer(state) {
+      return state.token != '' && state.user.role === 'Brewer';
     },
     isAdmin(state) {
       return state.token != '' && state.user.role === 'Admin';
@@ -70,6 +78,9 @@ export default new Vuex.Store({
     },
     getBeer: state => id => {
       return state.beers.find(beer => beer.beer_id === id);
+    },
+    adminBreweries: (state, getters) => {
+      return state.breweries.filter(() => getters.isAdmin || (false))
     }
   }
 })

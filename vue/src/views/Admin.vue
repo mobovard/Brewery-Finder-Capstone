@@ -1,9 +1,10 @@
 <template>
   <div class="frosty-porter flex-grow-1 d-grid my-1 p-2">
     <b-row>
-      <b-col md="3" lg="2">
+      <b-col md="4" lg="3">
         <b-link
           class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
+          v-if="$store.getters.isAdmin"
           @click="resetToInitial()"
           :to="{ name: 'addBrewery' }"
         >
@@ -80,6 +81,9 @@ export default {
       breweryId: -Infinity,
       beerId: -Infinity,
     };
+  },
+  created() {
+    console.log(this.$store.getters.adminBreweries);
   },
   computed: {
     displayBreweryIdSelector() {

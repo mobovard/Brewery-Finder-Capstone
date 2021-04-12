@@ -293,7 +293,7 @@ export default {
         BreweriesService.updateBrewery(this.fullBrewery)
           .then((resp) => {
             if (resp.status === 200) {
-              this.respMsg = "Successfullly updated Brewery";
+              this.respMsg = "Successfully updated Brewery";
             }
             this.setBrewery(resp.data);
           })
