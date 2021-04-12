@@ -1,4 +1,6 @@
-﻿namespace Capstone.Models
+﻿using System;
+
+namespace Capstone.Models
 {
     public class User
     {
@@ -11,6 +13,7 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+    
     }
 
     /// <summary>
@@ -57,5 +60,8 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+
+
+
     }
 }
