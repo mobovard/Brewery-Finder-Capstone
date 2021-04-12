@@ -2,114 +2,98 @@
   <div class="frosty-porter flex-grow-1 d-grid my-1 p-2">
     <b-row>
       <b-col md="3" lg="2">
-        <button
-          class="btn btn-block bg-porter text-foam text-wheat-h"
-          @click="
-            hideForms();
-            displayAddBrewery = true;
-          "
+        <b-link
+          class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
+          @click="resetToInitial()"
+          :to="{ name: 'addBrewery' }"
         >
           Add Brewery
-        </button>
-        <button
-          class="btn btn-block bg-porter text-foam text-wheat-h"
+        </b-link>
+
+        <b-link
+          class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
           @click="
-            breweryId = null;
-            displayUpdateBrewery = false;
-            displayUpdateSelector = !displayUpdateSelector;
-            if (displayUpdateSelector) $nextTick(() => $refs.breweryId.focus());
+            breweryId = (displayBreweryIdSelector) ? -Infinity : null;
+            if (displayBreweryIdSelector) $nextTick(() => $refs.brewId.focus());
           "
         >
           Update Brewery
-        </button>
+        </b-link>
         <b-form-input
-          ref="breweryId"
+          ref="brewId"
           class="mt-2"
-          v-if="displayUpdateSelector"
+          v-if="displayBreweryIdSelector"
           v-model.number="breweryId"
           placeholder="Brewery ID"
           @keyup.enter="
-            hideForms();
-            displayUpdateBrewery = true;
+            $router.push({
+              name: 'updateBrewery',
+              params: { breweryId: breweryId },
+            });
+            resetToInitial();
           "
         ></b-form-input>
-        <button
-          class="btn btn-block bg-porter text-foam text-wheat-h mt-md-2"
-          @click="
-            hideForms();
-            displayAddBeer = true;
-          "
+
+        <b-link
+          class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
+          :to="{ name: 'addBeer' }"
         >
           Add Beer
-        </button>
-        <button
-          class="btn btn-block bg-porter text-foam text-wheat-h"
+        </b-link>
+
+        <b-link
+          class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
           @click="
-            beerId = null;
-            displayUpdateBeer = false;
-            displayUpdateBeerSelector = !displayUpdateBeerSelector;
-            if (displayUpdateBeerSelector) $nextTick(() => $refs.beerId.focus());
+            beerId = (displayBeerIdSelector) ? -Infinity : null;
+            if (displayBeerIdSelector) $nextTick(() => $refs.beerId.focus());
           "
         >
           Update Beer
-        </button>
+        </b-link>
         <b-form-input
           ref="beerId"
           class="mt-2"
-          v-if="displayUpdateBeerSelector"
+          v-if="displayBeerIdSelector"
           v-model.number="beerId"
           placeholder="Beer ID"
           @keyup.enter="
-            hideForms();
-            displayUpdateBeer = true;
+            $router.push({
+              name: 'updateBeer',
+              params: { beerId: beerId },
+            });
+            resetToInitial();
           "
         ></b-form-input>
       </b-col>
 
       <b-col>
-        <AddUpdateBreweryForm v-if="displayAddBrewery" />
-        <AddUpdateBreweryForm
-          :breweryId="breweryId"
-          v-if="displayUpdateBrewery"
-          :key="breweryId"
-        />
-        <AddUpdateBeerForm v-if="displayAddBeer" />
-        <AddUpdateBeerForm :beerId="beerId" v-if="displayUpdateBeer" :key="beerId" />
+        <router-view name="adminForm" :key="$route.fullPath" />
       </b-col>
     </b-row>
   </div>
 </template>
 
 <script>
-import AddUpdateBreweryForm from "../components/AddUpdateBreweryForm";
-import AddUpdateBeerForm from "../components/AddUpdateBeerForm";
-
 export default {
-  components: {
-    AddUpdateBreweryForm,
-    AddUpdateBeerForm,
-  },
   data() {
     return {
-      breweryId: null,
-      beerId: null,
-      displayUpdateSelector: false,
-      displayUpdateBeerSelector: false,
-      displayAddBrewery: false,
-      displayUpdateBrewery: false,
-      displayAddBeer: false,
-      displayUpdateBeer: false,
+      breweryId: -Infinity,
+      beerId: -Infinity,
     };
   },
-  methods: {
-    hideForms() {
-      this.displayUpdateSelector = false;
-      this.displayUpdateBeerSelector = false;
-      this.displayAddBrewery = false;
-      this.displayUpdateBrewery = false;
-      this.displayAddBeer = false;
-      this.displayUpdateBeer = false;
+  computed: {
+    displayBreweryIdSelector() {
+      return this.breweryId != -Infinity;
     },
+    displayBeerIdSelector() {
+      return this.beerId != -Infinity;
+    }
   },
+  methods: {
+    resetToInitial() {
+      this.breweryId = -Infinity;
+      this.beerId = -Infinity;
+    }
+  }
 };
 </script>
