@@ -49,17 +49,44 @@ namespace Capstone.DAO
             Brewery brewery = new Brewery();
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
-
             brewery.Name = Convert.ToString(reader["name"]);
             brewery.Brewery_id = Convert.ToInt32(reader["brewery_id"]);
-            brewery.Address = Convert.ToString(reader["address"]);
-            brewery.Brewery_img = Convert.ToString(reader["brewery_img"]);
-            brewery.Active = Convert.ToBoolean(reader["active"]);
-            brewery.History = Convert.ToString(reader["history"]);
-            brewery.Phone_number = Convert.ToString(reader["phone_number"]);
             brewery.User_id = Convert.ToInt32(reader["user_id"]);
-            brewery.Email = Convert.ToString(reader["brewery_email"]);
-            brewery.Logo = Convert.ToString(reader["logo"]);
+
+            if (!(reader["address"] is DBNull))
+            {
+                brewery.Address = Convert.ToString(reader["address"]);
+            }
+
+            if (!(reader["brewery_img"] is DBNull))
+            {
+                brewery.Brewery_img = Convert.ToString(reader["brewery_img"]);
+            }
+
+            if (!(reader["active"] is DBNull))
+            {
+                brewery.Active = Convert.ToBoolean(reader["active"]);
+            }
+
+            if (!(reader["history"] is DBNull))
+            {
+                brewery.History = Convert.ToString(reader["history"]);
+            }
+
+            if (!(reader["phone_number"] is DBNull))
+            {
+                brewery.Phone_number = Convert.ToString(reader["phone_number"]);
+            }
+
+            if (!(reader["brewery_email"] is DBNull))
+            {
+                brewery.Email = Convert.ToString(reader["brewery_email"]);
+            }
+
+            if (!(reader["logo"] is DBNull))
+            {
+                brewery.Logo = Convert.ToString(reader["logo"]);
+            }
 
             string monday = Convert.ToString(reader["monday"]);
             string tuesday= Convert.ToString(reader["tuesday"]);
@@ -77,12 +104,11 @@ namespace Capstone.DAO
             dictionary.Add("Sunday", sunday);
             brewery.HoursOfOperation = dictionary;
             return brewery;
-
         }
 
         public Brewery GetBreweryById(int id)
         {
-            Brewery brewery = new Brewery();
+            Brewery brewery = null;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -111,7 +137,6 @@ namespace Capstone.DAO
         {
             int id = 0;
             
-           
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -123,14 +148,14 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand(sql,conn);
                     cmd.Parameters.AddWithValue("@name", brewery.Name);
-                    cmd.Parameters.AddWithValue("@phoneNumber", brewery.Phone_number);
-                    cmd.Parameters.AddWithValue("@brewery_email", brewery.Email);
-                    cmd.Parameters.AddWithValue("@address", brewery.Address);
-                    cmd.Parameters.AddWithValue("@history", brewery.History);
-                    cmd.Parameters.AddWithValue("@active", brewery.Active);
-                    cmd.Parameters.AddWithValue("@logo", brewery.Logo);
+                    cmd.Parameters.AddWithNullableValue("@phoneNumber", brewery.Phone_number);
+                    cmd.Parameters.AddWithNullableValue("@brewery_email", brewery.Email);
+                    cmd.Parameters.AddWithNullableValue("@address", brewery.Address);
+                    cmd.Parameters.AddWithNullableValue("@history", brewery.History);
+                    cmd.Parameters.AddWithNullableValue("@active", brewery.Active);
+                    cmd.Parameters.AddWithNullableValue("@logo", brewery.Logo);
                     cmd.Parameters.AddWithValue("@user_id", brewery.User_id);
-                    cmd.Parameters.AddWithValue("@brewery_img", brewery.Brewery_img);
+                    cmd.Parameters.AddWithNullableValue("@brewery_img", brewery.Brewery_img);
 
                     cmd.ExecuteNonQuery();
                     id = Convert.ToInt32(cmd.ExecuteScalar());
@@ -166,7 +191,11 @@ namespace Capstone.DAO
             {
                 Console.WriteLine(ex.Message);
             }
+
             return GetBreweryById(id);
+
+
+
         }
         public Brewery UpdateBrewery(Brewery updatedBrewery)
         {
@@ -184,14 +213,14 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@name", updatedBrewery.Name);
-                    cmd.Parameters.AddWithValue("@phone_number", updatedBrewery.Phone_number);
-                    cmd.Parameters.AddWithValue("@brewery_email", updatedBrewery.Email);
-                    cmd.Parameters.AddWithValue("@address", updatedBrewery.Address);
-                    cmd.Parameters.AddWithValue("@history", updatedBrewery.History);
-                    cmd.Parameters.AddWithValue("@active", updatedBrewery.Active);
-                    cmd.Parameters.AddWithValue("@logo", updatedBrewery.Logo);
+                    cmd.Parameters.AddWithNullableValue("@phone_number", updatedBrewery.Phone_number);
+                    cmd.Parameters.AddWithNullableValue("@brewery_email", updatedBrewery.Email);
+                    cmd.Parameters.AddWithNullableValue("@address", updatedBrewery.Address);
+                    cmd.Parameters.AddWithNullableValue("@history", updatedBrewery.History);
+                    cmd.Parameters.AddWithNullableValue("@active", updatedBrewery.Active);
+                    cmd.Parameters.AddWithNullableValue("@logo", updatedBrewery.Logo);
                     cmd.Parameters.AddWithValue("@user_id", updatedBrewery.User_id);
-                    cmd.Parameters.AddWithValue("@brewery_img", updatedBrewery.Brewery_img);
+                    cmd.Parameters.AddWithNullableValue("@brewery_img", updatedBrewery.Brewery_img);
 
                     cmd.Parameters.AddWithValue("@brewery_id", updatedBrewery.Brewery_id);
 

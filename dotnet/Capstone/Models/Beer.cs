@@ -8,14 +8,23 @@ namespace Capstone.Models
 {
     public class Beer
     {
-        
         public int Beer_id { get; set; }
-        public string Name { get; set; } 
-        public string Description { get; set; } = "No Description";
-        public string Image { get; set; } = "No Image Provided";
-        public decimal? Abv { get; set; }
+
+        [Required(ErrorMessage = "Name cannot be blank")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Description cannot be blank")]
+        public string Description { get; set; }
+
+        [Required(ErrorMessage = "Image cannot be blank")]
+        public string Image { get; set; }
+
+        [Required(ErrorMessage = "Abv cannot be blank")]
+        public decimal Abv { get; set; }
         public int? Brewery_id { get; set; }
-        public string Beer_type { get; set; } = "Not Provided";
-        public bool Active { get; set; } = false;
+
+        [Required(ErrorMessage = "Beer Type cannot be blank")]
+        public string Beer_type { get; set; }
+        public bool? Active { get; set; }
     }
 }

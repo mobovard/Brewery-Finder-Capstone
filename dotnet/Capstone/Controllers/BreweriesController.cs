@@ -12,7 +12,6 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
 
     public class BreweriesController : ControllerBase
     {
