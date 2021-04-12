@@ -5,7 +5,16 @@
       <div class="text-foam d-flex flex-column align-items-center">
         <h1>{{ $store.state.brewery.name }}</h1>
       </div>
-      <div v-if="$store.getters.isAdmin" class="d-flex justify-content-end">
+      <div
+        v-if="
+          $store.getters.isAdmin ||
+            ($store.getters.isBrewer &&
+              $store.state.adminBreweryIds.includes(
+                $store.state.brewery.brewery_id
+              ))
+        "
+        class="d-flex justify-content-end"
+      >
         <b-link
           class="btn bg-porter text-foam text-wheat-h"
           :to="{

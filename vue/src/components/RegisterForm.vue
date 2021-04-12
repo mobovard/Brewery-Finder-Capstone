@@ -181,7 +181,6 @@ export default {
     const maxDate = new Date(today);
     maxDate.setYear(maxDate.getFullYear() - 21);
     this.max = maxDate.toISOString();
-    console.log(maxDate);
   },
 };
 </script>

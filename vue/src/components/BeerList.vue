@@ -6,7 +6,7 @@
       v-if="!hasError"
     >
       <BeerCard
-        v-for="beer in $store.state.beers"
+        v-for="beer in $store.getters.activeBeers"
         :key="beer.beer_id"
         :beer="beer"
       />

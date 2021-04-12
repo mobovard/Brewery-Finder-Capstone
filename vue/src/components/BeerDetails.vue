@@ -16,7 +16,16 @@
           {{ $store.state.brewery.name }}
         </h4>
       </div>
-      <div v-if="$store.getters.isAdmin" class="d-flex justify-content-end">
+      <div
+        v-if="
+          $store.getters.isAdmin ||
+            ($store.getters.isBrewer &&
+              $store.state.adminBreweryIds.includes(
+                $store.state.brewery.brewery_id
+              ))
+        "
+        class="d-flex justify-content-end"
+      >
         <b-link
           class="btn bg-wheat text-porter text-porter-h"
           :to="{ name: 'updateBeer', params: { beerId: beerId } }"

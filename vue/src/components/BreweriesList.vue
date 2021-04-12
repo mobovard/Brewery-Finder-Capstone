@@ -3,7 +3,7 @@
     <div v-if="hasError">{{ errMsg }}</div>
     <div class="flex-grow-1 d-md-flex flex-wrap justify-content-center m-2" v-if="!hasError">
       <BreweryCard
-        v-for="brewery in $store.state.breweries"
+        v-for="brewery in $store.getters.activeBreweries"
         :key="brewery.brewery_id"
         :brewery="brewery"
       />

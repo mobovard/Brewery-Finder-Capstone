@@ -12,6 +12,7 @@ import DOB from '../views/DOB.vue'
 import AddUpdateBreweryForm from '../components/AddUpdateBreweryForm.vue'
 import AddUpdateBeerForm from '../components/AddUpdateBeerForm.vue'
 import AdminBrewerySelector from '../components/AdminBrewerySelector.vue'
+import AdminBeerSelector from '../components/AdminBeerSelector.vue'
 import store from '../store/index'
 
 Vue.use(Router)
@@ -125,6 +126,11 @@ const router = new Router({
           path: '/add-beer',
           name: 'addBeer',
           components: { adminForm: AddUpdateBeerForm},
+        },
+        {
+          path: '/update-beer',
+          name: 'beerSelector',
+          components: { adminForm: AdminBeerSelector },
         },
         {
           path: '/update-beer/:beerId',

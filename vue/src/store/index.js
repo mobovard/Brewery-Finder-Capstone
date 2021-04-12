@@ -81,6 +81,12 @@ export default new Vuex.Store({
     },
     adminBreweries(state, getters) {
       return state.breweries.filter(brewery => getters.isAdmin || (getters.isBrewer && state.adminBreweryIds.includes(brewery.brewery_id)));
+    },
+    activeBreweries(state) {
+      return state.breweries.filter(brewery => brewery.active);
+    },
+    activeBeers(state) {
+      return state.beers.filter(beer => beer.active);
     }
   }
 })

@@ -14,27 +14,9 @@
         <b-link
           class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
           :to="{ name: 'brewerySelector' }"
-          @click="
-            breweryId = (displayBreweryIdSelector) ? -Infinity : null;
-            if (displayBreweryIdSelector) $nextTick(() => $refs.brewId.focus());
-          "
         >
           Update Brewery
         </b-link>
-        <b-form-input
-          ref="brewId"
-          class="mt-2"
-          v-if="displayBreweryIdSelector"
-          v-model.number="breweryId"
-          placeholder="Brewery ID"
-          @keyup.enter="
-            $router.push({
-              name: 'updateBrewery',
-              params: { breweryId: breweryId },
-            });
-            resetToInitial();
-          "
-        ></b-form-input>
 
         <b-link
           class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
@@ -45,10 +27,8 @@
 
         <b-link
           class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
-          @click="
-            beerId = (displayBeerIdSelector) ? -Infinity : null;
-            if (displayBeerIdSelector) $nextTick(() => $refs.beerId.focus());
-          "
+          :to="{ name: 'beerSelector' }"
+
         >
           Update Beer
         </b-link>
@@ -76,6 +56,8 @@
 </template>
 
 <script>
+import breweriesService from "../services/BreweriesService";
+
 export default {
   data() {
     return {
@@ -84,7 +66,14 @@ export default {
     };
   },
   created() {
-    console.log(this.$store.getters.adminBreweries);
+    if (this.$store.state.breweries.length === 0) {
+      breweriesService
+        .getBreweries()
+        .then((resp) => {
+          this.$store.commit("SET_BREWERIES", resp.data);
+        })
+        .catch((err) => console.log(err));
+    }
   },
   computed: {
     displayBreweryIdSelector() {
