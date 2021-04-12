@@ -63,7 +63,7 @@
       <b-row>
         <b-col>
           <button
-            class="btn bg-porter text-foam text-wheat-h ml-2"
+            class="btn bg-porter text-foam text-wheat-h mt-2 ml-2"
             v-on:click.prevent="
               resetForm;
               displayAddReviewForm = false;
@@ -74,7 +74,7 @@
           </button>
           <button
             @click="displayAddReviewForm = false"
-            class="btn bg-porter text-foam text-wheat-h ml-2"
+            class="btn bg-porter text-foam text-wheat-h mt-2 ml-2"
             type="submit"
           >
             Submit

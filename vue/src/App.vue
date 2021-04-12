@@ -35,5 +35,4 @@ export default {
   width: 100vw;
   object-fit: cover;
   z-index: 0;
-}
-</style>
+}</style>
