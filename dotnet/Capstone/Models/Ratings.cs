@@ -9,8 +9,10 @@ namespace Capstone.Models
     {
         public int Rating_id { get; set; }
         public int Rating { get; set; }
-        public string Rating_description { get; set; }
+        public string Title { get; set; }
+        public string Review { get; set; }
         public int User_id { get; set; }
         public int Beer_id { get; set; }
+        public string Username { get; set; }
     }
 }

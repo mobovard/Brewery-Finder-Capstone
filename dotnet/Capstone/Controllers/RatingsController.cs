@@ -1,4 +1,5 @@
 ﻿using Capstone.DAO;
+using Capstone.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,21 @@ namespace Capstone.Controllers
         public RatingsController(IRatingsDAO _ratingsDAO)
         {
             ratingsDAO = _ratingsDAO;
+        }
+        [HttpGet("/ratings/{id}")]
+
+        public ActionResult<List<Ratings>> GetRatingsByBeerId(int id)
+        {
+            List<Ratings> ratings = ratingsDAO.GetRatingsByBeerId(id);
+
+            if (ratings != null)
+            {
+                return Ok(ratings);
+            }
+            else
+            {
+                return NoContent();
+            }
         }
     }
  
