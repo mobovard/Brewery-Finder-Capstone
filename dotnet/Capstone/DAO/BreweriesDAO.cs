@@ -143,7 +143,7 @@ namespace Capstone.DAO
                 {
 
                     conn.Open();
-                    string sql = "INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,user_id,brewery_img,logo) VALUES(@name,@phoneNumber,@brewery_email,@address,@history,@active,@user_id,@brewery_img,@logo);SELECT @@IDENTITY;";
+                    string sql = "INSERT INTO brewery(name,phone_number,brewery_email,address,history,active,user_id,brewery_img,logo,zipcode,city,state) VALUES(@name,@phoneNumber,@brewery_email,@address,@history,@active,@user_id,@brewery_img,@logo,@zipcode,@city,@state);SELECT @@IDENTITY;";
                   
 
                     SqlCommand cmd = new SqlCommand(sql,conn);
@@ -156,6 +156,10 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithNullableValue("@logo", brewery.Logo);
                     cmd.Parameters.AddWithValue("@user_id", brewery.User_id);
                     cmd.Parameters.AddWithNullableValue("@brewery_img", brewery.Brewery_img);
+                    cmd.Parameters.AddWithNullableValue("@zipcode", brewery.Zipcode);
+                    cmd.Parameters.AddWithNullableValue("@city", brewery.City);
+                    cmd.Parameters.AddWithNullableValue("@state", brewery.State);
+
 
                     
                     id = Convert.ToInt32(cmd.ExecuteScalar());
@@ -208,7 +212,7 @@ namespace Capstone.DAO
                 {
 
                     conn.Open();
-                    string sql = "UPDATE brewery SET name = @name, phone_number = @phone_number,brewery_email=@brewery_email,address = @address,history = @history,active =@active,brewery_img=@brewery_img,user_id=@user_id,logo=@logo WHERE brewery_id = @brewery_id;";
+                    string sql = "UPDATE brewery SET name = @name, phone_number = @phone_number,brewery_email=@brewery_email,address = @address,history = @history,active =@active,brewery_img=@brewery_img,user_id=@user_id,logo=@logo,zipcode=@zipcode,city=@city,state=@state WHERE brewery_id = @brewery_id;";
 
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
@@ -221,6 +225,9 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithNullableValue("@logo", updatedBrewery.Logo);
                     cmd.Parameters.AddWithValue("@user_id", updatedBrewery.User_id);
                     cmd.Parameters.AddWithNullableValue("@brewery_img", updatedBrewery.Brewery_img);
+                    cmd.Parameters.AddWithNullableValue("@zipcode", brewery.Zipcode);
+                    cmd.Parameters.AddWithNullableValue("@city", brewery.City);
+                    cmd.Parameters.AddWithNullableValue("@state", brewery.State);
 
                     cmd.Parameters.AddWithValue("@brewery_id", updatedBrewery.Brewery_id);
 
