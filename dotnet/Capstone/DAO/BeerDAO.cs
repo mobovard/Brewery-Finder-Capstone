@@ -114,7 +114,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@beer_type", beer.Beer_type);
                     cmd.Parameters.AddWithNullableValue("@active_beer", beer.Active);
 
-                    cmd.ExecuteNonQuery();
+                   
                     myId = Convert.ToInt32(cmd.ExecuteScalar());
 
 
