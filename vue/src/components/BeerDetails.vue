@@ -1,17 +1,28 @@
 <template>
   <div>
     <b-img :src="$store.state.brewery.brewery_img" class="bg-img" />
-    <div
-      class="frosty-foam p-3 rounded text-center text-porter pointer"
-      @click="
-        $router.push({
-          name: 'brewery',
-          params: { id: $route.params.breweryId },
-        })
-      "
-    >
+    <div class="frosty-foam p-3 rounded text-center text-porter">
       <h1>{{ beer.name }}</h1>
-      <h4>{{ $store.state.brewery.name }}</h4>
+      <div class="d-flex justify-content-center">
+        <h4
+          class="pointer"
+          @click="
+            $router.push({
+              name: 'brewery',
+              params: { id: $route.params.breweryId },
+            })
+          "
+        >
+          {{ $store.state.brewery.name }}
+        </h4>
+      </div>
+      <div v-if="$store.getters.isAdmin" class="d-flex justify-content-end">
+        <b-link
+          class="btn bg-wheat text-porter text-porter-h"
+          :to="{ name: 'updateBeer', params: { beerId: beerId } }"
+          >Edit Beer</b-link
+        >
+      </div>
     </div>
     <div class="frosty-foam p-3 mt-2 rounded text-porter">
       <div class="d-flex flex-column align-items-left">

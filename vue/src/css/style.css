@@ -35,7 +35,7 @@
     background-color: #A83518;
 }
 
-.bg-wheat .bg-wheat-h:hover {
+.bg-wheat, .bg-wheat-h:hover {
     background-color: #E5932B;
 }
 
