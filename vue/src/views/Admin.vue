@@ -13,6 +13,7 @@
 
         <b-link
           class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
+          :to="{ name: 'brewerySelector' }"
           @click="
             breweryId = (displayBreweryIdSelector) ? -Infinity : null;
             if (displayBreweryIdSelector) $nextTick(() => $refs.brewId.focus());
