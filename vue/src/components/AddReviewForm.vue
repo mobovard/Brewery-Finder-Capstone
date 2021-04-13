@@ -95,15 +95,16 @@ export default {
         rating: 0,
         title: "",
         review: "",
-        User_id: this.$store.state.user.userId,
-        Beer_id: this.$route.params.beerId,
-        Username: this.$store.state.user.username,
+        user_id: this.$store.state.user.userId,
+        beer_id: this.$route.params.beerId,
+        username: this.$store.state.user.username,
       },
       displayAddReviewForm: false,
     };
   },
   methods: {
     addNewReview() {
+      console.log(this.newReview);
       BreweriesService.addReview(this.newReview)
         .then((resp) => {
           this.$store.commit("SET_REVIEWS", resp.data);
