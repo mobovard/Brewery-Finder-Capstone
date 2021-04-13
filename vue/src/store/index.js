@@ -24,7 +24,7 @@ export default new Vuex.Store({
     brewery: {},
     beers: [],
     ageVerified: false,
-    adminBreweryIds: [ 1 ],
+    adminBreweryIds: [1],
     reviews: [],
     users: []
   },
@@ -57,6 +57,9 @@ export default new Vuex.Store({
     SET_REVIEWS(state, reviews) {
       state.reviews = reviews;
     },
+    ADD_REVIEW(state, review) {
+       state.reviews.push(review) 
+      },
     SET_AGE_OVER_21(state) {
       state.ageVerified = true;
     },
@@ -75,7 +78,7 @@ export default new Vuex.Store({
       return state.token != '' && state.user.role === 'Admin';
     },
     isOver21(state) {
-      return state.ageVerified; 
+      return state.ageVerified;
     },
     getBrewery: (state) => (id) => {
       return state.breweries.find(brewery => brewery.brewery_id === id);
@@ -84,7 +87,7 @@ export default new Vuex.Store({
       return state.beers.find(beer => beer.beer_id === id);
     },
     adminBreweries(state, getters) {
-      return state.breweries.filter(brewery => getters.isAdmin || (getters.isBrewer && state.adminBreweryIds.includes(brewery.brewery_id)));
+      return state.breweries.filter(brewery => getters.isAdmin || (getters.isBrewer && state.breweries.map(b => b.brewery_id).includes(brewery.brewery_id)));
     },
     activeBreweries(state) {
       return state.breweries.filter(brewery => brewery.active);
@@ -94,6 +97,9 @@ export default new Vuex.Store({
     },
     brewers(state) {
       return state.users.filter(user => user.role === 'Brewer' || user.role === 'Admin')
+    },
+    getUser: state => id => {
+      return state.users.find(user => user.userId === id);
     }
   }
 })

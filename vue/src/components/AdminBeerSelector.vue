@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h4 class="text-foam text-center">Select Beer</h4>
+    <h4 class="text-foam text-center">Select Beer</h4>
     <table
       role="table"
       aria-busy="false"
@@ -20,7 +20,9 @@
           "
         >
           <td aria-colindex="1" role="cell">{{ beer.name }}</td>
-          <td aria-colindex="1" role="cell">{{ breweryName(beer.brewery_id) }}</td>
+          <td aria-colindex="1" role="cell">
+            {{ breweryName(beer.brewery_id) }}
+          </td>
           <td aria-colindex="2" role="cell">
             {{ beer.active ? "Active" : "Inactive" }}
           </td>
@@ -47,9 +49,17 @@ export default {
     });
   },
   methods: {
-      breweryName(breweryId) {
-          return this.$store.state.breweries.find(brewery => breweryId === brewery.brewery_id).name;
-      }
-  }
+    breweryName(breweryId) {
+      return this.$store.state.breweries.find(
+        (brewery) => breweryId === brewery.brewery_id
+      ).name;
+    },
+  },
 };
 </script>
+
+<style scoped>
+.pointer {
+  cursor: pointer;
+}
+</style>

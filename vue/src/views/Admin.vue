@@ -5,6 +5,14 @@
         <b-link
           class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
           v-if="$store.getters.isAdmin"
+          :to="{ name: 'editUsers' }"
+        >
+          Edit Users
+        </b-link>
+
+        <b-link
+          class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
+          v-if="$store.getters.isAdmin"
           @click="resetToInitial()"
           :to="{ name: 'addBrewery' }"
         >
@@ -28,7 +36,6 @@
         <b-link
           class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
           :to="{ name: 'beerSelector' }"
-
         >
           Update Beer
         </b-link>
@@ -66,22 +73,18 @@ export default {
     };
   },
   created() {
-    if (this.$store.state.breweries.length === 0) {
-      breweriesService
-        .getBreweries()
-        .then((resp) => {
-          this.$store.commit("SET_BREWERIES", resp.data);
-        })
-        .catch((err) => console.log(err));
-    }
-    if (this.$store.state.users.length === 0) {
-      breweriesService
-        .getUsers()
-        .then(resp => {
-          this.$store.commit("SET_USERS", resp.data);
-        })
-        .catch(err => console.log(err));
-    }
+    breweriesService
+      .getBreweries()
+      .then((resp) => {
+        this.$store.commit("SET_BREWERIES", resp.data);
+      })
+      .catch((err) => console.log(err));
+    breweriesService
+      .getUsers()
+      .then((resp) => {
+        this.$store.commit("SET_USERS", resp.data);
+      })
+      .catch((err) => console.log(err));
   },
   computed: {
     displayBreweryIdSelector() {
@@ -89,13 +92,13 @@ export default {
     },
     displayBeerIdSelector() {
       return this.beerId != -Infinity;
-    }
+    },
   },
   methods: {
     resetToInitial() {
       this.breweryId = -Infinity;
       this.beerId = -Infinity;
-    }
-  }
+    },
+  },
 };
 </script>

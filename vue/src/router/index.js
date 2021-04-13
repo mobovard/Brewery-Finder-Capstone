@@ -13,6 +13,7 @@ import AddUpdateBreweryForm from '../components/AddUpdateBreweryForm.vue'
 import AddUpdateBeerForm from '../components/AddUpdateBeerForm.vue'
 import AdminBrewerySelector from '../components/AdminBrewerySelector.vue'
 import AdminBeerSelector from '../components/AdminBeerSelector.vue'
+import EditUsers from '../components/EditUsers.vue'
 import store from '../store/index'
 
 Vue.use(Router)
@@ -138,6 +139,12 @@ const router = new Router({
           components: { adminForm: AddUpdateBeerForm},
           props: { adminForm: true }
         },
+        {
+          path: '/users',
+          name: 'editUsers',
+          components: { adminForm: EditUsers },
+          meta: { reqAdmin: true }
+        }
       ]
     },
   ]
