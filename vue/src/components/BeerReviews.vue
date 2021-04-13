@@ -1,27 +1,39 @@
 <template>
   <div class="rating d-grid">
-    <div v-for="review in reviews" v-bind:key="review.rating_id" class="frosty-foam p-3 mt-2 rounded text-porter">
+    <div class="frosty-foam p-3 mt-2 rounded text-porter">
+      <h6>
+        Avg Rating:
+        <img
+          src="../img/hops.png"
+          class="ratingHops mr-1"
+          v-for="n in Math.floor(averageRating)"
+          v-bind:key="n"
+        />
+      </h6>
+    </div>
+    <div
+      v-for="review in reviews"
+      v-bind:key="review.rating_id"
+      class="frosty-foam p-3 mt-2 rounded text-porter"
+    >
       <b-row class="mx-0">
-        <b-col-sm>
+        <div class="mr-1">
           <img
             src="../img/hops.png"
             class="ratingHops mr-1"
-            v-bind:title="review.rating"
             v-for="n in review.rating"
             v-bind:key="n"
           />
-        </b-col-sm>
-        <b-col>
+        </div>
+        <div>
           <h5>
-          {{ review.title }}
+            {{ review.title }}
           </h5>
-        </b-col>
+        </div>
       </b-row>
       <b-row class="mb-1 mx-0">{{ review.review }}</b-row>
       <b-row class="d-flex justify-content-end mx-0">
-        <div>
-        - {{review.username}}
-        </div>
+        <div>- {{ review.username }}</div>
       </b-row>
     </div>
   </div>
@@ -43,6 +55,16 @@ export default {
   computed: {
     reviews() {
       return this.$store.state.reviews;
+    },
+    averageRating() {
+      let sum = this.reviews.reduce((currentSum, review) => {
+        return currentSum + review.rating;
+      }, 0);
+      if (sum === 0) {
+        return 0;
+      } else {
+        return sum / this.reviews.length;
+      }
     },
   },
 };
