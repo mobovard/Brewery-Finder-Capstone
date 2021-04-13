@@ -84,7 +84,7 @@ export default new Vuex.Store({
       return state.beers.find(beer => beer.beer_id === id);
     },
     adminBreweries(state, getters) {
-      return state.breweries.filter(brewery => getters.isAdmin || (getters.isBrewer && state.adminBreweryIds.includes(brewery.brewery_id)));
+      return state.breweries.filter(brewery => getters.isAdmin || (getters.isBrewer && state.breweries.map(b => b.brewery_id).includes(brewery.brewery_id)));
     },
     activeBreweries(state) {
       return state.breweries.filter(brewery => brewery.active);
@@ -94,6 +94,9 @@ export default new Vuex.Store({
     },
     brewers(state) {
       return state.users.filter(user => user.role === 'Brewer' || user.role === 'Admin')
+    },
+    getUser: state => id => {
+      return state.users.find(user => user.userId === id);
     }
   }
 })
