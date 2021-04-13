@@ -10,14 +10,17 @@
         </h4>
       </b-col>
     </b-row>
+
     <b-row v-if="respMsg">
       <b-col>
         <p class="alert alert-warning text-center">{{ respMsg }}</p>
       </b-col>
     </b-row>
+
+    <!-- BREWERY INFO -->
     <b-row>
       <b-col>
-        <h5 class="text-foam text-center">Brewery &amp; Contact Info:</h5>
+        <h5 class="text-foam text-center">Brewery Info:</h5>
       </b-col>
     </b-row>
     <b-row>
@@ -33,45 +36,23 @@
         </b-form-input>
       </b-col>
       <b-col>
-        <label for="address" class="sr-only">Brewery Address</label>
+        <label for="logo" class="sr-only">Brewery Logo</label>
         <b-form-input
-          id="address"
-          v-model="brewery.address"
-          placeholder="Brewery Address"
+          id="logo"
+          v-model="brewery.logo"
+          placeholder="Brewery Logo"
           class="mb-3"
-        >
-        </b-form-input>
+        ></b-form-input>
       </b-col>
     </b-row>
+
     <b-row>
       <b-col>
-        <label for="email" class="sr-only">Brewery Email</label>
+        <label for="img" class="sr-only">Brewery Image</label>
         <b-form-input
-          id="email"
-          v-model="brewery.email"
-          placeholder="Brewery Email"
-          class="mb-3"
-        >
-        </b-form-input>
-      </b-col>
-      <b-col>
-        <label for="phone" class="sr-only">Brewery Phone Number</label>
-        <b-form-input
-          id="phone"
-          v-model="brewery.phone_number"
-          placeholder="Brewery Phone Number"
-          class="mb-3"
-        >
-        </b-form-input>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <label for="brewer" class="sr-only">User ID of Brewer</label>
-        <b-form-input
-          id="brewer"
-          v-model.number="brewery.user_id"
-          placeholder="User ID of Brewer"
+          id="img"
+          v-model="brewery.brewery_img"
+          placeholder="Brewery Image"
           class="mb-3"
         ></b-form-input>
       </b-col>
@@ -86,108 +67,168 @@
         </b-form-checkbox>
       </b-col>
     </b-row>
+
     <b-row>
       <b-col>
-        <label for="img" class="sr-only">Brewery Image</label>
+        <label for="brewer" class="sr-only">User ID of Brewer</label>
         <b-form-input
-          id="img"
-          v-model="brewery.brewery_img"
-          placeholder="Brewery Image"
+          id="brewer"
+          v-model.number="brewery.user_id"
+          placeholder="User ID of Brewer"
           class="mb-3"
         ></b-form-input>
       </b-col>
       <b-col>
-        <label for="logo" class="sr-only">Brewery Logo</label>
-        <b-form-input
-          id="logo"
-          v-model="brewery.logo"
-          placeholder="Brewery Logo"
-          class="mb-3"
-        ></b-form-input>
+        
       </b-col>
     </b-row>
-    <!-- Hours of Operation -->
     <b-row>
       <b-col>
+        
+      </b-col>
+      <b-col>
+        
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <!-- CONTACT INFO -->
+      <b-col>
+        <h5 class="text-foam text-center mt-2 mb-3">Contact Info</h5>
+        <label for="address" class="sr-only">Street Address</label>
+        <b-form-input
+          id="address"
+          v-model="brewery.address"
+          placeholder="Street Address"
+          class="mb-3"
+        >
+        </b-form-input>
+        <div class="d-flex">
+          <label for="city" class="sr-only">City</label>
+          <b-form-input
+            id="city"
+            v-model="brewery.city"
+            placeholder="City"
+            class="mb-3 mr-1"
+          >
+          </b-form-input>
+          <label for="state" class="sr-only">State</label>
+          <b-form-input
+            id="state"
+            v-model="brewery.state"
+            placeholder="State"
+            class="mb-3 ml-1"
+          >
+          </b-form-input>
+        </div>
+        <label for="zipcode" class="sr-only">ZIP Code</label>
+        <b-form-input
+          id="zipcode"
+          v-model="brewery.zipcode"
+          placeholder="ZIP Code"
+          class="mb-3"
+        >
+        </b-form-input>
+        <label for="phone" class="sr-only">Brewery Phone Number</label>
+        <b-form-input
+          id="phone"
+          v-model="brewery.phone_number"
+          placeholder="Brewery Phone Number"
+          class="mb-3"
+        >
+        </b-form-input>
+        <label for="email" class="sr-only">Brewery Email</label>
+        <b-form-input
+          id="email"
+          v-model="brewery.email"
+          placeholder="Brewery Email"
+          class="mb-3"
+        >
+        </b-form-input>
+      </b-col>
+
+      <!-- HOURS OF OPERATION -->
+      <b-col class="d-grid">
         <h5 class="text-foam text-center mt-2 mb-3">Hours of Operation:</h5>
+        <b-row>
+          <b-col>
+            <label for="Monday" class="sr-only">Monday</label>
+            <b-form-input
+              id="Monday"
+              v-model="hoursOfOperation.Monday"
+              placeholder="Monday"
+              class="mb-3"
+            >
+            </b-form-input>
+          </b-col>
+          <b-col>
+            <label for="Tuesday" class="sr-only">Tuesday</label>
+            <b-form-input
+              id="Tuesday"
+              v-model="hoursOfOperation.Tuesday"
+              placeholder="Tuesday"
+              class="mb-3"
+            >
+            </b-form-input>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <label for="Wednesday" class="sr-only">Wednesday</label>
+            <b-form-input
+              id="Wednesday"
+              v-model="hoursOfOperation.Wednesday"
+              placeholder="Wednesday"
+              class="mb-3"
+            ></b-form-input>
+          </b-col>
+          <b-col>
+            <label for="Thursday" class="sr-only">Thursday</label>
+            <b-form-input
+              id="Thursday"
+              v-model="hoursOfOperation.Thursday"
+              placeholder="Thursday"
+              class="mb-3"
+            >
+            </b-form-input>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <label for="Friday" class="sr-only">Friday</label>
+            <b-form-input
+              id="Friday"
+              v-model="hoursOfOperation.Friday"
+              placeholder="Friday"
+              class="mb-3"
+            ></b-form-input>
+          </b-col>
+          <b-col>
+            <label for="Saturday" class="sr-only">Saturday</label>
+            <b-form-input
+              id="Saturday"
+              v-model="hoursOfOperation.Saturday"
+              placeholder="Saturday"
+              class="mb-3"
+            >
+            </b-form-input>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col class="col-sm-6">
+            <label for="Sunday" class="sr-only">Sunday</label>
+            <b-form-input
+              id="Sunday"
+              v-model="hoursOfOperation.Sunday"
+              placeholder="Sunday"
+              class="mb-3"
+            >
+            </b-form-input>
+          </b-col>
+        </b-row>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col>
-        <label for="Monday" class="sr-only">Monday</label>
-        <b-form-input
-          id="Monday"
-          v-model="hoursOfOperation.Monday"
-          placeholder="Monday"
-          class="mb-3"
-        >
-        </b-form-input>
-      </b-col>
-      <b-col>
-        <label for="Tuesday" class="sr-only">Tuesday</label>
-        <b-form-input
-          id="Tuesday"
-          v-model="hoursOfOperation.Tuesday"
-          placeholder="Tuesday"
-          class="mb-3"
-        >
-        </b-form-input>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <label for="Wednesday" class="sr-only">Wednesday</label>
-        <b-form-input
-          id="Wednesday"
-          v-model="hoursOfOperation.Wednesday"
-          placeholder="Wednesday"
-          class="mb-3"
-        ></b-form-input>
-      </b-col>
-      <b-col>
-        <label for="Thursday" class="sr-only">Thursday</label>
-        <b-form-input
-          id="Thursday"
-          v-model="hoursOfOperation.Thursday"
-          placeholder="Thursday"
-          class="mb-3"
-        >
-        </b-form-input>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <label for="Friday" class="sr-only">Friday</label>
-        <b-form-input
-          id="Friday"
-          v-model="hoursOfOperation.Friday"
-          placeholder="Friday"
-          class="mb-3"
-        ></b-form-input>
-      </b-col>
-      <b-col>
-        <label for="Saturday" class="sr-only">Saturday</label>
-        <b-form-input
-          id="Saturday"
-          v-model="hoursOfOperation.Saturday"
-          placeholder="Saturday"
-          class="mb-3"
-        >
-        </b-form-input>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col class="col-sm-6">
-        <label for="Sunday" class="sr-only">Sunday</label>
-        <b-form-input
-          id="Sunday"
-          v-model="hoursOfOperation.Sunday"
-          placeholder="Sunday"
-          class="mb-3"
-        >
-        </b-form-input>
-      </b-col>
-    </b-row>
+
     <b-row>
       <b-col>
         <h5 class="text-foam text-center mt-2 mb-3">History:</h5>

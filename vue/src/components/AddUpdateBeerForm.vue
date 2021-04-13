@@ -1,82 +1,113 @@
 <template>
   <b-form class="d-grid" @submit.prevent="isAdd ? addBeer() : updateBeer()">
-    <h4 class="text-foam text-center mt-2 mb-3">{{isAdd ? "Add" : "Update"}} a Beer</h4>
+    <h4 class="text-foam text-center mt-2 mb-3">
+      {{ isAdd ? "Add" : "Update" }} a Beer
+    </h4>
     <p class="alert alert-warning text-center" v-if="respMsg">{{ respMsg }}</p>
 
     <h5 class="text-foam text-left mt-2 mb-3">Beer Information:</h5>
 
-    <label for="Name" class="sr-only">Name</label>
-    <b-form-input
-      id="Name"
-      placeholder="Beer Name"
-      class="mb-3"
-      v-model="beer.name"
-    >
-    </b-form-input>
+    <b-row>
+      <b-col>
+        <label for="Name" class="sr-only">Name</label>
+        <b-form-input
+          id="Name"
+          placeholder="Beer Name"
+          class="mb-3"
+          v-model="beer.name"
+        >
+        </b-form-input>
+      </b-col>
+      <b-col>
+        <label for="beer_type" class="sr-only">Beer Type</label>
+        <b-form-input
+          id="beer_type"
+          placeholder="Beer Type"
+          class="mb-3"
+          v-model="beer.beer_type"
+        >
+        </b-form-input>
+      </b-col>
+    </b-row>
 
-    <label for="beer_type" class="sr-only">Beer Type</label>
-    <b-form-input
-      id="beer_type"
-      placeholder="Beer Type"
-      class="mb-3"
-      v-model="beer.beer_type"
-    >
-    </b-form-input>
-
-    <label for="abv" class="sr-only">ABV</label>
-    <b-form-input
-      id="abv"
-      placeholder="ABV"
-      class="mb-3"
-      v-model.number="beer.abv"
-    ></b-form-input>
+    <b-row>
+      <b-col>
+        <label for="img" class="sr-only">Beer Img</label>
+        <b-form-input
+          id="img"
+          placeholder="Beer image link"
+          class="mb-3"
+          v-model="beer.image"
+        >
+        </b-form-input>
+      </b-col>
+      <b-col>
+        <label for="abv" class="sr-only">ABV</label>
+        <b-form-input
+          id="abv"
+          placeholder="ABV"
+          class="mb-3"
+          v-model.number="beer.abv"
+        ></b-form-input>
+      </b-col>
+    </b-row>
 
     <label for="description" class="sr-only">Beer Description</label>
-    <b-form-input
+    <b-form-textarea
       id="description"
       placeholder="Beer Description"
       class="mb-3"
       v-model="beer.description"
     >
-    </b-form-input>
+    </b-form-textarea>
 
-    <label for="img" class="sr-only">Beer Img</label>
-    <b-form-input
-      id="img"
-      placeholder="Beer image link"
-      class="mb-3"
-      v-model="beer.image"
-    >
-    </b-form-input>
-
-    <label for="breweryId" class="sr-only">Brewery ID</label>
-    <b-form-input
-      id="breweryId"
-      placeholder="Brewery ID"
-      class="mb-3"
-      v-model.number="beer.brewery_id"
-    >
-    </b-form-input>
-
-    <label for="active" class="sr-only">Beer Availability</label>
-    <b-form-checkbox id="active" class="mb-3 text-foam" v-model="beer.active">
-      {{ beer.active ? "Currently available" : "Not currently available" }}
-    </b-form-checkbox>
+    <b-row>
+      <b-col>
+        <label for="breweryId" class="sr-only">Brewery ID</label>
+        <b-form-select v-model="beer.brewery_id" :disabled="!isAdd">
+          <b-form-select-option disabled>Choose a Brewery</b-form-select-option>
+          <b-form-select-option
+            v-for="brewery in $store.getters.adminBreweries"
+            :key="brewery.brewery_id"
+            :value="brewery.brewery_id"
+          >{{brewery.name}}
+          </b-form-select-option>
+        </b-form-select>
+      </b-col>
+      <b-col>
+        <label for="active" class="sr-only">Beer Availability</label>
+        <b-form-checkbox
+          id="active"
+          class="mb-3 text-foam"
+          v-model="beer.active"
+        >
+          {{ beer.active ? "Currently available" : "Not currently available" }}
+        </b-form-checkbox>
+      </b-col>
+    </b-row>
 
     <!-- Add Beer Buttons -->
     <div class="mt-2 d-flex justify-content-end">
-        <button type="submit" class="btn bg-porter text-foam text-wheat-h" v-if="isAdd">
-          Add
-        </button>
-        <button type="submit" class="btn bg-porter text-foam text-wheat-h" v-if="!isAdd">
-          Update
-        </button>
-        <button
-          class="btn bg-porter text-foam text-wheat-h ml-2"
-          @click.prevent="setBeer"
-        >
-          Cancel
-        </button>
+      <button
+        type="submit"
+        class="btn bg-porter text-foam text-wheat-h"
+        v-if="isAdd"
+      >
+        Add
+      </button>
+      <button
+        type="submit"
+        class="btn bg-porter text-foam text-wheat-h"
+        v-if="!isAdd"
+      >
+        Update
+      </button>
+      <button
+        class="btn bg-porter text-foam text-wheat-h ml-2"
+        @click.prevent="setBeer"
+      >
+        Cancel
+      </button>
     </div>
   </b-form>
 </template>
@@ -146,11 +177,11 @@ export default {
           this.respMsg = "Successfully updated Beer";
           this.setBeer();
         })
-        .catch(err => {
+        .catch((err) => {
           this.respMsg = "Unable to update Beer";
           console.log(err);
-        })
-    }
+        });
+    },
   },
 };
 </script>

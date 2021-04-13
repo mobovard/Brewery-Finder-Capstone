@@ -59,6 +59,10 @@
             <h3>Contact Us</h3>
 
             <h5>{{ $store.state.brewery.address }}</h5>
+            <h5 v-if="brewery.city && brewery.state && brewery.zipcode">
+              {{ brewery.city }}, {{ brewery.state }}
+              {{ brewery.zipcode }}
+            </h5>
             <h5>{{ $store.state.brewery.phone_number }}</h5>
             <h5>{{ $store.state.brewery.email }}</h5>
           </div>
@@ -96,6 +100,11 @@ export default {
         console.log(err);
       });
   },
+  computed: {
+    brewery() {
+      return this.$store.state.brewery;
+    }
+  }
 };
 </script>
 
