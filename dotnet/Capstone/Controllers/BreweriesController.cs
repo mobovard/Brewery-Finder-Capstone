@@ -28,8 +28,25 @@ namespace Capstone.Controllers
 
         public ActionResult<List<Brewery>> BreweryList()
         {
+            IList<Brewery> breweries = null;
 
-            IList<Brewery> breweries = breweriesDAO.GetBreweries();
+            if (HttpContext.User.IsInRole("Admin"))
+            {
+                // TODO Call to new DAO GetBreweries method for all breweries, no active filter
+            }
+            else if (HttpContext.User.IsInRole("Brewer"))
+            {
+                //User Id to pass for filtering to owned breweries
+                int.TryParse(User.FindFirst("sub")?.Value, out int userId);
+
+                // Call to another new DAO GetBreweries method for active + breweries they own
+            }
+            else
+            {
+                //Existing method works for basic user (has the active filter)
+                breweries = breweriesDAO.GetBreweries();
+            }
+
             if (breweries != null)
             {
                 return Ok(breweries);
