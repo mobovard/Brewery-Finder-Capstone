@@ -65,6 +65,7 @@
           "
           >Go Back: {{ $store.state.brewery.name }}
         </b-link>
+        <BeerReviews/>
       </div>
     </div>
   </div>
@@ -72,9 +73,11 @@
 
 <script>
 import AddReviewForm from "../components/AddReviewForm";
+import BeerReviews from "../components/BeerReviews";
 export default {
   components: {
     AddReviewForm,
+    BeerReviews
   },
   props: {
     breweryId: { type: Number },
