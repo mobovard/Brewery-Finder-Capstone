@@ -65,9 +65,12 @@
           "
           >Go Back: {{ $store.state.brewery.name }}
         </b-link>
-        <BeerReviews/>
+
       </div>
     </div>
+    <div >
+            <BeerReviews/>
+            </div>
   </div>
 </template>
 
