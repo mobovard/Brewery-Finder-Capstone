@@ -6,11 +6,7 @@
     >
       Add a Review?
     </button>
-    <b-form
-      class="d-grid"
-      @submit.prevent="addNewReview"
-      v-if="displayAddReviewForm"
-    >
+    <b-form class="d-grid" v-if="displayAddReviewForm">
       <b-row>
         <b-col>
           <h4 class="text-foam text-center mt-2 mb-3">
@@ -73,7 +69,10 @@
             Cancel
           </button>
           <button
-            @click="displayAddReviewForm = false"
+            @click.prevent="
+              displayAddReviewForm = false;
+              addNewReview();
+            "
             class="btn bg-porter text-foam text-wheat-h mt-2 ml-2"
             type="submit"
           >
@@ -107,7 +106,7 @@ export default {
       console.log(this.newReview);
       BreweriesService.addReview(this.newReview)
         .then((resp) => {
-          this.$store.commit("SET_REVIEWS", resp.data);
+          this.$store.commit("ADD_REVIEW", resp.data);
         })
         .catch((err) => {
           console.log(err);

@@ -24,7 +24,7 @@ export default new Vuex.Store({
     brewery: {},
     beers: [],
     ageVerified: false,
-    adminBreweryIds: [ 1 ],
+    adminBreweryIds: [1],
     reviews: [],
     users: []
   },
@@ -57,6 +57,9 @@ export default new Vuex.Store({
     SET_REVIEWS(state, reviews) {
       state.reviews = reviews;
     },
+    ADD_REVIEW(state, review) {
+       state.reviews.push(review) 
+      },
     SET_AGE_OVER_21(state) {
       state.ageVerified = true;
     },
@@ -75,7 +78,7 @@ export default new Vuex.Store({
       return state.token != '' && state.user.role === 'Admin';
     },
     isOver21(state) {
-      return state.ageVerified; 
+      return state.ageVerified;
     },
     getBrewery: (state) => (id) => {
       return state.breweries.find(brewery => brewery.brewery_id === id);
