@@ -35,7 +35,7 @@ namespace Capstone.Controllers
                 breweries = breweriesDAO.GetBreweriesAdmin();
                 // TODO Call to new DAO GetBreweries method for all breweries, no active filter
             }
-            else if (HttpContext.User.IsInRole("Brewer"))
+            else if (HttpContext.User.IsInRole("Brewer"))       
             {
                 //User Id to pass for filtering to owned breweries
                 int.TryParse(User.FindFirst("sub")?.Value, out int userId);

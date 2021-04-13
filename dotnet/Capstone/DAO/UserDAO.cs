@@ -176,7 +176,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("SELECT user_id, username,user_role,first_name,last_name,email FROM users WHERE user_id = @user_id", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT user_id, username,user_role,first_name,last_name,email,active FROM users WHERE user_id = @user_id", conn);
                     cmd.Parameters.AddWithValue("@user_id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -204,7 +204,8 @@ namespace Capstone.DAO
                 Role = Convert.ToString(reader["user_role"]),
                 FirstName = Convert.ToString(reader["first_name"]),
                 LastName = Convert.ToString(reader["last_name"]),
-                Email = Convert.ToString(reader["email"])
+                Email = Convert.ToString(reader["email"]),
+                Active = Convert.ToBoolean(reader["active"])
             };
 
             return u;
