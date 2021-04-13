@@ -16,6 +16,8 @@ namespace Capstone.Models
 
         public DateTime DOB { get; set; }
 
+        public bool Active { get; set; } = true;
+
     }
 
     /// <summary>
@@ -29,6 +31,7 @@ namespace Capstone.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public bool Active { get; set; }
     }
 
     /// <summary>

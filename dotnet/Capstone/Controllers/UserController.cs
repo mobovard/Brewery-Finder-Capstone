@@ -36,5 +36,34 @@ namespace Capstone.Controllers
             }
 
         }
+        [HttpPut("/users")]
+
+        public ActionResult<ReturnUser> UpdateUser(int active,string role,int user_id)
+        {
+            ReturnUser returnUser = null;
+
+            if (HttpContext.User.IsInRole("Admin"))
+            {
+                
+                returnUser = userDAO.UpdateUserAdmin(active,role, user_id);
+            }
+            else
+            {
+                //Existing method works for basic user (has the active filter)
+
+                int.TryParse(User.FindFirst("sub")?.Value, out user_id);
+                //user_id = 2; 
+                returnUser = userDAO.UpdateUserUser(active,user_id);
+            }
+            if (returnUser != null)
+            {
+                return Ok(returnUser);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }
+
