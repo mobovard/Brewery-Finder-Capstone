@@ -74,6 +74,14 @@ export default {
         })
         .catch((err) => console.log(err));
     }
+    if (this.$store.state.users.length === 0) {
+      breweriesService
+        .getUsers()
+        .then(resp => {
+          this.$store.commit("SET_USERS", resp.data);
+        })
+        .catch(err => console.log(err));
+    }
   },
   computed: {
     displayBreweryIdSelector() {

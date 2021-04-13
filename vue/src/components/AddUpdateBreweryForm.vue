@@ -71,24 +71,21 @@
     <b-row>
       <b-col>
         <label for="brewer" class="sr-only">User ID of Brewer</label>
-        <b-form-input
-          id="brewer"
-          v-model.number="brewery.user_id"
-          placeholder="User ID of Brewer"
-          class="mb-3"
-        ></b-form-input>
+        <b-form-select v-model="brewery.user_id">
+          <b-form-select-option disabled>Choose a Brewer</b-form-select-option>
+          <b-form-select-option
+            v-for="brewer in $store.getters.brewers"
+            :key="brewer.userId"
+            :value="brewer.userId"
+            >{{ brewer.username }}
+          </b-form-select-option>
+        </b-form-select>
       </b-col>
-      <b-col>
-        
-      </b-col>
+      <b-col> </b-col>
     </b-row>
     <b-row>
-      <b-col>
-        
-      </b-col>
-      <b-col>
-        
-      </b-col>
+      <b-col> </b-col>
+      <b-col> </b-col>
     </b-row>
 
     <b-row>
