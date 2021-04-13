@@ -7,17 +7,19 @@ export default {
     getBrewery(id){
         return axios.get(`/breweries/${id}`);
     },
-    getBeers(breweryId) {
-        return axios.get(`/breweries/${breweryId}/beers`);
-    },
-    getBeer(beerId) {
-        return axios.get(`/beers/${beerId}`);
-    },
     addBrewery(brewery) {
         return axios.post('/breweries', brewery);
     },
     updateBrewery(brewery) {
         return axios.put(`/breweries`, brewery);
+    },
+
+
+    getBeer(beerId) {
+        return axios.get(`/beers/${beerId}`);
+    },
+    getBeers(breweryId) {
+        return axios.get(`/breweries/${breweryId}/beers`);
     },
     addBeer(beer) {
         return axios.post(`/beers`, beer);
@@ -25,10 +27,16 @@ export default {
     updateBeer(beer) {
         return axios.put('/beers', beer);
     },
+
+
     getReviews(beerId) {
         return axios.get(`/ratings/${beerId}`);
     },
     addReview(review) {
         return axios.post('/ratings', review);
-    }
+    },
+
+    getUsers() {
+        return axios.get('/users');
+    },
 }

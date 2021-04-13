@@ -175,7 +175,6 @@ export default {
         .updateBeer(this.beer)
         .then(() => {
           this.respMsg = "Successfully updated Beer";
-          this.setBeer();
         })
         .catch((err) => {
           this.respMsg = "Unable to update Beer";

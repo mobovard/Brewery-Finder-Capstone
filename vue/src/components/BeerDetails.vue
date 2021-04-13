@@ -47,11 +47,7 @@
             <p class="text-porter">
               {{ beer.description }}
             </p>
-            <p>
-              Favorite?
-              <input type="checkbox" />
-            </p>
-            <b-row>
+                   <b-row>
               <b-col>
                 <AddReviewForm />
               </b-col>

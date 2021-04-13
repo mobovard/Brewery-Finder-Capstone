@@ -8,10 +8,10 @@
       <div
         v-if="
           $store.getters.isAdmin ||
-            ($store.getters.isBrewer &&
-              $store.state.adminBreweryIds.includes(
-                $store.state.brewery.brewery_id
-              ))
+          ($store.getters.isBrewer &&
+            $store.state.adminBreweryIds.includes(
+              $store.state.brewery.brewery_id
+            ))
         "
         class="d-flex justify-content-end"
       >
@@ -38,6 +38,10 @@
       <b-row class="m-0">
         <b-col class="frosty-porterdk p-3 mr-2 mt-2 rounded">
           <img class="img-fluid" :src="$store.state.brewery.logo" />
+          <h6 class="text-foam">
+            Favorite Brewery?
+            <input type="checkbox" />
+          </h6>
           <div class="hours-table">
             <b-table
               class="text-foam"
@@ -103,8 +107,8 @@ export default {
   computed: {
     brewery() {
       return this.$store.state.brewery;
-    }
-  }
+    },
+  },
 };
 </script>
 

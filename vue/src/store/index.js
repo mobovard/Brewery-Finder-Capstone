@@ -25,7 +25,8 @@ export default new Vuex.Store({
     beers: [],
     ageVerified: false,
     adminBreweryIds: [ 1 ],
-    reviews: []
+    reviews: [],
+    users: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -58,6 +59,9 @@ export default new Vuex.Store({
     },
     SET_AGE_OVER_21(state) {
       state.ageVerified = true;
+    },
+    SET_USERS(state, users) {
+      state.users = users;
     }
   },
   getters: {
@@ -87,6 +91,9 @@ export default new Vuex.Store({
     },
     activeBeers(state) {
       return state.beers.filter(beer => beer.active);
+    },
+    brewers(state) {
+      return state.users.filter(user => user.role === 'Brewer' || user.role === 'Admin')
     }
   }
 })
