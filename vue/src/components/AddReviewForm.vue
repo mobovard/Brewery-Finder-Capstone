@@ -61,7 +61,7 @@
           <button
             class="btn bg-porter text-foam text-wheat-h mt-2 ml-2"
             v-on:click.prevent="
-              resetForm;
+              resetForm();
               displayAddReviewForm = false;
             "
             type="cancel"
@@ -70,8 +70,8 @@
           </button>
           <button
             @click.prevent="
-              displayAddReviewForm = false;
               addNewReview();
+              resetForm();
             "
             class="btn bg-porter text-foam text-wheat-h mt-2 ml-2"
             type="submit"
@@ -111,6 +111,7 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+      this.displayAddReviewForm = false;
     },
     resetForm() {
       this.newReview = {};
