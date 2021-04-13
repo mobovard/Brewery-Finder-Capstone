@@ -81,7 +81,14 @@ CREATE TABLE ratings(
 	user_id int,
 	beer_id int,
 
-
+	CONSTRAINT PK_rating PRIMARY KEY (rating_id),
+);
+CREATE TABLE favorites(
+	favorite_id int IDENTITY(1,3),
+	user_id int,
+	brewery_id int,
+	
+	CONSTRAINT PK_favorites PRIMARY KEY (favorite_id),
 
 );
 ALTER TABLE brewery
@@ -98,6 +105,10 @@ ALTER TABLE ratings
 ALTER TABLE ratings
 	ADD FOREIGN KEY(beer_id) REFERENCES beers(beer_id);
 
+ALTER TABLE favorites
+	ADD FOREIGN KEY(user_id) REFERENCES users(user_id);
+ALTER TABLE favorites
+	ADD FOREIGN KEY(brewery_id) REFERENCES brewery(brewery_id);
 
 
 

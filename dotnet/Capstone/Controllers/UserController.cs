@@ -36,9 +36,9 @@ namespace Capstone.Controllers
             }
 
         }
-        [HttpPut("/users")]
+        [HttpPut("/users/{user_id}")]
 
-        public ActionResult<ReturnUser> UpdateUser(int active,string role,int user_id)
+        public ActionResult<ReturnUser> UpdateUser(int user_id,int active,string role)
         {
             ReturnUser returnUser = null;
 
