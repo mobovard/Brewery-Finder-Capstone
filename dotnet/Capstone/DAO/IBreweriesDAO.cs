@@ -8,7 +8,9 @@ namespace Capstone.DAO
 {
     public interface IBreweriesDAO
     {
-        IList<Brewery> GetBreweries();
+        IList<Brewery> GetBreweriesBrewer(int userId);
+        IList<Brewery> GetBreweriesAdmin();
+        IList<Brewery> GetBreweriesUser();
 
         Brewery GetBreweryById(int id);
 

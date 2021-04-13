@@ -17,7 +17,7 @@ namespace Capstone.DAO
         }
 
 
-        public IList<Brewery> GetBreweries()
+        public IList<Brewery> GetBreweriesUser()
         {
             List<Brewery> breweries = new List<Brewery>();
 
@@ -43,6 +43,62 @@ namespace Capstone.DAO
             }
             return breweries;
         }
+        public IList<Brewery> GetBreweriesAdmin()
+        {
+            List<Brewery> breweries = new List<Brewery>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT *  FROM brewery JOIN operation ON operation.brewery_id = brewery.brewery_id";
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        breweries.Add(breweryFromReader(reader));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return breweries;
+        }
+        public IList<Brewery> GetBreweriesBrewer(int userId)
+        {
+            List<Brewery> breweries = new List<Brewery>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT *  FROM brewery JOIN operation ON operation.brewery_id = brewery.brewery_id WHERE brewery.user_id = @user_id";
+                 
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    
+
+
+                    while (reader.Read())
+                    {
+                        breweries.Add(breweryFromReader(reader));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return breweries;
+        }
+
 
         private Brewery breweryFromReader(SqlDataReader reader)
         {
