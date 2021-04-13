@@ -113,6 +113,18 @@ namespace Capstone.DAO
             {
                 brewery.Address = Convert.ToString(reader["address"]);
             }
+            if (!(reader["zipcode"] is DBNull))
+            {
+                brewery.Zipcode = Convert.ToString(reader["zipcode"]);
+            }
+            if (!(reader["city"] is DBNull))
+            {
+                brewery.City = Convert.ToString(reader["city"]);
+            }
+            if (!(reader["state"] is DBNull))
+            {
+                brewery.State = Convert.ToString(reader["state"]);
+            }
 
             if (!(reader["brewery_img"] is DBNull))
             {
