@@ -34,7 +34,11 @@
           <img class="img-fluid" :src="$store.state.brewery.logo" />
           <h6 class="text-foam">
             Favorite Brewery?
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              v-model="favorited"
+              @change="favoritedUpdated()"
+            />
           </h6>
           <div class="hours-table">
             <b-table
@@ -79,6 +83,7 @@ export default {
   data() {
     return {
       hoo: [],
+      favorited: false,
     };
   },
   created() {
@@ -93,6 +98,10 @@ export default {
         )) {
           this.hoo.push({ Day: day, Hours: time });
         }
+
+        this.favorited = this.$store.getters.isFavoriteBrewery(
+          this.brewery.brewery_id
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -101,6 +110,28 @@ export default {
   computed: {
     brewery() {
       return this.$store.state.brewery;
+    },
+  },
+  methods: {
+    favoritedUpdated() {
+      if (this.favorited) {
+        breweriesServices
+          .setFavoriteBrewery(this.brewery.brewery_id)
+          .then(() => {
+            this.$store.commit("ADD_FAVORITE_BREWERY", this.brewery.brewery_id);
+          })
+          .catch((err) => console.log(err));
+      } else {
+        breweriesServices
+          .removeFavoriteBrewery(this.brewery.brewery_id)
+          .then(() => {
+            this.$store.commit(
+              "REMOVE_FAVORITE_BREWERY",
+              this.brewery.brewery_id
+            );
+          })
+          .catch((err) => console.log(err));
+      }
     },
   },
 };

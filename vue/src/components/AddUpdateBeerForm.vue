@@ -64,13 +64,16 @@
     <b-row>
       <b-col>
         <label for="breweryId" class="sr-only">Brewery ID</label>
-        <b-form-select v-model="beer.brewery_id" :disabled="!isAdd">
+        <b-form-select
+          v-model="beer.brewery_id"
+          :disabled="!$store.getters.isAdmin && !isAdd"
+        >
           <b-form-select-option disabled>Choose a Brewery</b-form-select-option>
           <b-form-select-option
             v-for="brewery in $store.getters.adminBreweries"
             :key="brewery.brewery_id"
             :value="brewery.brewery_id"
-          >{{brewery.name}}
+            >{{ brewery.name }}
           </b-form-select-option>
         </b-form-select>
       </b-col>
@@ -104,7 +107,7 @@
       </button>
       <button
         class="btn bg-porter text-foam text-wheat-h ml-2"
-        @click.prevent="setBeer"
+        @click.prevent="$router.push({ name: 'admin' })"
       >
         Cancel
       </button>

@@ -43,4 +43,14 @@ export default {
     updateUser(user) {
         return axios.put(`/users/${user.userId}?active=${user.active ? 1 : 0}${store.getters.isAdmin ? `&role=${user.role}`: ''}`);
     },
+
+    getFavoriteBreweries() {
+        return axios.get('/favorite');
+    },
+    setFavoriteBrewery(breweryId) {
+        return axios.post(`/favorite/${breweryId}`);
+    },
+    removeFavoriteBrewery(breweryId) {
+        return axios.delete(`/favorite/${breweryId}`);
+    }
 }

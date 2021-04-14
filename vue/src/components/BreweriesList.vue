@@ -46,6 +46,12 @@ export default {
         this.errMsg = err.message;
         console.log(err);
       });
+    breweriesServices
+      .getFavoriteBreweries()
+      .then(resp => {
+        this.$store.commit("SET_FAVORITE_BREWERIES", resp.data)
+      })
+      .catch(err => console.log(err));
   },
   computed: {
     hasError() {

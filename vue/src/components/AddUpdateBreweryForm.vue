@@ -254,7 +254,10 @@
         >
           Update
         </button>
-        <button class="btn bg-porter text-foam text-wheat-h ml-2">
+        <button
+          class="btn bg-porter text-foam text-wheat-h ml-2"
+          @click.prevent="$router.push({ name: 'admin' })"
+        >
           Cancel
         </button>
       </b-col>
@@ -313,33 +316,29 @@ export default {
       this.hoursOfOperation = brewery?.hoursOfOperation ?? {};
     },
     addBrewery() {
-      if (confirm("Are you sure?")) {
-        breweriesService
-          .addBrewery(this.fullBrewery)
-          .then(() => {
-            this.respMsg = "Successfully added Brewery";
-            this.setBrewery();
-          })
-          .catch((err) => {
-            this.respMsg = "Unable to add Brewery";
-            console.log(err);
-          });
-      }
+      breweriesService
+        .addBrewery(this.fullBrewery)
+        .then(() => {
+          this.respMsg = "Successfully added Brewery";
+          this.setBrewery();
+        })
+        .catch((err) => {
+          this.respMsg = "Unable to add Brewery";
+          console.log(err);
+        });
     },
     updateBrewery() {
-      if (confirm("Are you sure?")) {
-        BreweriesService.updateBrewery(this.fullBrewery)
-          .then((resp) => {
-            if (resp.status === 200) {
-              this.respMsg = "Successfully updated Brewery";
-            }
-            this.setBrewery(resp.data);
-          })
-          .catch((err) => {
-            this.respMsg = "Unable to update Brewery";
-            console.log(err);
-          });
-      }
+      BreweriesService.updateBrewery(this.fullBrewery)
+        .then((resp) => {
+          if (resp.status === 200) {
+            this.respMsg = "Successfully updated Brewery";
+          }
+          this.setBrewery(resp.data);
+        })
+        .catch((err) => {
+          this.respMsg = "Unable to update Brewery";
+          console.log(err);
+        });
     },
   },
 };

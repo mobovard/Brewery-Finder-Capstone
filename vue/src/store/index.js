@@ -25,7 +25,8 @@ export default new Vuex.Store({
     beers: [],
     ageVerified: false,
     reviews: [],
-    users: []
+    users: [],
+    favoriteBreweries: [ 1 ],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -67,6 +68,17 @@ export default new Vuex.Store({
     },
     UPDATE_USER(state, user) {
       state.users = state.users.map(u => (u.userId === user.userId) ? user : u);
+    },
+    SET_FAVORITE_BREWERIES(state, breweries) {
+      state.favoriteBreweries = breweries;
+    },
+    ADD_FAVORITE_BREWERY(state, breweryId) {
+      if (!state.favoriteBreweries.includes(breweryId)) state.favoriteBreweries.push(breweryId);
+    },
+    REMOVE_FAVORITE_BREWERY(state, breweryId) {
+      if (state.favoriteBreweries.includes(breweryId)) {
+        state.favoriteBreweries.splice(state.favoriteBreweries.indexOf(breweryId), 1);
+      }
     }
   },
   getters: {
@@ -105,6 +117,9 @@ export default new Vuex.Store({
     },
     getUser: state => id => {
       return state.users.find(user => user.userId === id);
+    },
+    isFavoriteBrewery: state => id => {
+      return state.favoriteBreweries.includes(id);
     }
   }
 })
