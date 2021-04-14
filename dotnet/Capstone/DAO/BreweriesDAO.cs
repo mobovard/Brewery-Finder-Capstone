@@ -78,7 +78,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT *  FROM brewery JOIN operation ON operation.brewery_id = brewery.brewery_id WHERE brewery.user_id = 2 OR brewery.active=1;";
+                    string sql = "SELECT *  FROM brewery JOIN operation ON operation.brewery_id = brewery.brewery_id WHERE brewery.user_id = @user_id OR brewery.active=1;";
                  
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@user_id", userId);
