@@ -194,6 +194,34 @@ namespace Capstone.DAO
 
             return returnUser;
         }
+        public List<ReturnUser> GetReturnUserList()
+        {
+            List<ReturnUser> returnUserList = new List<ReturnUser>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("SELECT user_id, username,user_role,first_name,last_name,email,active FROM users", conn);
+                    
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        returnUserList.Add(GetReturnUserFromReader(reader));
+                    }
+                }
+            }
+
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return returnUserList;
+        }
 
         private ReturnUser GetReturnUserFromReader(SqlDataReader reader)
         {

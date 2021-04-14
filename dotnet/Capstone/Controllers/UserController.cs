@@ -25,7 +25,7 @@ namespace Capstone.Controllers
         public ActionResult<List<User>> UserList()
         {
 
-            IList<User> users = userDAO.GetUsers();
+            IList<ReturnUser> users = userDAO.GetReturnUserList();
             if (users != null)
             {
                 return Ok(users);

@@ -12,6 +12,7 @@ namespace Capstone.DAO
 
         ReturnUser UpdateUserUser(int active,int user_id);
         ReturnUser UpdateUserAdmin(int active,string role, int user_id);
+        List<ReturnUser> GetReturnUserList();
 
     }
 }
