@@ -155,21 +155,42 @@ namespace Capstone.DAO
             {
                 brewery.Logo = Convert.ToString(reader["logo"]);
             }
+            if(!(reader["monday"] is DBNull))
+            {
+                string monday = Convert.ToString(reader["monday"]);
+                dictionary.Add("Monday", monday);
+            }
+            if (!(reader["tuesday"] is DBNull))
+            {
+                string tuesday = Convert.ToString(reader["tuesday"]);
+                dictionary.Add("Tuesday", tuesday);
+            }
+            if (!(reader["wednesday"] is DBNull))
+            {
+                string wednesday = Convert.ToString(reader["wednesday"]);
+                dictionary.Add("wednesday", wednesday);
+            }
+            if (!(reader["thursday"] is DBNull))
+            {
+                string thursday = Convert.ToString(reader["thursday"]);
+                dictionary.Add("thursday", thursday);
+            }
+            if (!(reader["friday"] is DBNull))
+            {
+                string friday = Convert.ToString(reader["friday"]);
+                dictionary.Add("friday", friday);
+            }
+            if (!(reader["saturday"] is DBNull))
+            {
+                string saturday = Convert.ToString(reader["saturday"]);
+                dictionary.Add("saturday", saturday);
+            }
+            if (!(reader["sunday"] is DBNull))
+            {
+                string sunday = Convert.ToString(reader["sunday"]);
+                dictionary.Add("sunday", sunday);
+            }
 
-            string monday = Convert.ToString(reader["monday"]);
-            string tuesday= Convert.ToString(reader["tuesday"]);
-            string wednesday = Convert.ToString(reader["wednesday"]);
-            string thursday  = Convert.ToString(reader["thursday"]);
-            string friday = Convert.ToString(reader["friday"]);
-            string saturday = Convert.ToString(reader["saturday"]);
-            string sunday = Convert.ToString(reader["sunday"]);
-            dictionary.Add("Monday", monday);
-            dictionary.Add("Tuesday", tuesday);
-            dictionary.Add("Wednesday", wednesday);
-            dictionary.Add("Thursday", thursday);
-            dictionary.Add("Friday", friday);
-            dictionary.Add("Saturday", saturday);
-            dictionary.Add("Sunday", sunday);
             brewery.HoursOfOperation = dictionary;
             return brewery;
         }
@@ -243,13 +264,13 @@ namespace Capstone.DAO
                     brewery.HoursOfOperation.TryGetValue("Saturday", out string saturday);
                     brewery.HoursOfOperation.TryGetValue("Sunday", out string sunday);
 
-                    cmd2.Parameters.AddWithValue("@monday", monday);
-                    cmd2.Parameters.AddWithValue("@tuesday", tuesday);
-                    cmd2.Parameters.AddWithValue("@wednesday", wednesday);
-                    cmd2.Parameters.AddWithValue("@thursday", thursday);
-                    cmd2.Parameters.AddWithValue("@friday", friday);
-                    cmd2.Parameters.AddWithValue("@saturday", saturday);
-                    cmd2.Parameters.AddWithValue("@sunday", sunday);
+                    cmd2.Parameters.AddWithNullableValue("@monday", monday);
+                    cmd2.Parameters.AddWithNullableValue("@tuesday", tuesday);
+                    cmd2.Parameters.AddWithNullableValue("@wednesday", wednesday);
+                    cmd2.Parameters.AddWithNullableValue("@thursday", thursday);
+                    cmd2.Parameters.AddWithNullableValue("@friday", friday);
+                    cmd2.Parameters.AddWithNullableValue("@saturday", saturday);
+                    cmd2.Parameters.AddWithNullableValue("@sunday", sunday);
                     cmd2.Parameters.AddWithValue("@brewery_id", id);
 
                     cmd2.ExecuteNonQuery();
@@ -314,13 +335,13 @@ namespace Capstone.DAO
                     updatedBrewery.HoursOfOperation.TryGetValue("Saturday", out string saturday);
                     updatedBrewery.HoursOfOperation.TryGetValue("Sunday", out string sunday);
 
-                    cmd2.Parameters.AddWithValue("@monday", monday);
-                    cmd2.Parameters.AddWithValue("@tuesday", tuesday);
-                    cmd2.Parameters.AddWithValue("@wednesday", wednesday);
-                    cmd2.Parameters.AddWithValue("@thursday", thursday);
-                    cmd2.Parameters.AddWithValue("@friday", friday);
-                    cmd2.Parameters.AddWithValue("@saturday", saturday);
-                    cmd2.Parameters.AddWithValue("@sunday", sunday);
+                    cmd2.Parameters.AddWithNullableValue("@monday", monday);
+                    cmd2.Parameters.AddWithNullableValue("@tuesday", tuesday);
+                    cmd2.Parameters.AddWithNullableValue("@wednesday", wednesday);
+                    cmd2.Parameters.AddWithNullableValue("@thursday", thursday);
+                    cmd2.Parameters.AddWithNullableValue("@friday", friday);
+                    cmd2.Parameters.AddWithNullableValue("@saturday", saturday);
+                    cmd2.Parameters.AddWithNullableValue("@sunday", sunday);
                     cmd2.Parameters.AddWithValue("@brewery_id", updatedBrewery.Brewery_id);
 
                     int numberOfRowsOperation = cmd2.ExecuteNonQuery();
