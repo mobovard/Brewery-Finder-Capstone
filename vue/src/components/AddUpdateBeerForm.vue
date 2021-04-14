@@ -3,7 +3,8 @@
     <h4 class="text-foam text-center mt-2 mb-3">
       {{ isAdd ? "Add" : "Update" }} a Beer
     </h4>
-    <p class="alert alert-warning text-center" v-if="respMsg">{{ respMsg }}</p>
+    <p class="alert alert-danger text-center" v-if="errMsg">{{ errMsg }}</p>
+    <p class="alert alert-success text-center" v-if="respMsg">{{ respMsg }}</p>
 
     <h5 class="text-foam text-left mt-2 mb-3">Beer Information:</h5>
 
@@ -126,6 +127,7 @@ export default {
   data() {
     return {
       beer: {},
+      errMsg: "",
       respMsg: "",
     };
   },
@@ -144,7 +146,7 @@ export default {
             this.setBeer(resp.data);
           })
           .catch((err) => {
-            this.respMsg = `No Brewery with ID ${this.beerId} exists. Please Add instead`;
+            this.errMsg = `No Brewery with ID ${this.beerId} exists. Please Add instead`;
             console.log(err);
           });
       }
@@ -162,6 +164,8 @@ export default {
       this.beer = beer ?? {};
     },
     addBeer() {
+      this.errMsg = "";
+      this.respMsg = "";
       breweriesService
         .addBeer(this.beer)
         .then(() => {
@@ -169,18 +173,20 @@ export default {
           this.setBeer();
         })
         .catch((err) => {
-          this.respMsg = "Unable to add Beer";
+          this.errMsg = "Unable to add Beer";
           console.log(err);
         });
     },
     updateBeer() {
+      this.errMsg = "";
+      this.respMsg = "";
       breweriesService
         .updateBeer(this.beer)
         .then(() => {
           this.respMsg = "Successfully updated Beer";
         })
         .catch((err) => {
-          this.respMsg = "Unable to update Beer";
+          this.errMsg = "Unable to update Beer";
           console.log(err);
         });
     },
