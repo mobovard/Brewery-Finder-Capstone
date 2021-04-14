@@ -44,7 +44,7 @@
             id="rating"
             v-model.number="newReview.rating"
             :select-size="1"
-            size="sm"
+            size="sm mb2"
             class="selectRating"
           >
             <option value="1">1 Hops</option>
