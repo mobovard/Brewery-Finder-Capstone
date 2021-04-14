@@ -1,6 +1,6 @@
 <template>
   <div class="rating d-grid">
-    <div class="frosty-foam p-3 mt-2 rounded text-porter">
+    <div class="frosty-foam p-3 mt-2 rounded text-porter" v-if="averageRating !== 0">
       <h6>
         Avg Rating:
         <img
