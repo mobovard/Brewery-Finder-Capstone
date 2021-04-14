@@ -26,7 +26,7 @@ export default new Vuex.Store({
     ageVerified: false,
     reviews: [],
     users: [],
-    favoriteBreweries: [ 1 ],
+    favoriteBreweries: [],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -50,6 +50,9 @@ export default new Vuex.Store({
     },
     SET_BREWERY(state, brewery) {
       state.brewery = brewery;
+    },
+    ADD_BREWERY(state, brewery) {
+      state.breweries.push(brewery);
     },
     SET_BEERS(state, beers) {
       state.beers = beers;

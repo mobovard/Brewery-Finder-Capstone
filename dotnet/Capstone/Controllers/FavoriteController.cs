@@ -34,12 +34,12 @@ namespace Capstone.Controllers
             }
             
         }
-        [HttpPost("/favorite")]
+        [HttpPost("/favorite/{brewery_id}")]
 
-        public ActionResult<Favorite> AddAFavorite(int id)
+        public ActionResult<Favorite> AddAFavorite(int brewery_id)
         {
             int.TryParse(User.FindFirst("sub")?.Value, out int myId);
-            Favorite favorite = favoriteDAO.AddFavorite(myId, id);
+            Favorite favorite = favoriteDAO.AddFavorite(myId, brewery_id);
 
             if(favorite != null)
             {
@@ -50,7 +50,7 @@ namespace Capstone.Controllers
                 return BadRequest();
             }
         }
-        [HttpDelete("/favorite")]
+        [HttpDelete("/favorite/{brewery_id}")]
 
         public ActionResult DeleteAFavorite(int brewery_id)
         {

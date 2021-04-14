@@ -10,7 +10,7 @@
         class="d-flex justify-content-end"
       >
         <b-link
-          class="btn bg-porter text-foam text-wheat-h"
+          class="btn frosty-porter text-foam text-wheat-h"
           :to="{
             name: 'updateBrewery',
             params: { breweryId: $store.state.brewery.brewery_id },
@@ -18,7 +18,7 @@
           >Edit Brewery</b-link
         >
         <b-link
-          class="btn bg-porter text-foam text-wheat-h ml-2"
+          class="btn frosty-porter text-foam text-wheat-h ml-2"
           :to="{ name: 'addBeer' }"
           >Add Beer</b-link
         >

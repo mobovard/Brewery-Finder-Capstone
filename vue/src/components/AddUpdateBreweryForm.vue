@@ -11,9 +11,10 @@
       </b-col>
     </b-row>
 
-    <b-row v-if="respMsg">
+    <b-row v-if="respMsg || errMsg">
       <b-col>
-        <p class="alert alert-warning text-center">{{ respMsg }}</p>
+        <p class="alert alert-danger text-center" v-if="errMsg">{{ errMsg }}</p>
+        <p class="alert alert-success text-center" v-if="respMsg">{{ respMsg }}</p>
       </b-col>
     </b-row>
 
@@ -276,6 +277,7 @@ export default {
     return {
       brewery: {},
       hoursOfOperation: {},
+      errMsg: "",
       respMsg: "",
     };
   },
@@ -294,7 +296,7 @@ export default {
             this.setBrewery(resp.data);
           })
           .catch((err) => {
-            this.respMsg = `No Brewery with ID ${this.breweryId} exists. Please Add instead`;
+            this.errMsg = `No Brewery with ID ${this.breweryId} exists. Please Add instead`;
             console.log(err);
           });
       }
@@ -318,12 +320,13 @@ export default {
     addBrewery() {
       breweriesService
         .addBrewery(this.fullBrewery)
-        .then(() => {
+        .then(resp => {
           this.respMsg = "Successfully added Brewery";
-          this.setBrewery();
+          this.$store.commit("ADD_BREWERY", resp.data);
+          this.setBrewery(resp.data);
         })
         .catch((err) => {
-          this.respMsg = "Unable to add Brewery";
+          this.errMsg = "Unable to add Brewery";
           console.log(err);
         });
     },
@@ -336,7 +339,7 @@ export default {
           this.setBrewery(resp.data);
         })
         .catch((err) => {
-          this.respMsg = "Unable to update Brewery";
+          this.errMsg = "Unable to update Brewery";
           console.log(err);
         });
     },
