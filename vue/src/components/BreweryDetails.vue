@@ -6,13 +6,7 @@
         <h1>{{ $store.state.brewery.name }}</h1>
       </div>
       <div
-        v-if="
-          $store.getters.isAdmin ||
-          ($store.getters.isBrewer &&
-            $store.state.adminBreweryIds.includes(
-              $store.state.brewery.brewery_id
-            ))
-        "
+        v-if="$store.getters.hasAccess(brewery.brewery_id)"
         class="d-flex justify-content-end"
       >
         <b-link

@@ -24,7 +24,6 @@ export default new Vuex.Store({
     brewery: {},
     beers: [],
     ageVerified: false,
-    adminBreweryIds: [1],
     reviews: [],
     users: []
   },
@@ -65,6 +64,9 @@ export default new Vuex.Store({
     },
     SET_USERS(state, users) {
       state.users = users;
+    },
+    UPDATE_USER(state, user) {
+      state.users = state.users.map(u => (u.userId === user.userId) ? user : u);
     }
   },
   getters: {
@@ -87,7 +89,10 @@ export default new Vuex.Store({
       return state.beers.find(beer => beer.beer_id === id);
     },
     adminBreweries(state, getters) {
-      return state.breweries.filter(brewery => getters.isAdmin || (getters.isBrewer && state.breweries.map(b => b.brewery_id).includes(brewery.brewery_id)));
+      return state.breweries.filter(brewery => getters.isAdmin || (getters.isBrewer && brewery.user_id === state.user.userId));
+    },
+    hasAccess: (state, getters) => (id) => {
+      return getters.isAdmin || (getters.isBrewer && getters.adminBreweries.map(b => b.brewery_id).includes(id));
     },
     activeBreweries(state) {
       return state.breweries.filter(brewery => brewery.active);

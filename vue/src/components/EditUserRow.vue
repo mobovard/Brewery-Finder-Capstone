@@ -16,7 +16,7 @@
     <td aria-colindex="4" role="cell">
       <button
         class="btn bg-porter text-foam text-wheat-h"
-        @click="isEdit = !isEdit"
+        @click="isEdit ? onSave() : onEdit()"
       >
         {{ isEdit ? "Save" : "Edit" }}
       </button>
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import breweriesService from "../services/BreweriesService";
+
 export default {
   props: ["userId"],
   data() {
@@ -54,6 +56,18 @@ export default {
   methods: {
     setUserFromStore() {
       this.user = { ...this.$store.getters.getUser(this.userId) };
+    },
+    onSave() {
+      breweriesService
+        .updateUser(this.user)
+        .then((resp) => {
+          this.$store.commit("UPDATE_USER", resp.data);
+        })
+        .catch((err) => console.log(err));
+      this.isEdit = false;
+    },
+    onEdit() {
+      this.isEdit = true;
     },
   },
 };

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '../store/index';
 
 export default {
     getBreweries() {
@@ -38,5 +39,8 @@ export default {
 
     getUsers() {
         return axios.get('/users');
+    },
+    updateUser(user) {
+        return axios.put(`/users/${user.userId}?active=${user.active ? 1 : 0}${store.getters.isAdmin ? `&role=${user.role}`: ''}`);
     },
 }
