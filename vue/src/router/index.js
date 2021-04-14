@@ -14,6 +14,7 @@ import AddUpdateBeerForm from '../components/AddUpdateBeerForm.vue'
 import AdminBrewerySelector from '../components/AdminBrewerySelector.vue'
 import AdminBeerSelector from '../components/AdminBeerSelector.vue'
 import EditUsers from '../components/EditUsers.vue'
+import User from '../views/User.vue'
 import store from '../store/index'
 
 Vue.use(Router)
@@ -73,6 +74,14 @@ const router = new Router({
       }
     },
     {
+      path: "/user",
+      name: "user",
+      component: User,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/breweries',
       name: 'breweries',
       component: Breweries,
@@ -109,7 +118,7 @@ const router = new Router({
         {
           path: '/add-brewery',
           name: 'addBrewery',
-          components: { adminForm: AddUpdateBreweryForm},
+          components: { adminForm: AddUpdateBreweryForm },
           meta: { reqAdmin: true }
         },
         {
@@ -120,13 +129,13 @@ const router = new Router({
         {
           path: '/update-brewery/:breweryId',
           name: 'updateBrewery',
-          components: { adminForm: AddUpdateBreweryForm},
+          components: { adminForm: AddUpdateBreweryForm },
           props: { adminForm: true }
         },
         {
           path: '/add-beer',
           name: 'addBeer',
-          components: { adminForm: AddUpdateBeerForm},
+          components: { adminForm: AddUpdateBeerForm },
         },
         {
           path: '/update-beer',
@@ -136,7 +145,7 @@ const router = new Router({
         {
           path: '/update-beer/:beerId',
           name: 'updateBeer',
-          components: { adminForm: AddUpdateBeerForm},
+          components: { adminForm: AddUpdateBeerForm },
           props: { adminForm: true }
         },
         {
@@ -159,11 +168,11 @@ router.beforeEach((to, from, next) => {
 
   // If it does and they are not logged in, send the user to "/login"
   if (requiresDobCheck && !store.getters.isOver21 && !store.getters.isLoggedIn) {
-    next({name: 'dob'});
+    next({ name: 'dob' });
   } else if ((requiresAdmin && !store.getters.isAdmin) // redirects to home if not admin
-      || (requiresBrewer && !(store.getters.isBrewer || store.getters.isAdmin)) // redirects to home if not brewer (or admin)
-      || (requiresAuth && !store.getters.isLoggedIn)) { // redirects to home if not logged in
-    next({name: 'home'});
+    || (requiresBrewer && !(store.getters.isBrewer || store.getters.isAdmin)) // redirects to home if not brewer (or admin)
+    || (requiresAuth && !store.getters.isLoggedIn)) { // redirects to home if not logged in
+    next({ name: 'home' });
   } else {
     // Else let them go to their next destination
     next();

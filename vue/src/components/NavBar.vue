@@ -35,7 +35,7 @@
             <template #button-content>
               <BIconPersonCircle class="text-porter" />
             </template>
-            <b-dropdown-item v-if="$store.getters.isLoggedIn">
+            <b-dropdown-item v-if="$store.getters.isLoggedIn" v-bind:to="{name: 'user'}">
               {{ $store.state.user.username }}
             </b-dropdown-item>
             <b-dropdown-item
