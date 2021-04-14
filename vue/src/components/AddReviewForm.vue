@@ -1,7 +1,7 @@
 <template>
   <div>
     <button
-      class="btn bg-porter text-foam text-wheat-h"
+      class="btn frosty-porter text-foam text-wheat-h"
       @click="displayAddReviewForm = !displayAddReviewForm"
     >
       Add a Review?
@@ -59,7 +59,7 @@
       <b-row>
         <b-col>
           <button
-            class="btn bg-porter text-foam text-wheat-h mt-2 ml-2"
+            class="btn frosty-porter text-foam text-wheat-h mt-2 ml-2"
             v-on:click.prevent="
               resetForm();
               displayAddReviewForm = false;
@@ -73,7 +73,7 @@
               addNewReview();
               resetForm();
             "
-            class="btn bg-porter text-foam text-wheat-h mt-2 ml-2"
+            class="btn frosty-porter text-foam text-wheat-h mt-2 ml-2"
             type="submit"
           >
             Submit
