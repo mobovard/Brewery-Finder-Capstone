@@ -21,7 +21,7 @@
         class="d-flex justify-content-end"
       >
         <b-link
-          class="btn bg-wheat text-porter text-porter-h"
+          class="btn frosty-foam text-porter text-porter-h"
           :to="{ name: 'updateBeer', params: { beerId: beerId } }"
           >Edit Beer</b-link
         >
@@ -30,7 +30,7 @@
     <div class="frosty-foam p-3 mt-2 rounded text-porter">
       <div class="d-flex flex-column align-items-left">
         <div class="flex-custom-img align-self-center">
-          <img :src="beer.image" class="rounded-circle img-fluid mb-3" />
+          <img :src="beer.image" class="rounded-circle img-fluid mb-3 beer-img" />
         </div>
         <div>
           <div class="d-flex flex-row align-items-baseline">
@@ -94,6 +94,9 @@ export default {
 }
 .pointer {
   cursor: pointer;
+}
+.beer-img{
+  max-height: 15rem;
 }
 .bg-img {
   position: fixed;
