@@ -85,6 +85,7 @@
       <div class="row">
         <div class="col">
           <b-form-datepicker
+            placeholder="Date of Birth"
             v-model="user.DOB"
             locale="en"
             :date-format-options="{
