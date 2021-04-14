@@ -34,5 +34,5 @@ export default {
   height: 100vh;
   width: 100vw;
   object-fit: cover;
-  z-index: 0;
+  z-index: -1;
 }</style>

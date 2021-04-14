@@ -1,12 +1,25 @@
 <template>
-  <div class="d-flex">
-    <div v-if="hasError">{{ errMsg }}</div>
-    <div class="flex-grow-1 d-md-flex flex-wrap justify-content-center m-2" v-if="!hasError">
-      <BreweryCard
-        v-for="brewery in $store.getters.activeBreweries"
-        :key="brewery.brewery_id"
-        :brewery="brewery"
-      />
+  <div>
+    <div v-if="hasError" class="alert alert-danger">{{ errMsg }}</div>
+    <div v-if="!hasError">
+      <div class="d-flex mt-2 justify-content-end">
+        <label for="filter" class="sr-only">Search Brewery</label>
+        <b-form-input
+          id="filter"
+          v-model="filter"
+          placeholder="Search"
+          class="w-25"
+        ></b-form-input>
+      </div>
+      <div class="d-flex">
+        <div class="flex-grow-1 d-md-flex flex-wrap justify-content-center m-2">
+          <BreweryCard
+            v-for="brewery in filteredBreweries"
+            :key="brewery.brewery_id"
+            :brewery="brewery"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -19,6 +32,7 @@ export default {
   components: { BreweryCard },
   data() {
     return {
+      filter: "",
       errMsg: "",
     };
   },
@@ -36,6 +50,12 @@ export default {
   computed: {
     hasError() {
       return this.errMsg != "";
+    },
+    filteredBreweries() {
+      return this.$store.getters.activeBreweries.filter((brewery) =>
+        brewery.name.toLowerCase().includes(this.filter.toLowerCase())
+        || brewery.history.toLowerCase().includes(this.filter.toLowerCase())
+      );
     },
   },
 };
