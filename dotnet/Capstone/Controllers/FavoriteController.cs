@@ -18,13 +18,13 @@ namespace Capstone.Controllers
         {
             favoriteDAO = _favoriteDAO;
         }
-        [HttpGet("/favorite/{id}")]
+        [HttpGet("/favorite")]
 
-        public ActionResult<List<int>> GetFavoriteBreweries(int id)
+        public ActionResult<List<int>> GetFavoriteBreweries()
         {
-            List<int> favorites = favoriteDAO.GetFavoriteBreweriesByUserId(id);
-
-            if(favorites != null)
+            int.TryParse(User.FindFirst("sub")?.Value, out int wtfId);
+            List<int> favorites = favoriteDAO.GetFavoriteBreweriesByUserId(wtfId);
+            if (favorites.Count > 0)
             {
                 return Ok(favorites);
             }
@@ -34,11 +34,12 @@ namespace Capstone.Controllers
             }
             
         }
-        [HttpPost("/favorite/{id}")]
+        [HttpPost("/favorite")]
 
-        public ActionResult<Favorite> AddAFavorite(int id, int brewery_id)
+        public ActionResult<Favorite> AddAFavorite(int id)
         {
-            Favorite favorite = favoriteDAO.AddFavorite(id, brewery_id);
+            int.TryParse(User.FindFirst("sub")?.Value, out int myId);
+            Favorite favorite = favoriteDAO.AddFavorite(myId, id);
 
             if(favorite != null)
             {
@@ -46,7 +47,23 @@ namespace Capstone.Controllers
             }
             else
             {
-                return NoContent();
+                return BadRequest();
+            }
+        }
+        [HttpDelete("/favorite")]
+
+        public ActionResult DeleteAFavorite(int brewery_id)
+        {
+            int.TryParse(User.FindFirst("sub")?.Value, out int myId);
+            int nmbOfRows = favoriteDAO.DeleteFavorite(myId, brewery_id);
+
+            if (nmbOfRows == 1)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
             }
         }
 
