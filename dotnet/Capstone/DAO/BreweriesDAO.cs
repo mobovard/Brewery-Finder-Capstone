@@ -168,27 +168,27 @@ namespace Capstone.DAO
             if (!(reader["wednesday"] is DBNull))
             {
                 string wednesday = Convert.ToString(reader["wednesday"]);
-                dictionary.Add("wednesday", wednesday);
+                dictionary.Add("Wednesday", wednesday);
             }
             if (!(reader["thursday"] is DBNull))
             {
                 string thursday = Convert.ToString(reader["thursday"]);
-                dictionary.Add("thursday", thursday);
+                dictionary.Add("Thursday", thursday);
             }
             if (!(reader["friday"] is DBNull))
             {
                 string friday = Convert.ToString(reader["friday"]);
-                dictionary.Add("friday", friday);
+                dictionary.Add("Friday", friday);
             }
             if (!(reader["saturday"] is DBNull))
             {
                 string saturday = Convert.ToString(reader["saturday"]);
-                dictionary.Add("saturday", saturday);
+                dictionary.Add("Saturday", saturday);
             }
             if (!(reader["sunday"] is DBNull))
             {
                 string sunday = Convert.ToString(reader["sunday"]);
-                dictionary.Add("sunday", sunday);
+                dictionary.Add("Sunday", sunday);
             }
 
             brewery.HoursOfOperation = dictionary;

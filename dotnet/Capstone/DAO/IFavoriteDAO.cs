@@ -10,5 +10,6 @@ namespace Capstone.DAO
     {
         List<int> GetFavoriteBreweriesByUserId(int id);
         Favorite AddFavorite(int user_id, int brewery_id);
+        int DeleteFavorite(int user_id, int brewery_id);
     }
 }

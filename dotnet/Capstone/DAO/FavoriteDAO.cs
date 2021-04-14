@@ -105,6 +105,29 @@ namespace Capstone.DAO
             }
             return favorite;
         }
+        public int DeleteFavorite(int user_id, int brewery_id)
+        {
+            int rowsAffected = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "DELETE  FROM favorites WHERE user_id =@user_id AND brewery_id = @brewery_id;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@user_id", user_id);
+                    cmd.Parameters.AddWithValue("@brewery_id", brewery_id);
+
+                    rowsAffected = Convert.ToInt32(cmd.ExecuteNonQuery());
+                 
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return rowsAffected;
+        }
     }
 
 }
