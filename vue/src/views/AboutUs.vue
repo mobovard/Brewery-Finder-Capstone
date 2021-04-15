@@ -63,7 +63,7 @@
         <img class="rounded profile img-fluid" src="../img/headshot/rb.jpg" />
         <h3 class="text-center mt-2">Ratnesh Bhattacharya</h3>
 
-        <h5 class="text-center mt-2">Favorite beer: IPA</h5>
+        <h5 class="text-center mt-2">Favorite beer: Stout</h5>
       </div>
     </div>
   </div>
