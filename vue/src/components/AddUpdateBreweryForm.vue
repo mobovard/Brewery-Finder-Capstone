@@ -243,20 +243,20 @@
       <b-col class="d-flex justify-content-end">
         <button
           type="submit"
-          class="btn bg-porter text-foam text-wheat-h"
+          class="btn frosty-foam text-foam text-wheat-h"
           v-if="isAdd"
         >
           Add
         </button>
         <button
           type="submit"
-          class="btn bg-porter text-foam text-wheat-h"
+          class="btn frosty-foam text-foam text-wheat-h"
           v-if="!isAdd"
         >
           Update
         </button>
         <button
-          class="btn bg-porter text-foam text-wheat-h ml-2"
+          class="btn frosty-foam text-foam text-wheat-h ml-2"
           @click.prevent="$router.push({ name: 'admin' })"
         >
           Cancel
