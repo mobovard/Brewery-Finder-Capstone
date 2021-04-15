@@ -34,7 +34,7 @@
 
       <button
         type="submit"
-        class="btn frosty-foam text-foam text-belgian-h my-1 font-weight-bold"
+        class="btn frosty-foam text-foam text-belgian-h my-1"
       >
         Sign in
       </button>

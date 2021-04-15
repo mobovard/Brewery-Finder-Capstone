@@ -103,7 +103,7 @@
         <div class="col">
           <button
             type="submit"
-            class="btn-block btn frosty-foam text-foam my-1 font-weight-bold"
+            class="btn-block btn frosty-foam text-foam my-1"
           >
             Create Account
           </button>
