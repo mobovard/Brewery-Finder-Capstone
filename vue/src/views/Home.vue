@@ -36,12 +36,14 @@
     >
       Register
     </button>
+
   </div>
 </template>
 
 <script>
 
 export default {
+
   name: "home",
 };
 </script>

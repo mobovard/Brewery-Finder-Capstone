@@ -1,7 +1,7 @@
 <template>
   <b-navbar toggleable="md" class="frosty-porter" sticky>
     <div class="container">
-      <b-navbar-brand class="img-logo"
+      <b-navbar-brand v-bind:to="{name: 'about'}" class="img-logo"
         ><img src="../img/BF.png" class="img-fluid" alt="Brewery Finder" />
       </b-navbar-brand>
 

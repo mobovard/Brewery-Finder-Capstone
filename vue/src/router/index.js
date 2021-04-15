@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home.vue'
+import AboutUs from'../views/AboutUs.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
@@ -9,12 +10,13 @@ import Breweries from '../views/Breweries.vue'
 import Beer from '../views/Beer.vue'
 import Admin from '../views/Admin.vue'
 import DOB from '../views/DOB.vue'
+import User from '../views/User.vue'
 import AddUpdateBreweryForm from '../components/AddUpdateBreweryForm.vue'
 import AddUpdateBeerForm from '../components/AddUpdateBeerForm.vue'
 import AdminBrewerySelector from '../components/AdminBrewerySelector.vue'
 import AdminBeerSelector from '../components/AdminBeerSelector.vue'
 import EditUsers from '../components/EditUsers.vue'
-import User from '../views/User.vue'
+
 import store from '../store/index'
 
 Vue.use(Router)
@@ -45,6 +47,14 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home,
+      meta: {
+        requiresAuth: false,
+      }
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutUs,
       meta: {
         requiresAuth: false,
       }
