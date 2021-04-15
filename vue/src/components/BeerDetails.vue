@@ -21,7 +21,7 @@
         class="d-flex justify-content-end"
       >
         <b-link
-          class="btn frosty-foam text-porter text-porter-h"
+          class="btn frosty-porter text-foam text-porter-h"
           :to="{ name: 'updateBeer', params: { beerId: beerId } }"
           >Edit Beer</b-link
         >
