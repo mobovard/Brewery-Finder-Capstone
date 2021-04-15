@@ -18,7 +18,7 @@
     </div>
     <button
       type="submit"
-      class="btn frosty-porter text-wheat text-belgian-h my-1 font-weight-bold mt-2"
+      class="btn frosty-foam text-porter text-belgian-h my-1 font-weight-bold mt-2"
       @click="deleteAccount()"
     >
       Delete Profile
