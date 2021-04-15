@@ -15,13 +15,13 @@
     </td>
     <td aria-colindex="4" role="cell">
       <button
-        class="btn bg-porter text-foam text-wheat-h"
+        class="btn frosty-foam text-foam text-wheat-h"
         @click="isEdit ? onSave() : onEdit()"
       >
         {{ isEdit ? "Save" : "Edit" }}
       </button>
       <button
-        class="btn bg-porter text-foam text-wheat-h ml-2"
+        class="btn frosty-foam text-foam text-wheat-h ml-2"
         v-if="isEdit"
         @click="
           setUserFromStore();
