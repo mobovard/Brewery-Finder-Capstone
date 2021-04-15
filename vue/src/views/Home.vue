@@ -7,14 +7,14 @@
       SELECTION!
     </p>
     <button
-      class="btn bg-porter text-foam text-wheat-h"
+      class="btn frosty-foam text-foam text-wheat-h"
       v-if="!$store.getters.isLoggedIn"
       @click="$router.push({ name: 'login' })"
     >
       Sign in
     </button>
     <button
-      class="btn bg-porter text-foam text-wheat-h ml-2"
+      class="btn frosty-foam text-foam text-wheat-h ml-2"
       v-if="!$store.getters.isLoggedIn"
       @click="$router.push({ name: 'register' })"
     >
