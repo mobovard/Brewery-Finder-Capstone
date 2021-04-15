@@ -3,7 +3,7 @@
     <b-row>
       <b-col md="4" lg="3">
         <b-link
-          class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
+          class="btn btn-block frosty-foam text-foam text-wheat-h mt-2"
           v-if="$store.getters.isAdmin"
           :to="{ name: 'editUsers' }"
         >
@@ -11,7 +11,7 @@
         </b-link>
 
         <b-link
-          class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
+          class="btn btn-block frosty-foam text-foam text-wheat-h mt-2"
           v-if="$store.getters.isAdmin"
           @click="resetToInitial()"
           :to="{ name: 'addBrewery' }"
@@ -20,21 +20,21 @@
         </b-link>
 
         <b-link
-          class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
+          class="btn btn-block frosty-foam text-foam text-wheat-h mt-2"
           :to="{ name: 'brewerySelector' }"
         >
           Update Brewery
         </b-link>
 
         <b-link
-          class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
+          class="btn btn-block frosty-foam text-foam text-wheat-h mt-2"
           :to="{ name: 'addBeer' }"
         >
           Add Beer
         </b-link>
 
         <b-link
-          class="btn btn-block bg-porter text-foam text-wheat-h mt-2"
+          class="btn btn-block frosty-foam text-foam text-wheat-h mt-2"
           :to="{ name: 'beerSelector' }"
         >
           Update Beer
