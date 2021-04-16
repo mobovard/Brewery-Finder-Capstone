@@ -167,7 +167,7 @@ INSERT INTO brewery(name,phone_number,brewery_email,address,zipcode, city, state
 VALUES('Doolally Taproom','01191(022)48931314','placeholder2@gmail.com','10A Road Number 3','400052','Mumbai','Maharashtra','The first microbrewery in India, with three outlets in Mumbai',0,'https://imgmediagumlet.lbb.in/media/2017/08/599470d03e05710dff4c8621_56aad8b4dae5d95f37743284_1502900432931.jpg?fm=webp&w=750&h=500&dpr=2', 2,'https://doolally.in/asset/images/splashLogo.png');
 
 INSERT INTO brewery(name,phone_number,brewery_email,address, zipcode, city, state, history,active,brewery_img,user_id,logo)
-VALUES('Rhinegeist','(513) 381-1367','taproom@rhinegeist.com','1910 Elm St','45202','Cincinnati','Ohio','Rhinegeist is a craft brewery based in the Over-The-Rhine historical neighborhood of Cincinnati, Ohio. We have built a strong and dedicated team that believes in the power and beauty of great beer.',1,'https://rhinegeist.com/wp-content/uploads/2018/07/visit-hero.png', 2,'https://rhinegeist.com/wp-content/uploads/2018/08/rhinegeist-fb-default.png');
+VALUES('Rhinegeist','(513) 381-1367','taproom@rhinegeist.com','1910 Elm St','45202','Cincinnati','Ohio','Rhinegeist is a craft brewery based in the Over-The-Rhine historical neighborhood of Cincinnati, Ohio. We have built a strong and dedicated team that believes in the power and beauty of great beer.',1,'https://rhinegeist.com/wp-content/uploads/2018/07/visit-hero.png', 5,'https://rhinegeist.com/wp-content/uploads/2018/08/rhinegeist-fb-default.png');
 
 
 
